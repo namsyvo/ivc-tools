@@ -75,11 +75,11 @@ for para in ref_para:
                 else:
                     true_unknown_indel[pos] = unknown_var
 
-    fpfntp_info_path = os.path.join(data_dir, result_dir, "isc_" + para, result_dn, "fpfntp_info")
+    fpfntp_info_path = os.path.join(data_dir, result_dir, "ivc_" + para, result_dn, "fpfntp_info")
     if not os.path.exists(fpfntp_info_path):
         os.makedirs(fpfntp_info_path)
 
-    result_path = os.path.join(data_dir, result_dir, "isc_" + para, result_dn)
+    result_path = os.path.join(data_dir, result_dir, "ivc_" + para, result_dn)
     gatk_result_path = os.path.join(data_dir, result_dir, "gatk")
 
     header = "pos\tref\talt\tqual\tprob\tbase_num\tbase_qual\tchr_dis\tchr_diff\t-log(aln_prob)\t-log(pair_prob)\ts_pos1\tbranch1\ts_pos2\tbranch2\tread_header\taln_base\taln_base_num\n"

@@ -1,7 +1,7 @@
 '''
-Evaluate SNP call results
+Evaluate variant call results
 Usage: python eval_var_af_sid_mutant_diff_ref.py config_file confi cpu_num coverage_num result_dir_name
-    E.g.: python eval_var_af_sid_mutant_diff_ref.py config-chr1-test.json 1.14 32 5 ISC-0.5.3-aff_gap_aln-2015-05-20-15:09:36.226789
+    E.g.: python eval_var_af_sid_mutant_diff_ref.py config-chr1-test.json 1.14 32 5 IVC-0.5.3-aff_gap_aln-2015-05-20-15:09:36.226789
 
 '''
 import os
@@ -19,7 +19,7 @@ prog_path = data["ProgPath"]
 data_dir = data["DataPath"]["DataDir"]
 ref_dir = data["DataPath"]["RefDir"]
 genome_fn = data["DataPath"]["GenomeFile"]
-snp_fn = data["DataPath"]["SNPProfFile"]
+snp_fn = data["DataPath"]["VarProfFile"]
 read_dir = data["DataPath"]["ReadDir"]
 index_dir = data["DataPath"]["IndexDir"]
 result_dir = data["DataPath"]["ResultDir"]
@@ -90,7 +90,7 @@ for para in ref_para[0:1]:
                     if unknown_var[0] != unknown_var[1]:
                         NID += 1
 
-    result_path = os.path.join(data_dir, result_dir, "isc_" + para, result_dn)
+    result_path = os.path.join(data_dir, result_dir, "ivc_" + para, result_dn)
     result_file_path = result_path + "/" + read_fn + "_" + str(read_lens[0]) + "." + str(seq_errs[0]) + ".prec-rec-time-mem." + str(confi) + ".diff-pos.txt"
     result_file = open(result_file_path, "w")
 
