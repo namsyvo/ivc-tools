@@ -1,0 +1,1532 @@
+Command terminated by signal 2
+0.13user 0.03system 0:00.16elapsed 100%CPU (0avgtext+0avgdata 20036maxresident)k
+0inputs+64outputs (0major+5532minor)pagefaults 0swaps
+INFO  03:39:33,945 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:39:33,947 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  03:39:33,947 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  03:39:33,947 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  03:39:33,950 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.1x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.1x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  03:39:33,954 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  03:39:33,954 HelpFormatter - Date/Time: 2014/03/26 03:39:33 
+INFO  03:39:33,954 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:39:33,954 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:39:34,028 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  03:39:34,073 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  03:39:34,079 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  03:39:34,089 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  03:39:34,219 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  03:39:34,445 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  03:39:34,446 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  03:39:34,446 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  03:40:04,450 ProgressMeter - gi|224589812|ref|NC_000020.10|:4163653        4.15e+06   30.0 s        7.0 s      6.6%         7.6 m     7.1 m 
+INFO  03:40:34,451 ProgressMeter - gi|224589812|ref|NC_000020.10|:8877045        8.86e+06   60.0 s        6.0 s     14.1%         7.1 m     6.1 m 
+INFO  03:41:04,452 ProgressMeter - gi|224589812|ref|NC_000020.10|:13667557        1.37e+07   90.0 s        6.0 s     21.7%         6.9 m     5.4 m 
+INFO  03:41:34,454 ProgressMeter - gi|224589812|ref|NC_000020.10|:18369665        1.84e+07  120.0 s        6.0 s     29.1%         6.9 m     4.9 m 
+INFO  03:42:04,455 ProgressMeter - gi|224589812|ref|NC_000020.10|:23153893        2.32e+07    2.5 m        6.0 s     36.7%         6.8 m     4.3 m 
+INFO  03:42:34,456 ProgressMeter - gi|224589812|ref|NC_000020.10|:31015413        3.10e+07    3.0 m        5.0 s     49.2%         6.1 m     3.1 m 
+INFO  03:43:04,457 ProgressMeter - gi|224589812|ref|NC_000020.10|:35930029        3.59e+07    3.5 m        5.0 s     57.0%         6.1 m     2.6 m 
+INFO  03:43:34,458 ProgressMeter - gi|224589812|ref|NC_000020.10|:40799761        4.08e+07    4.0 m        5.0 s     64.7%         6.2 m     2.2 m 
+INFO  03:44:04,458 ProgressMeter - gi|224589812|ref|NC_000020.10|:45697977        4.57e+07    4.5 m        5.0 s     72.5%         6.2 m   102.0 s 
+INFO  03:44:34,459 ProgressMeter - gi|224589812|ref|NC_000020.10|:50652945        5.06e+07    5.0 m        5.0 s     80.4%         6.2 m    73.0 s 
+INFO  03:45:14,460 ProgressMeter - gi|224589812|ref|NC_000020.10|:57092557        5.71e+07    5.7 m        5.0 s     90.6%         6.3 m    35.0 s 
+INFO  03:45:44,464 ProgressMeter - gi|224589812|ref|NC_000020.10|:61919553        6.19e+07    6.2 m        5.0 s     98.2%         6.3 m     6.0 s 
+INFO  03:45:50,795 ProgressMeter -            done        6.30e+07    6.3 m        5.0 s    100.0%         6.3 m     0.0 s 
+INFO  03:45:50,795 ProgressMeter - Total runtime 376.35 secs, 6.27 min, 0.10 hours 
+INFO  03:45:50,796 MicroScheduler - 4 reads were filtered out during the traversal out of approximately 636713 total reads (0.00%) 
+INFO  03:45:50,796 MicroScheduler -   -> 4 reads (0.00% of total) failing BadCigarFilter 
+INFO  03:45:50,796 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  03:45:50,796 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  03:45:50,796 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  03:45:50,797 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  03:45:50,797 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  03:45:50,797 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  03:45:50,797 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  03:45:52,151 GATKRunReport - Uploaded run statistics report to AWS S3 
+404.06user 12.29system 6:20.86elapsed 109%CPU (0avgtext+0avgdata 4251792maxresident)k
+0inputs+40184outputs (0major+1187643minor)pagefaults 0swaps
+INFO  03:45:55,547 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:45:55,548 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  03:45:55,549 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  03:45:55,549 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  03:45:55,551 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.1x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.1x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  03:45:55,555 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  03:45:55,556 HelpFormatter - Date/Time: 2014/03/26 03:45:55 
+INFO  03:45:55,556 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:45:55,556 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:45:55,630 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  03:45:55,675 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  03:45:55,681 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  03:45:55,691 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  03:45:55,822 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  03:45:56,079 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  03:45:56,079 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  03:45:56,079 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  03:46:26,084 ProgressMeter - gi|224589812|ref|NC_000020.10|:3854441        3.85e+06   30.0 s        7.0 s      6.1%         8.2 m     7.7 m 
+INFO  03:46:56,089 ProgressMeter - gi|224589812|ref|NC_000020.10|:8535981        8.52e+06   60.0 s        7.0 s     13.5%         7.4 m     6.4 m 
+INFO  03:47:26,090 ProgressMeter - gi|224589812|ref|NC_000020.10|:13289625        1.33e+07   90.0 s        6.0 s     21.1%         7.1 m     5.6 m 
+INFO  03:47:56,092 ProgressMeter - gi|224589812|ref|NC_000020.10|:17944281        1.79e+07  120.0 s        6.0 s     28.5%         7.0 m     5.0 m 
+INFO  03:48:26,093 ProgressMeter - gi|224589812|ref|NC_000020.10|:22749409        2.27e+07    2.5 m        6.0 s     36.1%         6.9 m     4.4 m 
+INFO  03:48:56,094 ProgressMeter - gi|224589812|ref|NC_000020.10|:30639581        3.06e+07    3.0 m        5.0 s     48.6%         6.2 m     3.2 m 
+INFO  03:49:26,095 ProgressMeter - gi|224589812|ref|NC_000020.10|:35755189        3.57e+07    3.5 m        5.0 s     56.7%         6.2 m     2.7 m 
+INFO  03:49:56,096 ProgressMeter - gi|224589812|ref|NC_000020.10|:40583985        4.06e+07    4.0 m        5.0 s     64.4%         6.2 m     2.2 m 
+INFO  03:50:26,097 ProgressMeter - gi|224589812|ref|NC_000020.10|:45352513        4.54e+07    4.5 m        5.0 s     72.0%         6.3 m   105.0 s 
+INFO  03:50:56,098 ProgressMeter - gi|224589812|ref|NC_000020.10|:50163825        5.02e+07    5.0 m        5.0 s     79.6%         6.3 m    76.0 s 
+INFO  03:51:26,099 ProgressMeter - gi|224589812|ref|NC_000020.10|:54860933        5.49e+07    5.5 m        6.0 s     87.0%         6.3 m    49.0 s 
+INFO  03:51:56,100 ProgressMeter - gi|224589812|ref|NC_000020.10|:59526173        5.95e+07    6.0 m        6.0 s     94.4%         6.4 m    21.0 s 
+INFO  03:52:17,869 ProgressMeter -            done        6.30e+07    6.4 m        6.0 s    100.0%         6.4 m     0.0 s 
+INFO  03:52:17,869 ProgressMeter - Total runtime 381.79 secs, 6.36 min, 0.11 hours 
+INFO  03:52:17,869 MicroScheduler - 0 reads were filtered out during the traversal out of approximately 631822 total reads (0.00%) 
+INFO  03:52:17,870 MicroScheduler -   -> 0 reads (0.00% of total) failing BadCigarFilter 
+INFO  03:52:17,870 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  03:52:17,870 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  03:52:17,870 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  03:52:17,870 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  03:52:17,871 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  03:52:17,871 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  03:52:17,871 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  03:52:19,189 GATKRunReport - Uploaded run statistics report to AWS S3 
+416.77user 12.79system 6:26.95elapsed 111%CPU (0avgtext+0avgdata 2538904maxresident)k
+0inputs+38936outputs (0major+895871minor)pagefaults 0swaps
+INFO  03:52:22,223 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:52:22,225 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  03:52:22,226 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  03:52:22,226 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  03:52:22,228 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.1x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.1x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  03:52:22,232 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  03:52:22,233 HelpFormatter - Date/Time: 2014/03/26 03:52:22 
+INFO  03:52:22,233 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:52:22,233 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:52:22,314 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  03:52:22,371 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  03:52:22,377 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  03:52:22,388 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  03:52:22,530 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  03:52:22,809 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  03:52:22,809 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  03:52:22,809 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  03:52:52,811 ProgressMeter - gi|224589812|ref|NC_000020.10|:4123085        4.11e+06   30.0 s        7.0 s      6.5%         7.6 m     7.1 m 
+INFO  03:53:22,812 ProgressMeter - gi|224589812|ref|NC_000020.10|:8848161        8.85e+06   60.0 s        6.0 s     14.0%         7.1 m     6.1 m 
+INFO  03:54:02,813 ProgressMeter - gi|224589812|ref|NC_000020.10|:15258205        1.53e+07  100.0 s        6.0 s     24.2%         6.9 m     5.2 m 
+INFO  03:54:42,814 ProgressMeter - gi|224589812|ref|NC_000020.10|:21624597        2.16e+07    2.3 m        6.0 s     34.3%         6.8 m     4.5 m 
+INFO  03:55:12,814 ProgressMeter - gi|224589812|ref|NC_000020.10|:27345973        2.63e+07    2.8 m        6.0 s     43.4%         6.5 m     3.7 m 
+INFO  03:55:42,815 ProgressMeter - gi|224589812|ref|NC_000020.10|:34542473        3.45e+07    3.3 m        5.0 s     54.8%         6.1 m     2.7 m 
+INFO  03:56:12,816 ProgressMeter - gi|224589812|ref|NC_000020.10|:39457773        3.95e+07    3.8 m        5.0 s     62.6%         6.1 m     2.3 m 
+INFO  03:56:52,816 ProgressMeter - gi|224589812|ref|NC_000020.10|:45907485        4.59e+07    4.5 m        5.0 s     72.8%         6.2 m   100.0 s 
+INFO  03:57:22,820 ProgressMeter - gi|224589812|ref|NC_000020.10|:50694197        5.07e+07    5.0 m        5.0 s     80.4%         6.2 m    72.0 s 
+INFO  03:57:52,821 ProgressMeter - gi|224589812|ref|NC_000020.10|:55484625        5.55e+07    5.5 m        5.0 s     88.0%         6.2 m    44.0 s 
+INFO  03:58:22,822 ProgressMeter - gi|224589812|ref|NC_000020.10|:60148165        6.01e+07    6.0 m        5.0 s     95.4%         6.3 m    17.0 s 
+INFO  03:58:40,367 ProgressMeter -            done        6.30e+07    6.3 m        5.0 s    100.0%         6.3 m     0.0 s 
+INFO  03:58:40,368 ProgressMeter - Total runtime 377.56 secs, 6.29 min, 0.10 hours 
+INFO  03:58:40,368 MicroScheduler - 2 reads were filtered out during the traversal out of approximately 606985 total reads (0.00%) 
+INFO  03:58:40,368 MicroScheduler -   -> 2 reads (0.00% of total) failing BadCigarFilter 
+INFO  03:58:40,368 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  03:58:40,369 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  03:58:40,369 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  03:58:40,369 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  03:58:40,369 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  03:58:40,369 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  03:58:40,369 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  03:58:41,700 GATKRunReport - Uploaded run statistics report to AWS S3 
+407.15user 12.15system 6:22.28elapsed 109%CPU (0avgtext+0avgdata 2060384maxresident)k
+15272inputs+34728outputs (0major+728555minor)pagefaults 0swaps
+INFO  03:58:44,326 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:58:44,328 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  03:58:44,329 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  03:58:44,329 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  03:58:44,331 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.2x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.2x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  03:58:44,335 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  03:58:44,335 HelpFormatter - Date/Time: 2014/03/26 03:58:44 
+INFO  03:58:44,335 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:58:44,336 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  03:58:44,412 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  03:58:44,457 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  03:58:44,463 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  03:58:44,494 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.03 
+INFO  03:58:44,630 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  03:58:45,029 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  03:58:45,029 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  03:58:45,030 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  03:59:15,033 ProgressMeter - gi|224589812|ref|NC_000020.10|:3129261        3.11e+06   30.0 s        9.0 s      5.0%        10.1 m     9.6 m 
+INFO  03:59:45,034 ProgressMeter - gi|224589812|ref|NC_000020.10|:6844829        6.83e+06   60.0 s        8.0 s     10.9%         9.2 m     8.2 m 
+INFO  04:00:25,035 ProgressMeter - gi|224589812|ref|NC_000020.10|:11804281        1.18e+07  100.0 s        8.0 s     18.7%         8.9 m     7.2 m 
+INFO  04:00:55,037 ProgressMeter - gi|224589812|ref|NC_000020.10|:15491481        1.55e+07    2.2 m        8.0 s     24.6%         8.8 m     6.6 m 
+INFO  04:01:25,037 ProgressMeter - gi|224589812|ref|NC_000020.10|:19080577        1.91e+07    2.7 m        8.0 s     30.3%         8.8 m     6.1 m 
+INFO  04:01:55,038 ProgressMeter - gi|224589812|ref|NC_000020.10|:22876565        2.29e+07    3.2 m        8.0 s     36.3%         8.7 m     5.6 m 
+INFO  04:02:25,039 ProgressMeter - gi|224589812|ref|NC_000020.10|:29548253        2.95e+07    3.7 m        7.0 s     46.9%         7.8 m     4.2 m 
+INFO  04:03:05,039 ProgressMeter - gi|224589812|ref|NC_000020.10|:34869453        3.49e+07    4.3 m        7.0 s     55.3%         7.8 m     3.5 m 
+INFO  04:03:35,040 ProgressMeter - gi|224589812|ref|NC_000020.10|:38711209        3.87e+07    4.8 m        7.0 s     61.4%         7.9 m     3.0 m 
+INFO  04:04:05,041 ProgressMeter - gi|224589812|ref|NC_000020.10|:42435661        4.24e+07    5.3 m        7.0 s     67.3%         7.9 m     2.6 m 
+INFO  04:04:35,042 ProgressMeter - gi|224589812|ref|NC_000020.10|:46188197        4.62e+07    5.8 m        7.0 s     73.3%         8.0 m     2.1 m 
+INFO  04:05:05,044 ProgressMeter - gi|224589812|ref|NC_000020.10|:49935749        4.99e+07    6.3 m        7.0 s     79.2%         8.0 m    99.0 s 
+INFO  04:05:45,048 ProgressMeter - gi|224589812|ref|NC_000020.10|:54885917        5.49e+07    7.0 m        7.0 s     87.1%         8.0 m    62.0 s 
+INFO  04:06:25,049 ProgressMeter - gi|224589812|ref|NC_000020.10|:59741165        5.97e+07    7.7 m        7.0 s     94.8%         8.1 m    25.0 s 
+INFO  04:06:50,925 ProgressMeter -            done        6.30e+07    8.1 m        7.0 s    100.0%         8.1 m     0.0 s 
+INFO  04:06:50,926 ProgressMeter - Total runtime 485.90 secs, 8.10 min, 0.13 hours 
+INFO  04:06:50,926 MicroScheduler - 1 reads were filtered out during the traversal out of approximately 1274744 total reads (0.00%) 
+INFO  04:06:50,926 MicroScheduler -   -> 1 reads (0.00% of total) failing BadCigarFilter 
+INFO  04:06:50,926 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  04:06:50,927 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  04:06:50,927 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  04:06:50,927 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  04:06:50,927 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  04:06:50,928 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  04:06:50,928 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  04:06:52,502 GATKRunReport - Uploaded run statistics report to AWS S3 
+528.38user 13.79system 8:11.04elapsed 110%CPU (0avgtext+0avgdata 2659160maxresident)k
+51216inputs+93384outputs (0major+1003928minor)pagefaults 0swaps
+INFO  04:06:55,502 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:06:55,504 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  04:06:55,504 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  04:06:55,505 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  04:06:55,507 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.2x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.2x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  04:06:55,511 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  04:06:55,511 HelpFormatter - Date/Time: 2014/03/26 04:06:55 
+INFO  04:06:55,511 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:06:55,511 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:06:55,589 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  04:06:55,645 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  04:06:55,651 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  04:06:55,683 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.03 
+INFO  04:06:55,841 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  04:06:56,204 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  04:06:56,204 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  04:06:56,204 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  04:07:26,207 ProgressMeter - gi|224589812|ref|NC_000020.10|:3366921        3.36e+06   30.0 s        8.0 s      5.3%         9.4 m     8.9 m 
+INFO  04:07:56,207 ProgressMeter - gi|224589812|ref|NC_000020.10|:7307965        7.31e+06   60.0 s        8.0 s     11.6%         8.6 m     7.6 m 
+INFO  04:08:26,208 ProgressMeter - gi|224589812|ref|NC_000020.10|:10950413        1.09e+07   90.0 s        8.0 s     17.4%         8.6 m     7.1 m 
+INFO  04:08:56,209 ProgressMeter - gi|224589812|ref|NC_000020.10|:14785669        1.48e+07  120.0 s        8.0 s     23.5%         8.5 m     6.5 m 
+INFO  04:09:36,214 ProgressMeter - gi|224589812|ref|NC_000020.10|:19844325        1.98e+07    2.7 m        8.0 s     31.5%         8.5 m     5.8 m 
+INFO  04:10:06,215 ProgressMeter - gi|224589812|ref|NC_000020.10|:23740333        2.37e+07    3.2 m        8.0 s     37.7%         8.4 m     5.2 m 
+INFO  04:10:36,216 ProgressMeter - gi|224589812|ref|NC_000020.10|:30715517        3.07e+07    3.7 m        7.0 s     48.7%         7.5 m     3.9 m 
+INFO  04:11:16,217 ProgressMeter - gi|224589812|ref|NC_000020.10|:36249309        3.62e+07    4.3 m        7.0 s     57.5%         7.5 m     3.2 m 
+INFO  04:11:56,217 ProgressMeter - gi|224589812|ref|NC_000020.10|:41388385        4.14e+07    5.0 m        7.0 s     65.7%         7.6 m     2.6 m 
+INFO  04:12:26,218 ProgressMeter - gi|224589812|ref|NC_000020.10|:45291377        4.53e+07    5.5 m        7.0 s     71.9%         7.7 m     2.2 m 
+INFO  04:12:56,219 ProgressMeter - gi|224589812|ref|NC_000020.10|:49203453        4.92e+07    6.0 m        7.0 s     78.1%         7.7 m   101.0 s 
+INFO  04:13:36,219 ProgressMeter - gi|224589812|ref|NC_000020.10|:54254125        5.42e+07    6.7 m        7.0 s     86.1%         7.7 m    64.0 s 
+INFO  04:14:06,220 ProgressMeter - gi|224589812|ref|NC_000020.10|:58081197        5.81e+07    7.2 m        7.0 s     92.2%         7.8 m    36.0 s 
+INFO  04:14:44,687 ProgressMeter -            done        6.30e+07    7.8 m        7.0 s    100.0%         7.8 m     0.0 s 
+INFO  04:14:44,687 ProgressMeter - Total runtime 468.48 secs, 7.81 min, 0.13 hours 
+INFO  04:14:44,687 MicroScheduler - 6 reads were filtered out during the traversal out of approximately 1265602 total reads (0.00%) 
+INFO  04:14:44,687 MicroScheduler -   -> 6 reads (0.00% of total) failing BadCigarFilter 
+INFO  04:14:44,688 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  04:14:44,688 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  04:14:44,688 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  04:14:44,688 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  04:14:44,689 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  04:14:44,689 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  04:14:44,689 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  04:14:46,160 GATKRunReport - Uploaded run statistics report to AWS S3 
+502.34user 18.34system 7:53.46elapsed 109%CPU (0avgtext+0avgdata 2197448maxresident)k
+54800inputs+93336outputs (0major+7307331minor)pagefaults 0swaps
+INFO  04:14:49,104 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:14:49,106 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  04:14:49,106 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  04:14:49,106 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  04:14:49,109 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.2x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.2x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  04:14:49,113 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  04:14:49,113 HelpFormatter - Date/Time: 2014/03/26 04:14:49 
+INFO  04:14:49,113 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:14:49,113 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:14:49,189 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  04:14:49,234 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  04:14:49,241 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  04:14:49,272 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.03 
+INFO  04:14:49,406 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  04:14:49,658 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  04:14:49,659 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  04:14:49,659 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  04:15:19,661 ProgressMeter - gi|224589812|ref|NC_000020.10|:3009573        3.00e+06   30.0 s       10.0 s      4.8%        10.5 m    10.0 m 
+INFO  04:15:49,662 ProgressMeter - gi|224589812|ref|NC_000020.10|:6478181        6.47e+06   60.0 s        9.0 s     10.3%         9.7 m     8.7 m 
+INFO  04:16:29,663 ProgressMeter - gi|224589812|ref|NC_000020.10|:11067401        1.11e+07  100.0 s        9.0 s     17.6%         9.5 m     7.8 m 
+INFO  04:17:09,664 ProgressMeter - gi|224589812|ref|NC_000020.10|:15667805        1.57e+07    2.3 m        8.0 s     24.9%         9.4 m     7.1 m 
+INFO  04:17:39,664 ProgressMeter - gi|224589812|ref|NC_000020.10|:19029625        1.90e+07    2.8 m        8.0 s     30.2%         9.4 m     6.6 m 
+INFO  04:18:09,665 ProgressMeter - gi|224589812|ref|NC_000020.10|:22526417        2.25e+07    3.3 m        8.0 s     35.7%         9.3 m     6.0 m 
+INFO  04:18:39,666 ProgressMeter - gi|224589812|ref|NC_000020.10|:25903021        2.59e+07    3.8 m        8.0 s     41.1%         9.3 m     5.5 m 
+INFO  04:19:09,667 ProgressMeter - gi|224589812|ref|NC_000020.10|:32684797        3.27e+07    4.3 m        7.0 s     51.9%         8.4 m     4.0 m 
+INFO  04:19:39,668 ProgressMeter - gi|224589812|ref|NC_000020.10|:36440517        3.64e+07    4.8 m        7.0 s     57.8%         8.4 m     3.5 m 
+INFO  04:20:09,669 ProgressMeter - gi|224589812|ref|NC_000020.10|:39851389        3.98e+07    5.3 m        8.0 s     63.2%         8.4 m     3.1 m 
+INFO  04:20:49,670 ProgressMeter - gi|224589812|ref|NC_000020.10|:44428325        4.44e+07    6.0 m        8.0 s     70.5%         8.5 m     2.5 m 
+INFO  04:21:19,676 ProgressMeter - gi|224589812|ref|NC_000020.10|:47872065        4.79e+07    6.5 m        8.0 s     76.0%         8.6 m     2.1 m 
+INFO  04:21:49,676 ProgressMeter - gi|224589812|ref|NC_000020.10|:51388225        5.14e+07    7.0 m        8.0 s     81.5%         8.6 m    95.0 s 
+INFO  04:22:19,677 ProgressMeter - gi|224589812|ref|NC_000020.10|:54799797        5.48e+07    7.5 m        8.0 s     86.9%         8.6 m    67.0 s 
+INFO  04:22:49,678 ProgressMeter - gi|224589812|ref|NC_000020.10|:58215953        5.82e+07    8.0 m        8.0 s     92.4%         8.7 m    39.0 s 
+INFO  04:23:29,678 ProgressMeter - gi|224589812|ref|NC_000020.10|:62768805        6.28e+07    8.7 m        8.0 s     99.6%         8.7 m     2.0 s 
+INFO  04:23:31,445 ProgressMeter -            done        6.30e+07    8.7 m        8.0 s    100.0%         8.7 m     0.0 s 
+INFO  04:23:31,445 ProgressMeter - Total runtime 521.79 secs, 8.70 min, 0.14 hours 
+INFO  04:23:31,446 MicroScheduler - 12 reads were filtered out during the traversal out of approximately 1214932 total reads (0.00%) 
+INFO  04:23:31,446 MicroScheduler -   -> 12 reads (0.00% of total) failing BadCigarFilter 
+INFO  04:23:31,446 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  04:23:31,446 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  04:23:31,447 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  04:23:31,447 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  04:23:31,447 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  04:23:31,447 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  04:23:31,447 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  04:23:32,768 GATKRunReport - Uploaded run statistics report to AWS S3 
+555.07user 13.96system 8:46.58elapsed 108%CPU (0avgtext+0avgdata 2069972maxresident)k
+54184inputs+90536outputs (0major+827520minor)pagefaults 0swaps
+INFO  04:23:35,960 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:23:35,961 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  04:23:35,962 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  04:23:35,962 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  04:23:35,964 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.3x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.3x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  04:23:35,968 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  04:23:35,968 HelpFormatter - Date/Time: 2014/03/26 04:23:35 
+INFO  04:23:35,969 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:23:35,969 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:23:36,044 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  04:23:36,089 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  04:23:36,095 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  04:23:36,127 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.03 
+INFO  04:23:36,269 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  04:23:36,518 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  04:23:36,518 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  04:23:36,519 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  04:24:06,523 ProgressMeter - gi|224589812|ref|NC_000020.10|:2960521        2.95e+06   30.0 s       10.0 s      4.7%        10.6 m    10.1 m 
+INFO  04:24:36,524 ProgressMeter - gi|224589812|ref|NC_000020.10|:6465097        6.46e+06   60.0 s        9.0 s     10.3%         9.7 m     8.7 m 
+INFO  04:25:06,526 ProgressMeter - gi|224589812|ref|NC_000020.10|:9979457        9.98e+06   90.0 s        9.0 s     15.8%         9.5 m     8.0 m 
+INFO  04:25:36,527 ProgressMeter - gi|224589812|ref|NC_000020.10|:13580753        1.36e+07  120.0 s        8.0 s     21.5%         9.3 m     7.3 m 
+INFO  04:26:06,533 ProgressMeter - gi|224589812|ref|NC_000020.10|:17042861        1.70e+07    2.5 m        8.0 s     27.0%         9.2 m     6.7 m 
+INFO  04:26:36,534 ProgressMeter - gi|224589812|ref|NC_000020.10|:20620073        2.06e+07    3.0 m        8.0 s     32.7%         9.2 m     6.2 m 
+INFO  04:27:06,535 ProgressMeter - gi|224589812|ref|NC_000020.10|:24131849        2.41e+07    3.5 m        8.0 s     38.3%         9.1 m     5.6 m 
+INFO  04:27:36,536 ProgressMeter - gi|224589812|ref|NC_000020.10|:30980361        3.10e+07    4.0 m        7.0 s     49.2%         8.1 m     4.1 m 
+INFO  04:28:06,537 ProgressMeter - gi|224589812|ref|NC_000020.10|:34623293        3.46e+07    4.5 m        7.0 s     54.9%         8.2 m     3.7 m 
+INFO  04:28:36,538 ProgressMeter - gi|224589812|ref|NC_000020.10|:38241257        3.82e+07    5.0 m        7.0 s     60.7%         8.2 m     3.2 m 
+INFO  04:29:16,538 ProgressMeter - gi|224589812|ref|NC_000020.10|:42851461        4.28e+07    5.7 m        7.0 s     68.0%         8.3 m     2.7 m 
+INFO  04:29:46,539 ProgressMeter - gi|224589812|ref|NC_000020.10|:46345253        4.63e+07    6.2 m        7.0 s     73.5%         8.4 m     2.2 m 
+INFO  04:30:16,540 ProgressMeter - gi|224589812|ref|NC_000020.10|:49770909        4.98e+07    6.7 m        8.0 s     79.0%         8.4 m   106.0 s 
+INFO  04:30:56,541 ProgressMeter - gi|224589812|ref|NC_000020.10|:54333045        5.43e+07    7.3 m        8.0 s     86.2%         8.5 m    70.0 s 
+INFO  04:31:26,541 ProgressMeter - gi|224589812|ref|NC_000020.10|:57734233        5.77e+07    7.8 m        8.0 s     91.6%         8.6 m    43.0 s 
+INFO  04:31:56,542 ProgressMeter - gi|224589812|ref|NC_000020.10|:61047185        6.10e+07    8.3 m        8.0 s     96.9%         8.6 m    16.0 s 
+INFO  04:32:12,707 ProgressMeter -            done        6.30e+07    8.6 m        8.0 s    100.0%         8.6 m     0.0 s 
+INFO  04:32:12,707 ProgressMeter - Total runtime 516.19 secs, 8.60 min, 0.14 hours 
+INFO  04:32:12,708 MicroScheduler - 14 reads were filtered out during the traversal out of approximately 1912128 total reads (0.00%) 
+INFO  04:32:12,708 MicroScheduler -   -> 14 reads (0.00% of total) failing BadCigarFilter 
+INFO  04:32:12,708 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  04:32:12,708 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  04:32:12,709 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  04:32:12,709 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  04:32:12,709 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  04:32:12,709 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  04:32:12,709 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  04:32:14,043 GATKRunReport - Uploaded run statistics report to AWS S3 
+554.57user 12.36system 8:41.28elapsed 108%CPU (0avgtext+0avgdata 2203956maxresident)k
+86744inputs+130976outputs (0major+870961minor)pagefaults 0swaps
+INFO  04:32:16,433 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:32:16,435 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  04:32:16,435 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  04:32:16,435 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  04:32:16,438 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.3x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.3x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  04:32:16,442 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  04:32:16,442 HelpFormatter - Date/Time: 2014/03/26 04:32:16 
+INFO  04:32:16,442 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:32:16,442 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:32:16,515 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  04:32:16,560 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  04:32:16,566 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  04:32:16,594 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.03 
+INFO  04:32:16,741 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  04:32:17,292 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  04:32:17,293 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  04:32:17,294 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  04:32:47,296 ProgressMeter - gi|224589812|ref|NC_000020.10|:2613257        2.61e+06   30.0 s       11.0 s      4.1%        12.1 m    11.6 m 
+INFO  04:33:17,297 ProgressMeter - gi|224589812|ref|NC_000020.10|:5902141        5.90e+06   60.0 s       10.0 s      9.4%        10.7 m     9.7 m 
+INFO  04:33:47,298 ProgressMeter - gi|224589812|ref|NC_000020.10|:9150673        9.14e+06   90.0 s        9.0 s     14.5%        10.3 m     8.8 m 
+INFO  04:34:27,299 ProgressMeter - gi|224589812|ref|NC_000020.10|:13475249        1.35e+07    2.2 m        9.0 s     21.4%        10.1 m     8.0 m 
+INFO  04:35:07,300 ProgressMeter - gi|224589812|ref|NC_000020.10|:17798025        1.78e+07    2.8 m        9.0 s     28.2%        10.0 m     7.2 m 
+INFO  04:35:37,300 ProgressMeter - gi|224589812|ref|NC_000020.10|:21089609        2.11e+07    3.3 m        9.0 s     33.5%        10.0 m     6.6 m 
+INFO  04:36:07,305 ProgressMeter - gi|224589812|ref|NC_000020.10|:24274205        2.43e+07    3.8 m        9.0 s     38.5%        10.0 m     6.1 m 
+INFO  04:36:37,306 ProgressMeter - gi|224589812|ref|NC_000020.10|:30822805        3.08e+07    4.3 m        8.0 s     48.9%         8.9 m     4.5 m 
+INFO  04:37:07,307 ProgressMeter - gi|224589812|ref|NC_000020.10|:34281329        3.43e+07    4.8 m        8.0 s     54.4%         8.9 m     4.1 m 
+INFO  04:37:47,307 ProgressMeter - gi|224589812|ref|NC_000020.10|:38842481        3.88e+07    5.5 m        8.0 s     61.6%         8.9 m     3.4 m 
+INFO  04:38:17,308 ProgressMeter - gi|224589812|ref|NC_000020.10|:42109781        4.21e+07    6.0 m        8.0 s     66.8%         9.0 m     3.0 m 
+INFO  04:38:47,309 ProgressMeter - gi|224589812|ref|NC_000020.10|:45422849        4.54e+07    6.5 m        8.0 s     72.1%         9.0 m     2.5 m 
+INFO  04:39:27,315 ProgressMeter - gi|224589812|ref|NC_000020.10|:49847729        4.98e+07    7.2 m        8.0 s     79.1%         9.1 m   113.0 s 
+INFO  04:39:57,316 ProgressMeter - gi|224589812|ref|NC_000020.10|:53136813        5.31e+07    7.7 m        8.0 s     84.3%         9.1 m    85.0 s 
+INFO  04:40:37,316 ProgressMeter - gi|224589812|ref|NC_000020.10|:57400553        5.74e+07    8.3 m        8.0 s     91.1%         9.1 m    48.0 s 
+INFO  04:41:07,317 ProgressMeter - gi|224589812|ref|NC_000020.10|:60574649        6.06e+07    8.8 m        8.0 s     96.1%         9.2 m    21.0 s 
+INFO  04:41:28,881 ProgressMeter -            done        6.30e+07    9.2 m        8.0 s    100.0%         9.2 m     0.0 s 
+INFO  04:41:28,881 ProgressMeter - Total runtime 551.59 secs, 9.19 min, 0.15 hours 
+INFO  04:41:28,881 MicroScheduler - 8 reads were filtered out during the traversal out of approximately 1897566 total reads (0.00%) 
+INFO  04:41:28,882 MicroScheduler -   -> 8 reads (0.00% of total) failing BadCigarFilter 
+INFO  04:41:28,882 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  04:41:28,882 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  04:41:28,882 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  04:41:28,882 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  04:41:28,883 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  04:41:28,883 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  04:41:28,883 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  04:41:30,219 GATKRunReport - Uploaded run statistics report to AWS S3 
+600.16user 13.01system 9:16.37elapsed 110%CPU (0avgtext+0avgdata 2685108maxresident)k
+92960inputs+135248outputs (0major+1120413minor)pagefaults 0swaps
+INFO  04:41:32,909 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:41:32,911 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  04:41:32,911 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  04:41:32,911 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  04:41:32,914 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.3x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.3x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  04:41:32,918 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  04:41:32,918 HelpFormatter - Date/Time: 2014/03/26 04:41:32 
+INFO  04:41:32,918 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:41:32,918 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:41:32,991 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  04:41:33,036 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  04:41:33,042 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  04:41:33,071 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.03 
+INFO  04:41:33,225 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  04:41:33,749 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  04:41:33,749 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  04:41:33,750 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  04:42:03,755 ProgressMeter - gi|224589812|ref|NC_000020.10|:2671693        2.67e+06   30.0 s       11.0 s      4.2%        11.8 m    11.3 m 
+INFO  04:42:33,756 ProgressMeter - gi|224589812|ref|NC_000020.10|:5824921        5.82e+06   60.0 s       10.0 s      9.2%        10.8 m     9.8 m 
+INFO  04:43:03,757 ProgressMeter - gi|224589812|ref|NC_000020.10|:8890129        8.88e+06   90.0 s       10.0 s     14.1%        10.6 m     9.1 m 
+INFO  04:43:33,759 ProgressMeter - gi|224589812|ref|NC_000020.10|:11988705        1.20e+07  120.0 s       10.0 s     19.0%        10.5 m     8.5 m 
+INFO  04:44:03,760 ProgressMeter - gi|224589812|ref|NC_000020.10|:15096865        1.51e+07    2.5 m        9.0 s     24.0%        10.4 m     7.9 m 
+INFO  04:44:33,761 ProgressMeter - gi|224589812|ref|NC_000020.10|:18142189        1.81e+07    3.0 m        9.0 s     28.8%        10.4 m     7.4 m 
+INFO  04:45:03,762 ProgressMeter - gi|224589812|ref|NC_000020.10|:21267733        2.13e+07    3.5 m        9.0 s     33.7%        10.4 m     6.9 m 
+INFO  04:45:33,763 ProgressMeter - gi|224589812|ref|NC_000020.10|:24273505        2.43e+07    4.0 m        9.0 s     38.5%        10.4 m     6.4 m 
+INFO  04:46:03,764 ProgressMeter - gi|224589812|ref|NC_000020.10|:30669365        3.07e+07    4.5 m        8.0 s     48.7%         9.2 m     4.7 m 
+INFO  04:46:43,765 ProgressMeter - gi|224589812|ref|NC_000020.10|:34874753        3.49e+07    5.2 m        8.0 s     55.3%         9.3 m     4.2 m 
+INFO  04:47:13,766 ProgressMeter - gi|224589812|ref|NC_000020.10|:38142053        3.81e+07    5.7 m        8.0 s     60.5%         9.4 m     3.7 m 
+INFO  04:47:43,767 ProgressMeter - gi|224589812|ref|NC_000020.10|:41256113        4.13e+07    6.2 m        8.0 s     65.5%         9.4 m     3.3 m 
+INFO  04:48:13,768 ProgressMeter - gi|224589812|ref|NC_000020.10|:44389157        4.44e+07    6.7 m        9.0 s     70.4%         9.5 m     2.8 m 
+INFO  04:48:53,769 ProgressMeter - gi|224589812|ref|NC_000020.10|:48575677        4.86e+07    7.3 m        9.0 s     77.1%         9.5 m     2.2 m 
+INFO  04:49:33,770 ProgressMeter - gi|224589812|ref|NC_000020.10|:52756297        5.27e+07    8.0 m        9.0 s     83.7%         9.6 m    93.0 s 
+INFO  04:50:03,771 ProgressMeter - gi|224589812|ref|NC_000020.10|:55808305        5.58e+07    8.5 m        9.0 s     88.5%         9.6 m    65.0 s 
+INFO  04:50:43,772 ProgressMeter - gi|224589812|ref|NC_000020.10|:59846269        5.98e+07    9.2 m        9.0 s     95.0%         9.7 m    29.0 s 
+INFO  04:51:13,773 ProgressMeter - gi|224589812|ref|NC_000020.10|:62965013        6.30e+07    9.7 m        9.0 s     99.9%         9.7 m     0.0 s 
+INFO  04:51:13,918 ProgressMeter -            done        6.30e+07    9.7 m        9.0 s    100.0%         9.7 m     0.0 s 
+INFO  04:51:13,918 ProgressMeter - Total runtime 580.17 secs, 9.67 min, 0.16 hours 
+INFO  04:51:13,919 MicroScheduler - 10 reads were filtered out during the traversal out of approximately 1822991 total reads (0.00%) 
+INFO  04:51:13,919 MicroScheduler -   -> 10 reads (0.00% of total) failing BadCigarFilter 
+INFO  04:51:13,919 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  04:51:13,919 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  04:51:13,920 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  04:51:13,920 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  04:51:13,920 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  04:51:13,920 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  04:51:13,920 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  04:51:15,190 GATKRunReport - Uploaded run statistics report to AWS S3 
+629.29user 14.49system 9:44.96elapsed 110%CPU (0avgtext+0avgdata 2744892maxresident)k
+97136inputs+142280outputs (0major+1129034minor)pagefaults 0swaps
+INFO  04:51:17,996 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:51:17,998 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  04:51:17,999 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  04:51:17,999 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  04:51:18,002 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.5x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.5x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  04:51:18,005 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  04:51:18,006 HelpFormatter - Date/Time: 2014/03/26 04:51:17 
+INFO  04:51:18,006 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:51:18,006 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  04:51:18,082 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  04:51:18,128 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  04:51:18,134 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  04:51:18,162 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.03 
+INFO  04:51:18,311 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  04:51:18,571 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  04:51:18,571 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  04:51:18,571 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  04:51:48,576 ProgressMeter - gi|224589812|ref|NC_000020.10|:2568005        2.56e+06   30.0 s       11.0 s      4.1%        12.3 m    11.8 m 
+INFO  04:52:18,577 ProgressMeter - gi|224589812|ref|NC_000020.10|:5615929        5.60e+06   60.0 s       10.0 s      8.9%        11.2 m    10.2 m 
+INFO  04:52:48,578 ProgressMeter - gi|224589812|ref|NC_000020.10|:8620785        8.62e+06   90.0 s       10.0 s     13.7%        11.0 m     9.5 m 
+INFO  04:53:18,580 ProgressMeter - gi|224589812|ref|NC_000020.10|:11666409        1.17e+07  120.0 s       10.0 s     18.5%        10.8 m     8.8 m 
+INFO  04:53:48,581 ProgressMeter - gi|224589812|ref|NC_000020.10|:14729317        1.47e+07    2.5 m       10.0 s     23.4%        10.7 m     8.2 m 
+INFO  04:54:18,583 ProgressMeter - gi|224589812|ref|NC_000020.10|:17703021        1.77e+07    3.0 m       10.0 s     28.1%        10.7 m     7.7 m 
+INFO  04:54:48,584 ProgressMeter - gi|224589812|ref|NC_000020.10|:20755545        2.07e+07    3.5 m       10.0 s     32.9%        10.6 m     7.1 m 
+INFO  04:55:18,585 ProgressMeter - gi|224589812|ref|NC_000020.10|:23756717        2.37e+07    4.0 m       10.0 s     37.7%        10.6 m     6.6 m 
+INFO  04:55:48,586 ProgressMeter - gi|224589812|ref|NC_000020.10|:29969337        3.00e+07    4.5 m        9.0 s     47.6%         9.5 m     5.0 m 
+INFO  04:56:18,587 ProgressMeter - gi|224589812|ref|NC_000020.10|:33177601        3.32e+07    5.0 m        9.0 s     52.6%         9.5 m     4.5 m 
+INFO  04:56:48,588 ProgressMeter - gi|224589812|ref|NC_000020.10|:36432333        3.64e+07    5.5 m        9.0 s     57.8%         9.5 m     4.0 m 
+INFO  04:57:18,589 ProgressMeter - gi|224589812|ref|NC_000020.10|:39524109        3.95e+07    6.0 m        9.0 s     62.7%         9.6 m     3.6 m 
+INFO  04:57:48,590 ProgressMeter - gi|224589812|ref|NC_000020.10|:42582217        4.26e+07    6.5 m        9.0 s     67.6%         9.6 m     3.1 m 
+INFO  04:58:18,591 ProgressMeter - gi|224589812|ref|NC_000020.10|:45654525        4.56e+07    7.0 m        9.0 s     72.4%         9.7 m     2.7 m 
+INFO  04:58:48,592 ProgressMeter - gi|224589812|ref|NC_000020.10|:48735217        4.87e+07    7.5 m        9.0 s     77.3%         9.7 m     2.2 m 
+INFO  04:59:18,593 ProgressMeter - gi|224589812|ref|NC_000020.10|:51806409        5.18e+07    8.0 m        9.0 s     82.2%         9.7 m   103.0 s 
+INFO  04:59:48,594 ProgressMeter - gi|224589812|ref|NC_000020.10|:54811081        5.48e+07    8.5 m        9.0 s     87.0%         9.8 m    76.0 s 
+INFO  05:00:18,595 ProgressMeter - gi|224589812|ref|NC_000020.10|:57812253        5.78e+07    9.0 m        9.0 s     91.7%         9.8 m    48.0 s 
+INFO  05:00:48,596 ProgressMeter - gi|224589812|ref|NC_000020.10|:60758773        6.08e+07    9.5 m        9.0 s     96.4%         9.9 m    21.0 s 
+INFO  05:01:09,776 ProgressMeter -            done        6.30e+07    9.9 m        9.0 s    100.0%         9.9 m     0.0 s 
+INFO  05:01:09,777 ProgressMeter - Total runtime 591.21 secs, 9.85 min, 0.16 hours 
+INFO  05:01:09,777 MicroScheduler - 6 reads were filtered out during the traversal out of approximately 3186718 total reads (0.00%) 
+INFO  05:01:09,777 MicroScheduler -   -> 6 reads (0.00% of total) failing BadCigarFilter 
+INFO  05:01:09,778 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  05:01:09,778 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  05:01:09,778 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  05:01:09,778 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  05:01:09,778 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  05:01:09,778 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  05:01:09,779 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  05:01:11,202 GATKRunReport - Uploaded run statistics report to AWS S3 
+632.65user 13.87system 9:55.81elapsed 108%CPU (0avgtext+0avgdata 2206100maxresident)k
+159456inputs+167440outputs (0major+982658minor)pagefaults 0swaps
+INFO  05:01:14,088 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:01:14,090 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  05:01:14,090 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  05:01:14,090 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  05:01:14,093 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.5x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.5x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  05:01:14,097 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  05:01:14,097 HelpFormatter - Date/Time: 2014/03/26 05:01:14 
+INFO  05:01:14,097 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:01:14,097 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:01:14,174 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  05:01:14,219 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  05:01:14,226 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  05:01:14,249 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.02 
+INFO  05:01:14,388 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  05:01:14,615 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  05:01:14,616 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  05:01:14,616 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  05:01:44,618 ProgressMeter - gi|224589812|ref|NC_000020.10|:2316945        2.31e+06   30.0 s       12.0 s      3.7%        13.6 m    13.1 m 
+INFO  05:02:14,619 ProgressMeter - gi|224589812|ref|NC_000020.10|:5158977        5.14e+06   60.0 s       11.0 s      8.2%        12.2 m    11.2 m 
+INFO  05:02:54,620 ProgressMeter - gi|224589812|ref|NC_000020.10|:8912813        8.90e+06  100.0 s       11.0 s     14.1%        11.8 m    10.1 m 
+INFO  05:03:24,621 ProgressMeter - gi|224589812|ref|NC_000020.10|:11675909        1.17e+07    2.2 m       11.0 s     18.5%        11.7 m     9.5 m 
+INFO  05:03:54,621 ProgressMeter - gi|224589812|ref|NC_000020.10|:14539109        1.45e+07    2.7 m       11.0 s     23.1%        11.6 m     8.9 m 
+INFO  05:04:24,624 ProgressMeter - gi|224589812|ref|NC_000020.10|:17190117        1.72e+07    3.2 m       11.0 s     27.3%        11.6 m     8.4 m 
+INFO  05:04:54,625 ProgressMeter - gi|224589812|ref|NC_000020.10|:19980297        2.00e+07    3.7 m       11.0 s     31.7%        11.6 m     7.9 m 
+INFO  05:05:24,626 ProgressMeter - gi|224589812|ref|NC_000020.10|:22806829        2.28e+07    4.2 m       10.0 s     36.2%        11.5 m     7.3 m 
+INFO  05:06:04,626 ProgressMeter - gi|224589812|ref|NC_000020.10|:29605205        2.96e+07    4.8 m        9.0 s     47.0%        10.3 m     5.5 m 
+INFO  05:06:34,627 ProgressMeter - gi|224589812|ref|NC_000020.10|:32748133        3.27e+07    5.3 m        9.0 s     52.0%        10.3 m     4.9 m 
+INFO  05:07:04,628 ProgressMeter - gi|224589812|ref|NC_000020.10|:35867477        3.59e+07    5.8 m        9.0 s     56.9%        10.3 m     4.4 m 
+INFO  05:07:44,628 ProgressMeter - gi|224589812|ref|NC_000020.10|:39735901        3.97e+07    6.5 m        9.0 s     63.0%        10.3 m     3.8 m 
+INFO  05:08:14,629 ProgressMeter - gi|224589812|ref|NC_000020.10|:42612101        4.26e+07    7.0 m        9.0 s     67.6%        10.4 m     3.4 m 
+INFO  05:08:54,630 ProgressMeter - gi|224589812|ref|NC_000020.10|:46481325        4.65e+07    7.7 m        9.0 s     73.8%        10.4 m     2.7 m 
+INFO  05:09:24,630 ProgressMeter - gi|224589812|ref|NC_000020.10|:49395777        4.94e+07    8.2 m        9.0 s     78.4%        10.4 m     2.3 m 
+INFO  05:09:54,631 ProgressMeter - gi|224589812|ref|NC_000020.10|:52289745        5.23e+07    8.7 m        9.0 s     83.0%        10.4 m   106.0 s 
+INFO  05:10:34,631 ProgressMeter - gi|224589812|ref|NC_000020.10|:56051765        5.60e+07    9.3 m        9.0 s     88.9%        10.5 m    69.0 s 
+INFO  05:11:04,632 ProgressMeter - gi|224589812|ref|NC_000020.10|:58881813        5.89e+07    9.8 m       10.0 s     93.4%        10.5 m    41.0 s 
+INFO  05:11:34,633 ProgressMeter - gi|224589812|ref|NC_000020.10|:61733329        6.17e+07   10.3 m       10.0 s     97.9%        10.5 m    12.0 s 
+INFO  05:11:47,647 ProgressMeter -            done        6.30e+07   10.6 m       10.0 s    100.0%        10.6 m     0.0 s 
+INFO  05:11:47,647 ProgressMeter - Total runtime 633.03 secs, 10.55 min, 0.18 hours 
+INFO  05:11:47,647 MicroScheduler - 19 reads were filtered out during the traversal out of approximately 3163015 total reads (0.00%) 
+INFO  05:11:47,648 MicroScheduler -   -> 19 reads (0.00% of total) failing BadCigarFilter 
+INFO  05:11:47,648 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  05:11:47,648 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  05:11:47,648 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  05:11:47,648 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  05:11:47,648 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  05:11:47,649 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  05:11:47,649 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  05:11:48,844 GATKRunReport - Uploaded run statistics report to AWS S3 
+677.18user 11.78system 10:37.55elapsed 108%CPU (0avgtext+0avgdata 1322464maxresident)k
+171136inputs+182216outputs (0major+1000578minor)pagefaults 0swaps
+INFO  05:11:52,317 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:11:52,319 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  05:11:52,319 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  05:11:52,319 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  05:11:52,322 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.5x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.5x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  05:11:52,325 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  05:11:52,325 HelpFormatter - Date/Time: 2014/03/26 05:11:52 
+INFO  05:11:52,325 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:11:52,325 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:11:52,401 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  05:11:52,446 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  05:11:52,452 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  05:11:52,476 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.02 
+INFO  05:11:52,621 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  05:11:53,022 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  05:11:53,023 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  05:11:53,023 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  05:12:23,028 ProgressMeter - gi|224589812|ref|NC_000020.10|:2200357        2.20e+06   30.0 s       13.0 s      3.5%        14.3 m    13.8 m 
+INFO  05:12:53,030 ProgressMeter - gi|224589812|ref|NC_000020.10|:4891133        4.88e+06   60.0 s       12.0 s      7.8%        12.9 m    11.9 m 
+INFO  05:13:23,031 ProgressMeter - gi|224589812|ref|NC_000020.10|:7532457        7.52e+06   90.0 s       11.0 s     12.0%        12.6 m    11.1 m 
+INFO  05:13:53,032 ProgressMeter - gi|224589812|ref|NC_000020.10|:10177765        1.02e+07  120.0 s       11.0 s     16.1%        12.4 m    10.4 m 
+INFO  05:14:23,034 ProgressMeter - gi|224589812|ref|NC_000020.10|:12800305        1.28e+07    2.5 m       11.0 s     20.3%        12.3 m     9.8 m 
+INFO  05:14:53,035 ProgressMeter - gi|224589812|ref|NC_000020.10|:15450913        1.55e+07    3.0 m       11.0 s     24.5%        12.2 m     9.2 m 
+INFO  05:15:23,036 ProgressMeter - gi|224589812|ref|NC_000020.10|:17971565        1.80e+07    3.5 m       11.0 s     28.5%        12.3 m     8.8 m 
+INFO  05:15:53,037 ProgressMeter - gi|224589812|ref|NC_000020.10|:20642457        2.06e+07    4.0 m       11.0 s     32.8%        12.2 m     8.2 m 
+INFO  05:16:23,038 ProgressMeter - gi|224589812|ref|NC_000020.10|:23296965        2.33e+07    4.5 m       11.0 s     37.0%        12.2 m     7.7 m 
+INFO  05:16:53,039 ProgressMeter - gi|224589812|ref|NC_000020.10|:25924789        2.59e+07    5.0 m       11.0 s     41.1%        12.2 m     7.2 m 
+INFO  05:17:23,040 ProgressMeter - gi|224589812|ref|NC_000020.10|:31886565        3.19e+07    5.5 m       10.0 s     50.6%        10.9 m     5.4 m 
+INFO  05:17:53,041 ProgressMeter - gi|224589812|ref|NC_000020.10|:34738281        3.47e+07    6.0 m       10.0 s     55.1%        10.9 m     4.9 m 
+INFO  05:18:23,042 ProgressMeter - gi|224589812|ref|NC_000020.10|:37595697        3.76e+07    6.5 m       10.0 s     59.7%        10.9 m     4.4 m 
+INFO  05:18:53,043 ProgressMeter - gi|224589812|ref|NC_000020.10|:40349609        4.03e+07    7.0 m       10.0 s     64.0%        10.9 m     3.9 m 
+INFO  05:19:23,044 ProgressMeter - gi|224589812|ref|NC_000020.10|:43016401        4.30e+07    7.5 m       10.0 s     68.3%        11.0 m     3.5 m 
+INFO  05:19:53,049 ProgressMeter - gi|224589812|ref|NC_000020.10|:45756829        4.57e+07    8.0 m       10.0 s     72.6%        11.0 m     3.0 m 
+INFO  05:20:23,050 ProgressMeter - gi|224589812|ref|NC_000020.10|:48527325        4.85e+07    8.5 m       10.0 s     77.0%        11.0 m     2.5 m 
+INFO  05:20:53,051 ProgressMeter - gi|224589812|ref|NC_000020.10|:51304205        5.13e+07    9.0 m       10.0 s     81.4%        11.1 m     2.1 m 
+INFO  05:21:23,052 ProgressMeter - gi|224589812|ref|NC_000020.10|:54002465        5.40e+07    9.5 m       10.0 s     85.7%        11.1 m    95.0 s 
+INFO  05:21:53,053 ProgressMeter - gi|224589812|ref|NC_000020.10|:56650889        5.66e+07   10.0 m       10.0 s     89.9%        11.1 m    67.0 s 
+INFO  05:22:23,055 ProgressMeter - gi|224589812|ref|NC_000020.10|:59302997        5.93e+07   10.5 m       10.0 s     94.1%        11.2 m    39.0 s 
+INFO  05:22:53,056 ProgressMeter - gi|224589812|ref|NC_000020.10|:61980773        6.20e+07   11.0 m       10.0 s     98.3%        11.2 m    11.0 s 
+INFO  05:23:03,861 ProgressMeter -            done        6.30e+07   11.2 m       10.0 s    100.0%        11.2 m     0.0 s 
+INFO  05:23:03,862 ProgressMeter - Total runtime 670.84 secs, 11.18 min, 0.19 hours 
+INFO  05:23:03,862 MicroScheduler - 24 reads were filtered out during the traversal out of approximately 3038199 total reads (0.00%) 
+INFO  05:23:03,862 MicroScheduler -   -> 24 reads (0.00% of total) failing BadCigarFilter 
+INFO  05:23:03,862 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  05:23:03,862 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  05:23:03,863 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  05:23:03,863 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  05:23:03,863 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  05:23:03,863 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  05:23:03,863 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  05:23:05,200 GATKRunReport - Uploaded run statistics report to AWS S3 
+716.02user 12.09system 11:16.43elapsed 107%CPU (0avgtext+0avgdata 2225712maxresident)k
+186152inputs+211808outputs (0major+1038102minor)pagefaults 0swaps
+INFO  05:23:07,833 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:23:07,835 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  05:23:07,835 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  05:23:07,835 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  05:23:07,838 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.7x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.7x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  05:23:07,842 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  05:23:07,842 HelpFormatter - Date/Time: 2014/03/26 05:23:07 
+INFO  05:23:07,842 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:23:07,842 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:23:07,915 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  05:23:07,960 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  05:23:07,966 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  05:23:07,996 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.03 
+INFO  05:23:08,135 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  05:23:08,567 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  05:23:08,568 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  05:23:08,568 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  05:23:38,573 ProgressMeter - gi|224589812|ref|NC_000020.10|:2509053        2.51e+06   30.0 s       11.0 s      4.0%        12.6 m    12.1 m 
+INFO  05:24:08,575 ProgressMeter - gi|224589812|ref|NC_000020.10|:5438305        5.42e+06   60.0 s       11.0 s      8.6%        11.6 m    10.6 m 
+INFO  05:24:38,576 ProgressMeter - gi|224589812|ref|NC_000020.10|:8212285        8.21e+06   90.0 s       10.0 s     13.0%        11.5 m    10.0 m 
+INFO  05:25:18,577 ProgressMeter - gi|224589812|ref|NC_000020.10|:11971321        1.20e+07    2.2 m       10.0 s     19.0%        11.4 m     9.2 m 
+INFO  05:25:48,577 ProgressMeter - gi|224589812|ref|NC_000020.10|:14803753        1.48e+07    2.7 m       10.0 s     23.5%        11.4 m     8.7 m 
+INFO  05:26:18,578 ProgressMeter - gi|224589812|ref|NC_000020.10|:17540381        1.75e+07    3.2 m       10.0 s     27.8%        11.4 m     8.2 m 
+INFO  05:26:48,579 ProgressMeter - gi|224589812|ref|NC_000020.10|:20288393        2.03e+07    3.7 m       10.0 s     32.2%        11.4 m     7.7 m 
+INFO  05:27:18,580 ProgressMeter - gi|224589812|ref|NC_000020.10|:23194061        2.32e+07    4.2 m       10.0 s     36.8%        11.3 m     7.2 m 
+INFO  05:27:48,581 ProgressMeter - gi|224589812|ref|NC_000020.10|:26037177        2.60e+07    4.7 m       10.0 s     41.3%        11.3 m     6.6 m 
+INFO  05:28:18,582 ProgressMeter - gi|224589812|ref|NC_000020.10|:32242329        3.22e+07    5.2 m        9.0 s     51.2%        10.1 m     4.9 m 
+INFO  05:28:48,583 ProgressMeter - gi|224589812|ref|NC_000020.10|:35426509        3.54e+07    5.7 m        9.0 s     56.2%        10.1 m     4.4 m 
+INFO  05:29:18,584 ProgressMeter - gi|224589812|ref|NC_000020.10|:38434781        3.84e+07    6.2 m        9.0 s     61.0%        10.1 m     3.9 m 
+INFO  05:29:48,585 ProgressMeter - gi|224589812|ref|NC_000020.10|:41385901        4.14e+07    6.7 m        9.0 s     65.7%        10.2 m     3.5 m 
+INFO  05:30:18,586 ProgressMeter - gi|224589812|ref|NC_000020.10|:44351405        4.43e+07    7.2 m        9.0 s     70.4%        10.2 m     3.0 m 
+INFO  05:30:48,587 ProgressMeter - gi|224589812|ref|NC_000020.10|:47272541        4.73e+07    7.7 m        9.0 s     75.0%        10.2 m     2.6 m 
+INFO  05:31:18,588 ProgressMeter - gi|224589812|ref|NC_000020.10|:50249645        5.02e+07    8.2 m        9.0 s     79.7%        10.2 m     2.1 m 
+INFO  05:31:48,589 ProgressMeter - gi|224589812|ref|NC_000020.10|:53185265        5.32e+07    8.7 m        9.0 s     84.4%        10.3 m    96.0 s 
+INFO  05:32:18,590 ProgressMeter - gi|224589812|ref|NC_000020.10|:56021597        5.60e+07    9.2 m        9.0 s     88.9%        10.3 m    68.0 s 
+INFO  05:32:48,591 ProgressMeter - gi|224589812|ref|NC_000020.10|:58911981        5.89e+07    9.7 m        9.0 s     93.5%        10.3 m    40.0 s 
+INFO  05:33:18,592 ProgressMeter - gi|224589812|ref|NC_000020.10|:61815149        6.18e+07   10.2 m        9.0 s     98.1%        10.4 m    11.0 s 
+INFO  05:33:30,616 ProgressMeter -            done        6.30e+07   10.4 m        9.0 s    100.0%        10.4 m     0.0 s 
+INFO  05:33:30,616 ProgressMeter - Total runtime 622.05 secs, 10.37 min, 0.17 hours 
+INFO  05:33:30,616 MicroScheduler - 12 reads were filtered out during the traversal out of approximately 4461889 total reads (0.00%) 
+INFO  05:33:30,616 MicroScheduler -   -> 12 reads (0.00% of total) failing BadCigarFilter 
+INFO  05:33:30,616 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  05:33:30,617 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  05:33:30,617 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  05:33:30,617 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  05:33:30,617 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  05:33:30,617 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  05:33:30,617 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  05:33:32,036 GATKRunReport - Uploaded run statistics report to AWS S3 
+656.99user 19.18system 10:26.82elapsed 107%CPU (0avgtext+0avgdata 2099288maxresident)k
+225560inputs+178664outputs (0major+6978099minor)pagefaults 0swaps
+INFO  05:33:34,737 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:33:34,739 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  05:33:34,739 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  05:33:34,739 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  05:33:34,742 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.7x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.7x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  05:33:34,746 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  05:33:34,746 HelpFormatter - Date/Time: 2014/03/26 05:33:34 
+INFO  05:33:34,746 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:33:34,746 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:33:34,820 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  05:33:34,865 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  05:33:34,872 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  05:33:34,894 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.02 
+INFO  05:33:35,034 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  05:33:35,259 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  05:33:35,259 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  05:33:35,259 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  05:34:05,261 ProgressMeter - gi|224589812|ref|NC_000020.10|:2166989        2.16e+06   30.0 s       13.0 s      3.4%        14.5 m    14.0 m 
+INFO  05:34:35,263 ProgressMeter - gi|224589812|ref|NC_000020.10|:4680441        4.67e+06   60.0 s       12.0 s      7.4%        13.5 m    12.5 m 
+INFO  05:35:05,264 ProgressMeter - gi|224589812|ref|NC_000020.10|:7189493        7.18e+06   90.0 s       12.0 s     11.4%        13.1 m    11.6 m 
+INFO  05:35:35,265 ProgressMeter - gi|224589812|ref|NC_000020.10|:9759481        9.75e+06  120.0 s       12.0 s     15.5%        12.9 m    10.9 m 
+INFO  05:36:05,266 ProgressMeter - gi|224589812|ref|NC_000020.10|:12249449        1.22e+07    2.5 m       12.0 s     19.4%        12.9 m    10.4 m 
+INFO  05:36:45,266 ProgressMeter - gi|224589812|ref|NC_000020.10|:15687189        1.57e+07    3.2 m       12.0 s     24.9%        12.7 m     9.6 m 
+INFO  05:37:15,267 ProgressMeter - gi|224589812|ref|NC_000020.10|:18246793        1.82e+07    3.7 m       12.0 s     29.0%        12.7 m     9.0 m 
+INFO  05:37:45,268 ProgressMeter - gi|224589812|ref|NC_000020.10|:20876717        2.09e+07    4.2 m       11.0 s     33.1%        12.6 m     8.4 m 
+INFO  05:38:25,268 ProgressMeter - gi|224589812|ref|NC_000020.10|:24246737        2.42e+07    4.8 m       11.0 s     38.5%        12.6 m     7.7 m 
+INFO  05:38:55,269 ProgressMeter - gi|224589812|ref|NC_000020.10|:30134577        3.01e+07    5.3 m       10.0 s     47.8%        11.2 m     5.8 m 
+INFO  05:39:25,270 ProgressMeter - gi|224589812|ref|NC_000020.10|:32877205        3.29e+07    5.8 m       10.0 s     52.2%        11.2 m     5.3 m 
+INFO  05:40:05,270 ProgressMeter - gi|224589812|ref|NC_000020.10|:36529637        3.65e+07    6.5 m       10.0 s     58.0%        11.2 m     4.7 m 
+INFO  05:40:35,272 ProgressMeter - gi|224589812|ref|NC_000020.10|:39171161        3.92e+07    7.0 m       10.0 s     62.2%        11.3 m     4.3 m 
+INFO  05:41:05,273 ProgressMeter - gi|224589812|ref|NC_000020.10|:41750433        4.17e+07    7.5 m       10.0 s     66.2%        11.3 m     3.8 m 
+INFO  05:41:35,274 ProgressMeter - gi|224589812|ref|NC_000020.10|:44341005        4.43e+07    8.0 m       10.0 s     70.4%        11.4 m     3.4 m 
+INFO  05:42:05,275 ProgressMeter - gi|224589812|ref|NC_000020.10|:46937777        4.69e+07    8.5 m       10.0 s     74.5%        11.4 m     2.9 m 
+INFO  05:42:35,276 ProgressMeter - gi|224589812|ref|NC_000020.10|:49590085        4.96e+07    9.0 m       10.0 s     78.7%        11.4 m     2.4 m 
+INFO  05:43:05,277 ProgressMeter - gi|224589812|ref|NC_000020.10|:52214025        5.22e+07    9.5 m       10.0 s     82.8%        11.5 m   118.0 s 
+INFO  05:43:35,278 ProgressMeter - gi|224589812|ref|NC_000020.10|:54749445        5.47e+07   10.0 m       10.0 s     86.9%        11.5 m    90.0 s 
+INFO  05:44:05,279 ProgressMeter - gi|224589812|ref|NC_000020.10|:57311149        5.73e+07   10.5 m       10.0 s     90.9%        11.5 m    62.0 s 
+INFO  05:44:35,280 ProgressMeter - gi|224589812|ref|NC_000020.10|:59792917        5.98e+07   11.0 m       11.0 s     94.9%        11.6 m    35.0 s 
+INFO  05:45:05,286 ProgressMeter - gi|224589812|ref|NC_000020.10|:62402173        6.24e+07   11.5 m       11.0 s     99.0%        11.6 m     6.0 s 
+INFO  05:45:11,607 ProgressMeter -            done        6.30e+07   11.6 m       11.0 s    100.0%        11.6 m     0.0 s 
+INFO  05:45:11,607 ProgressMeter - Total runtime 696.35 secs, 11.61 min, 0.19 hours 
+INFO  05:45:11,608 MicroScheduler - 31 reads were filtered out during the traversal out of approximately 4428661 total reads (0.00%) 
+INFO  05:45:11,608 MicroScheduler -   -> 31 reads (0.00% of total) failing BadCigarFilter 
+INFO  05:45:11,608 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  05:45:11,608 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  05:45:11,608 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  05:45:11,608 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  05:45:11,609 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  05:45:11,609 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  05:45:11,609 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  05:45:12,771 GATKRunReport - Uploaded run statistics report to AWS S3 
+742.87user 16.91system 11:40.69elapsed 108%CPU (0avgtext+0avgdata 1372976maxresident)k
+245584inputs+196576outputs (0major+5082332minor)pagefaults 0swaps
+INFO  05:45:15,335 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:45:15,337 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  05:45:15,337 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  05:45:15,337 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  05:45:15,340 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.7x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.7x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  05:45:15,344 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  05:45:15,344 HelpFormatter - Date/Time: 2014/03/26 05:45:15 
+INFO  05:45:15,344 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:45:15,344 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:45:15,417 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  05:45:15,462 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  05:45:15,468 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  05:45:15,478 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  05:45:15,612 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  05:45:15,870 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  05:45:15,870 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  05:45:15,870 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  05:45:45,874 ProgressMeter - gi|224589812|ref|NC_000020.10|:2063201        2.05e+06   30.0 s       14.0 s      3.3%        15.3 m    14.8 m 
+INFO  05:46:15,876 ProgressMeter - gi|224589812|ref|NC_000020.10|:4579337        4.57e+06   60.0 s       13.0 s      7.3%        13.8 m    12.8 m 
+INFO  05:46:45,877 ProgressMeter - gi|224589812|ref|NC_000020.10|:7058821        7.05e+06   90.0 s       12.0 s     11.2%        13.4 m    11.9 m 
+INFO  05:47:15,879 ProgressMeter - gi|224589812|ref|NC_000020.10|:9531805        9.52e+06  120.0 s       12.0 s     15.1%        13.2 m    11.2 m 
+INFO  05:47:45,880 ProgressMeter - gi|224589812|ref|NC_000020.10|:11968821        1.20e+07    2.5 m       12.0 s     19.0%        13.2 m    10.7 m 
+INFO  05:48:15,881 ProgressMeter - gi|224589812|ref|NC_000020.10|:14475873        1.45e+07    3.0 m       12.0 s     23.0%        13.1 m    10.1 m 
+INFO  05:48:45,882 ProgressMeter - gi|224589812|ref|NC_000020.10|:16870637        1.69e+07    3.5 m       12.0 s     26.8%        13.1 m     9.6 m 
+INFO  05:49:15,883 ProgressMeter - gi|224589812|ref|NC_000020.10|:19333521        1.93e+07    4.0 m       12.0 s     30.7%        13.0 m     9.0 m 
+INFO  05:49:45,886 ProgressMeter - gi|224589812|ref|NC_000020.10|:21794421        2.18e+07    4.5 m       12.0 s     34.6%        13.0 m     8.5 m 
+INFO  05:50:15,887 ProgressMeter - gi|224589812|ref|NC_000020.10|:24190585        2.42e+07    5.0 m       12.0 s     38.4%        13.0 m     8.0 m 
+INFO  05:50:45,888 ProgressMeter - gi|224589812|ref|NC_000020.10|:29973337        3.00e+07    5.5 m       11.0 s     47.6%        11.6 m     6.1 m 
+INFO  05:51:15,889 ProgressMeter - gi|224589812|ref|NC_000020.10|:32594677        3.26e+07    6.0 m       11.0 s     51.7%        11.6 m     5.6 m 
+INFO  05:51:45,890 ProgressMeter - gi|224589812|ref|NC_000020.10|:35321721        3.53e+07    6.5 m       11.0 s     56.0%        11.6 m     5.1 m 
+INFO  05:52:15,891 ProgressMeter - gi|224589812|ref|NC_000020.10|:37874225        3.79e+07    7.0 m       11.0 s     60.1%        11.6 m     4.6 m 
+INFO  05:52:45,892 ProgressMeter - gi|224589812|ref|NC_000020.10|:40355093        4.04e+07    7.5 m       11.0 s     64.0%        11.7 m     4.2 m 
+INFO  05:53:15,893 ProgressMeter - gi|224589812|ref|NC_000020.10|:42799509        4.28e+07    8.0 m       11.0 s     67.9%        11.8 m     3.8 m 
+INFO  05:53:45,894 ProgressMeter - gi|224589812|ref|NC_000020.10|:45330045        4.53e+07    8.5 m       11.0 s     71.9%        11.8 m     3.3 m 
+INFO  05:54:15,895 ProgressMeter - gi|224589812|ref|NC_000020.10|:47858665        4.79e+07    9.0 m       11.0 s     75.9%        11.9 m     2.9 m 
+INFO  05:54:45,896 ProgressMeter - gi|224589812|ref|NC_000020.10|:50397101        5.04e+07    9.5 m       11.0 s     80.0%        11.9 m     2.4 m 
+INFO  05:55:15,897 ProgressMeter - gi|224589812|ref|NC_000020.10|:52919037        5.29e+07   10.0 m       11.0 s     84.0%        11.9 m   114.0 s 
+INFO  05:55:45,898 ProgressMeter - gi|224589812|ref|NC_000020.10|:55370337        5.54e+07   10.5 m       11.0 s     87.9%        12.0 m    87.0 s 
+INFO  05:56:15,899 ProgressMeter - gi|224589812|ref|NC_000020.10|:57819337        5.78e+07   11.0 m       11.0 s     91.7%        12.0 m    59.0 s 
+INFO  05:56:45,900 ProgressMeter - gi|224589812|ref|NC_000020.10|:60147665        6.01e+07   11.5 m       11.0 s     95.4%        12.1 m    33.0 s 
+INFO  05:57:15,901 ProgressMeter - gi|224589812|ref|NC_000020.10|:62663517        6.27e+07   12.0 m       11.0 s     99.4%        12.1 m     4.0 s 
+INFO  05:57:19,596 ProgressMeter -            done        6.30e+07   12.1 m       11.0 s    100.0%        12.1 m     0.0 s 
+INFO  05:57:19,597 ProgressMeter - Total runtime 723.73 secs, 12.06 min, 0.20 hours 
+INFO  05:57:19,597 MicroScheduler - 28 reads were filtered out during the traversal out of approximately 4253892 total reads (0.00%) 
+INFO  05:57:19,597 MicroScheduler -   -> 28 reads (0.00% of total) failing BadCigarFilter 
+INFO  05:57:19,597 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  05:57:19,597 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  05:57:19,598 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  05:57:19,598 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  05:57:19,598 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  05:57:19,598 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  05:57:19,598 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  05:57:20,728 GATKRunReport - Uploaded run statistics report to AWS S3 
+774.14user 12.29system 12:07.89elapsed 108%CPU (0avgtext+0avgdata 1365800maxresident)k
+268496inputs+236984outputs (0major+926485minor)pagefaults 0swaps
+INFO  05:57:23,290 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:57:23,292 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  05:57:23,292 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  05:57:23,292 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  05:57:23,295 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.10x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.10x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  05:57:23,299 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  05:57:23,299 HelpFormatter - Date/Time: 2014/03/26 05:57:23 
+INFO  05:57:23,299 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:57:23,300 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  05:57:23,372 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  05:57:23,417 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  05:57:23,423 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  05:57:23,451 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.03 
+INFO  05:57:23,603 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  05:57:23,920 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  05:57:23,921 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  05:57:23,921 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  05:57:53,926 ProgressMeter - gi|224589812|ref|NC_000020.10|:2197957        2.20e+06   30.0 s       13.0 s      3.5%        14.3 m    13.8 m 
+INFO  05:58:23,927 ProgressMeter - gi|224589812|ref|NC_000020.10|:4759161        4.75e+06   60.0 s       12.0 s      7.6%        13.2 m    12.2 m 
+INFO  05:58:53,928 ProgressMeter - gi|224589812|ref|NC_000020.10|:7292381        7.29e+06   90.0 s       12.0 s     11.6%        13.0 m    11.5 m 
+INFO  05:59:23,930 ProgressMeter - gi|224589812|ref|NC_000020.10|:9855785        9.85e+06  120.0 s       12.0 s     15.6%        12.8 m    10.8 m 
+INFO  05:59:53,931 ProgressMeter - gi|224589812|ref|NC_000020.10|:12423273        1.24e+07    2.5 m       12.0 s     19.7%        12.7 m    10.2 m 
+INFO  06:00:23,932 ProgressMeter - gi|224589812|ref|NC_000020.10|:15020145        1.50e+07    3.0 m       11.0 s     23.8%        12.6 m     9.6 m 
+INFO  06:01:03,933 ProgressMeter - gi|224589812|ref|NC_000020.10|:18413933        1.84e+07    3.7 m       11.0 s     29.2%        12.5 m     8.9 m 
+INFO  06:01:43,934 ProgressMeter - gi|224589812|ref|NC_000020.10|:21875041        2.19e+07    4.3 m       11.0 s     34.7%        12.5 m     8.2 m 
+INFO  06:02:13,935 ProgressMeter - gi|224589812|ref|NC_000020.10|:24349425        2.43e+07    4.8 m       11.0 s     38.6%        12.5 m     7.7 m 
+INFO  06:02:53,936 ProgressMeter - gi|224589812|ref|NC_000020.10|:31137501        3.11e+07    5.5 m       10.0 s     49.4%        11.1 m     5.6 m 
+INFO  06:03:33,937 ProgressMeter - gi|224589812|ref|NC_000020.10|:34809717        3.48e+07    6.2 m       10.0 s     55.2%        11.2 m     5.0 m 
+INFO  06:04:13,938 ProgressMeter - gi|224589812|ref|NC_000020.10|:38447265        3.84e+07    6.8 m       10.0 s     61.0%        11.2 m     4.4 m 
+INFO  06:04:53,939 ProgressMeter - gi|224589812|ref|NC_000020.10|:41930457        4.19e+07    7.5 m       10.0 s     66.5%        11.3 m     3.8 m 
+INFO  06:05:23,942 ProgressMeter - gi|224589812|ref|NC_000020.10|:44570781        4.46e+07    8.0 m       10.0 s     70.7%        11.3 m     3.3 m 
+INFO  06:05:53,943 ProgressMeter - gi|224589812|ref|NC_000020.10|:47183837        4.72e+07    8.5 m       10.0 s     74.9%        11.4 m     2.9 m 
+INFO  06:06:23,944 ProgressMeter - gi|224589812|ref|NC_000020.10|:49850529        4.98e+07    9.0 m       10.0 s     79.1%        11.4 m     2.4 m 
+INFO  06:06:53,945 ProgressMeter - gi|224589812|ref|NC_000020.10|:52481053        5.25e+07    9.5 m       10.0 s     83.3%        11.4 m   114.0 s 
+INFO  06:07:23,946 ProgressMeter - gi|224589812|ref|NC_000020.10|:55006489        5.50e+07   10.0 m       10.0 s     87.3%        11.5 m    87.0 s 
+INFO  06:07:53,947 ProgressMeter - gi|224589812|ref|NC_000020.10|:57568893        5.76e+07   10.5 m       10.0 s     91.3%        11.5 m    59.0 s 
+INFO  06:08:23,948 ProgressMeter - gi|224589812|ref|NC_000020.10|:60110913        6.01e+07   11.0 m       10.0 s     95.4%        11.5 m    32.0 s 
+INFO  06:08:53,950 ProgressMeter - gi|224589812|ref|NC_000020.10|:62735937        6.27e+07   11.5 m       10.0 s     99.5%        11.6 m     3.0 s 
+INFO  06:08:56,639 ProgressMeter -            done        6.30e+07   11.5 m       10.0 s    100.0%        11.5 m     0.0 s 
+INFO  06:08:56,640 ProgressMeter - Total runtime 692.72 secs, 11.55 min, 0.19 hours 
+INFO  06:08:56,640 MicroScheduler - 15 reads were filtered out during the traversal out of approximately 6373590 total reads (0.00%) 
+INFO  06:08:56,640 MicroScheduler -   -> 15 reads (0.00% of total) failing BadCigarFilter 
+INFO  06:08:56,640 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  06:08:56,641 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  06:08:56,641 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  06:08:56,641 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  06:08:56,641 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  06:08:56,641 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  06:08:56,641 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  06:08:57,871 GATKRunReport - Uploaded run statistics report to AWS S3 
+748.60user 14.12system 11:37.37elapsed 109%CPU (0avgtext+0avgdata 2663968maxresident)k
+315920inputs+181728outputs (0major+1148248minor)pagefaults 0swaps
+INFO  06:09:00,425 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  06:09:00,427 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  06:09:00,427 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  06:09:00,427 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  06:09:00,430 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.10x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.10x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  06:09:00,434 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  06:09:00,434 HelpFormatter - Date/Time: 2014/03/26 06:09:00 
+INFO  06:09:00,434 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  06:09:00,435 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  06:09:00,507 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  06:09:00,552 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  06:09:00,558 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  06:09:00,588 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.03 
+INFO  06:09:00,733 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  06:09:01,285 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  06:09:01,286 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  06:09:01,286 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  06:09:31,290 ProgressMeter - gi|224589812|ref|NC_000020.10|:1996065        1.98e+06   30.0 s       15.0 s      3.2%        15.8 m    15.3 m 
+INFO  06:10:01,291 ProgressMeter - gi|224589812|ref|NC_000020.10|:4456365        4.44e+06   60.0 s       13.0 s      7.1%        14.1 m    13.1 m 
+INFO  06:10:31,293 ProgressMeter - gi|224589812|ref|NC_000020.10|:6861313        6.85e+06   90.0 s       13.0 s     10.9%        13.8 m    12.3 m 
+INFO  06:11:01,294 ProgressMeter - gi|224589812|ref|NC_000020.10|:9293429        9.29e+06  120.0 s       12.0 s     14.7%        13.6 m    11.6 m 
+INFO  06:11:31,296 ProgressMeter - gi|224589812|ref|NC_000020.10|:11723761        1.17e+07    2.5 m       12.0 s     18.6%        13.4 m    10.9 m 
+INFO  06:12:01,297 ProgressMeter - gi|224589812|ref|NC_000020.10|:14172361        1.42e+07    3.0 m       12.0 s     22.5%        13.3 m    10.3 m 
+INFO  06:12:31,298 ProgressMeter - gi|224589812|ref|NC_000020.10|:16504689        1.65e+07    3.5 m       12.0 s     26.2%        13.4 m     9.9 m 
+INFO  06:13:11,299 ProgressMeter - gi|224589812|ref|NC_000020.10|:19619749        1.96e+07    4.2 m       12.0 s     31.1%        13.4 m     9.2 m 
+INFO  06:13:41,299 ProgressMeter - gi|224589812|ref|NC_000020.10|:22033397        2.20e+07    4.7 m       12.0 s     35.0%        13.3 m     8.7 m 
+INFO  06:14:11,300 ProgressMeter - gi|224589812|ref|NC_000020.10|:24247737        2.42e+07    5.2 m       12.0 s     38.5%        13.4 m     8.3 m 
+INFO  06:14:51,301 ProgressMeter - gi|224589812|ref|NC_000020.10|:30721401        3.07e+07    5.8 m       11.0 s     48.7%        12.0 m     6.1 m 
+INFO  06:15:21,301 ProgressMeter - gi|224589812|ref|NC_000020.10|:33191201        3.32e+07    6.3 m       11.0 s     52.7%        12.0 m     5.7 m 
+INFO  06:15:51,302 ProgressMeter - gi|224589812|ref|NC_000020.10|:35773573        3.58e+07    6.8 m       11.0 s     56.8%        12.0 m     5.2 m 
+INFO  06:16:21,303 ProgressMeter - gi|224589812|ref|NC_000020.10|:38171737        3.82e+07    7.3 m       11.0 s     60.6%        12.1 m     4.8 m 
+INFO  06:17:01,304 ProgressMeter - gi|224589812|ref|NC_000020.10|:41349233        4.13e+07    8.0 m       11.0 s     65.6%        12.2 m     4.2 m 
+INFO  06:17:31,304 ProgressMeter - gi|224589812|ref|NC_000020.10|:43737797        4.37e+07    8.5 m       11.0 s     69.4%        12.2 m     3.7 m 
+INFO  06:18:01,305 ProgressMeter - gi|224589812|ref|NC_000020.10|:46056425        4.61e+07    9.0 m       11.0 s     73.1%        12.3 m     3.3 m 
+INFO  06:18:31,306 ProgressMeter - gi|224589812|ref|NC_000020.10|:48439205        4.84e+07    9.5 m       11.0 s     76.9%        12.4 m     2.9 m 
+INFO  06:19:11,306 ProgressMeter - gi|224589812|ref|NC_000020.10|:51618501        5.16e+07   10.2 m       11.0 s     81.9%        12.4 m     2.2 m 
+INFO  06:19:41,307 ProgressMeter - gi|224589812|ref|NC_000020.10|:53915261        5.39e+07   10.7 m       11.0 s     85.5%        12.5 m   108.0 s 
+INFO  06:20:11,308 ProgressMeter - gi|224589812|ref|NC_000020.10|:56237389        5.62e+07   11.2 m       11.0 s     89.2%        12.5 m    80.0 s 
+INFO  06:20:41,309 ProgressMeter - gi|224589812|ref|NC_000020.10|:58545133        5.85e+07   11.7 m       11.0 s     92.9%        12.6 m    53.0 s 
+INFO  06:21:21,310 ProgressMeter - gi|224589812|ref|NC_000020.10|:61667993        6.17e+07   12.3 m       12.0 s     97.8%        12.6 m    16.0 s 
+INFO  06:21:37,827 ProgressMeter -            done        6.30e+07   12.6 m       12.0 s    100.0%        12.6 m     0.0 s 
+INFO  06:21:37,827 ProgressMeter - Total runtime 756.54 secs, 12.61 min, 0.21 hours 
+INFO  06:21:37,827 MicroScheduler - 29 reads were filtered out during the traversal out of approximately 6325573 total reads (0.00%) 
+INFO  06:21:37,828 MicroScheduler -   -> 29 reads (0.00% of total) failing BadCigarFilter 
+INFO  06:21:37,828 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  06:21:37,828 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  06:21:37,828 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  06:21:37,828 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  06:21:37,828 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  06:21:37,829 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  06:21:37,829 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  06:21:39,117 GATKRunReport - Uploaded run statistics report to AWS S3 
+799.90user 20.92system 12:41.02elapsed 107%CPU (0avgtext+0avgdata 2223356maxresident)k
+348544inputs+194592outputs (0major+8529287minor)pagefaults 0swaps
+INFO  06:21:41,448 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  06:21:41,450 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  06:21:41,450 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  06:21:41,450 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  06:21:41,453 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.10x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.10x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  06:21:41,457 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  06:21:41,457 HelpFormatter - Date/Time: 2014/03/26 06:21:41 
+INFO  06:21:41,457 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  06:21:41,457 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  06:21:41,530 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  06:21:41,575 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  06:21:41,581 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  06:21:41,604 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.02 
+INFO  06:21:41,755 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  06:21:42,393 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  06:21:42,394 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  06:21:42,395 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  06:22:12,399 ProgressMeter - gi|224589812|ref|NC_000020.10|:1916445        1.90e+06   30.0 s       15.0 s      3.0%        16.4 m    15.9 m 
+INFO  06:22:42,401 ProgressMeter - gi|224589812|ref|NC_000020.10|:4180321        4.18e+06   60.0 s       14.0 s      6.6%        15.1 m    14.1 m 
+INFO  06:23:12,402 ProgressMeter - gi|224589812|ref|NC_000020.10|:6375777        6.37e+06   90.0 s       14.0 s     10.1%        14.8 m    13.3 m 
+INFO  06:23:42,403 ProgressMeter - gi|224589812|ref|NC_000020.10|:8538565        8.54e+06  120.0 s       14.0 s     13.5%        14.8 m    12.8 m 
+INFO  06:24:12,405 ProgressMeter - gi|224589812|ref|NC_000020.10|:10744321        1.07e+07    2.5 m       13.0 s     17.0%        14.7 m    12.2 m 
+INFO  06:24:42,406 ProgressMeter - gi|224589812|ref|NC_000020.10|:12895609        1.29e+07    3.0 m       13.0 s     20.5%        14.7 m    11.7 m 
+INFO  06:25:12,410 ProgressMeter - gi|224589812|ref|NC_000020.10|:15112349        1.51e+07    3.5 m       13.0 s     24.0%        14.6 m    11.1 m 
+INFO  06:25:42,411 ProgressMeter - gi|224589812|ref|NC_000020.10|:17218801        1.72e+07    4.0 m       13.0 s     27.3%        14.6 m    10.6 m 
+INFO  06:26:12,412 ProgressMeter - gi|224589812|ref|NC_000020.10|:19414857        1.94e+07    4.5 m       13.0 s     30.8%        14.6 m    10.1 m 
+INFO  06:26:42,413 ProgressMeter - gi|224589812|ref|NC_000020.10|:21670249        2.17e+07    5.0 m       13.0 s     34.4%        14.5 m     9.5 m 
+INFO  06:27:22,413 ProgressMeter - gi|224589812|ref|NC_000020.10|:24550533        2.45e+07    5.7 m       13.0 s     39.0%        14.5 m     8.9 m 
+INFO  06:27:52,414 ProgressMeter - gi|224589812|ref|NC_000020.10|:30053257        3.00e+07    6.2 m       12.0 s     47.7%        12.9 m     6.8 m 
+INFO  06:28:32,415 ProgressMeter - gi|224589812|ref|NC_000020.10|:33205185        3.32e+07    6.8 m       12.0 s     52.7%        13.0 m     6.1 m 
+INFO  06:29:02,415 ProgressMeter - gi|224589812|ref|NC_000020.10|:35654685        3.57e+07    7.3 m       12.0 s     56.6%        13.0 m     5.6 m 
+INFO  06:29:32,416 ProgressMeter - gi|224589812|ref|NC_000020.10|:37791505        3.78e+07    7.8 m       12.0 s     60.0%        13.1 m     5.2 m 
+INFO  06:30:02,417 ProgressMeter - gi|224589812|ref|NC_000020.10|:40026029        4.00e+07    8.3 m       12.0 s     63.5%        13.1 m     4.8 m 
+INFO  06:30:42,418 ProgressMeter - gi|224589812|ref|NC_000020.10|:42959849        4.30e+07    9.0 m       12.0 s     68.2%        13.2 m     4.2 m 
+INFO  06:31:22,419 ProgressMeter - gi|224589812|ref|NC_000020.10|:45886801        4.59e+07    9.7 m       12.0 s     72.8%        13.3 m     3.6 m 
+INFO  06:32:02,420 ProgressMeter - gi|224589812|ref|NC_000020.10|:48856905        4.88e+07   10.3 m       12.0 s     77.5%        13.3 m     3.0 m 
+INFO  06:32:32,421 ProgressMeter - gi|224589812|ref|NC_000020.10|:51085229        5.11e+07   10.8 m       12.0 s     81.1%        13.4 m     2.5 m 
+INFO  06:33:02,422 ProgressMeter - gi|224589812|ref|NC_000020.10|:53291669        5.33e+07   11.3 m       12.0 s     84.6%        13.4 m     2.1 m 
+INFO  06:33:32,423 ProgressMeter - gi|224589812|ref|NC_000020.10|:55465141        5.55e+07   11.8 m       12.0 s     88.0%        13.4 m    96.0 s 
+INFO  06:34:02,424 ProgressMeter - gi|224589812|ref|NC_000020.10|:57614445        5.76e+07   12.3 m       12.0 s     91.4%        13.5 m    69.0 s 
+INFO  06:34:32,425 ProgressMeter - gi|224589812|ref|NC_000020.10|:59724181        5.97e+07   12.8 m       12.0 s     94.8%        13.5 m    42.0 s 
+INFO  06:35:02,426 ProgressMeter - gi|224589812|ref|NC_000020.10|:61963005        6.19e+07   13.3 m       12.0 s     98.3%        13.6 m    13.0 s 
+INFO  06:35:15,771 ProgressMeter -            done        6.30e+07   13.6 m       12.0 s    100.0%        13.6 m     0.0 s 
+INFO  06:35:15,771 ProgressMeter - Total runtime 813.38 secs, 13.56 min, 0.23 hours 
+INFO  06:35:15,772 MicroScheduler - 32 reads were filtered out during the traversal out of approximately 6077739 total reads (0.00%) 
+INFO  06:35:15,772 MicroScheduler -   -> 32 reads (0.00% of total) failing BadCigarFilter 
+INFO  06:35:15,772 MicroScheduler -   -> 0 reads (0.00% of total) failing BadMateFilter 
+INFO  06:35:15,772 MicroScheduler -   -> 0 reads (0.00% of total) failing DuplicateReadFilter 
+INFO  06:35:15,772 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  06:35:15,772 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  06:35:15,773 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  06:35:15,773 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  06:35:15,773 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
+INFO  06:35:17,281 GATKRunReport - Uploaded run statistics report to AWS S3 
+856.77user 20.49system 13:38.15elapsed 107%CPU (0avgtext+0avgdata 2194160maxresident)k
+390536inputs+232600outputs (0major+8164503minor)pagefaults 0swaps
+INFO  12:41:27,842 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:27,843 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:41:27,844 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:41:27,844 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:41:27,846 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.1x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.1x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:41:27,850 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:41:27,851 HelpFormatter - Date/Time: 2014/03/26 12:41:27 
+INFO  12:41:27,851 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:27,851 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:27,923 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:41:27,982 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:41:27,988 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:41:27,998 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:41:28,130 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:41:28,572 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:41:28,573 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:41:28,574 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:41:29,989 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.1x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.1x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.98user 0.36system 0:04.47elapsed 186%CPU (0avgtext+0avgdata 385476maxresident)k
+176inputs+1312outputs (0major+104282minor)pagefaults 0swaps
+INFO  12:41:32,975 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:32,977 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:41:32,977 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:41:32,978 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:41:32,981 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.1x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.1x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:41:32,984 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:41:32,984 HelpFormatter - Date/Time: 2014/03/26 12:41:32 
+INFO  12:41:32,984 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:32,985 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:33,058 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:41:33,103 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:41:33,109 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:41:33,120 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:41:33,252 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:41:33,506 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:41:33,506 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:41:33,506 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:41:34,567 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.1x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.1x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+8.23user 0.33system 0:04.54elapsed 188%CPU (0avgtext+0avgdata 391624maxresident)k
+0inputs+1272outputs (0major+103123minor)pagefaults 0swaps
+INFO  12:41:37,144 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:37,146 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:41:37,146 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:41:37,146 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:41:37,149 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.1x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.1x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:41:37,152 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:41:37,153 HelpFormatter - Date/Time: 2014/03/26 12:41:37 
+INFO  12:41:37,153 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:37,153 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:37,229 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:41:37,277 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:41:37,284 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:41:37,296 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:41:37,439 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:41:37,710 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:41:37,711 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:41:37,711 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:41:38,990 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.1x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.1x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.96user 0.34system 0:04.44elapsed 186%CPU (0avgtext+0avgdata 385452maxresident)k
+0inputs+1240outputs (0major+112476minor)pagefaults 0swaps
+INFO  12:41:41,329 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:41,331 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:41:41,331 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:41:41,332 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:41:41,334 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.2x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.2x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:41:41,338 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:41:41,338 HelpFormatter - Date/Time: 2014/03/26 12:41:41 
+INFO  12:41:41,338 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:41,338 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:41,415 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:41:41,460 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:41:41,466 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:41:41,476 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:41:41,604 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:41:41,862 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:41:41,862 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:41:41,862 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:41:43,183 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.2x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.2x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.23user 0.35system 0:04.19elapsed 181%CPU (0avgtext+0avgdata 385076maxresident)k
+320inputs+1592outputs (0major+104387minor)pagefaults 0swaps
+INFO  12:41:45,707 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:45,708 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:41:45,709 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:41:45,709 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:41:45,711 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.2x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.2x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:41:45,716 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:41:45,716 HelpFormatter - Date/Time: 2014/03/26 12:41:45 
+INFO  12:41:45,716 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:45,716 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:45,793 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:41:45,838 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:41:45,844 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:41:45,855 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:41:45,987 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:41:46,279 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:41:46,280 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:41:46,280 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:41:47,152 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.2x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.2x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.06user 0.32system 0:03.96elapsed 186%CPU (0avgtext+0avgdata 388324maxresident)k
+320inputs+1584outputs (0major+103984minor)pagefaults 0swaps
+INFO  12:41:50,219 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:50,221 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:41:50,221 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:41:50,221 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:41:50,224 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.2x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.2x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:41:50,227 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:41:50,227 HelpFormatter - Date/Time: 2014/03/26 12:41:50 
+INFO  12:41:50,228 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:50,228 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:50,303 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:41:50,354 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:41:50,361 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:41:50,371 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:41:50,509 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:41:50,769 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:41:50,769 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:41:50,770 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:41:51,684 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.2x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.2x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.84user 0.38system 0:04.52elapsed 181%CPU (0avgtext+0avgdata 387332maxresident)k
+312inputs+1624outputs (0major+104830minor)pagefaults 0swaps
+INFO  12:41:54,210 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:54,212 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:41:54,212 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:41:54,212 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:41:54,215 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.3x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.3x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:41:54,219 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:41:54,219 HelpFormatter - Date/Time: 2014/03/26 12:41:54 
+INFO  12:41:54,219 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:54,220 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:54,295 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:41:54,341 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:41:54,347 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:41:54,357 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:41:54,491 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:41:54,867 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:41:54,868 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:41:54,869 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:41:56,332 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.3x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.3x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+8.21user 0.41system 0:04.65elapsed 185%CPU (0avgtext+0avgdata 387412maxresident)k
+328inputs+1768outputs (0major+103611minor)pagefaults 0swaps
+INFO  12:41:58,769 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:58,771 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:41:58,771 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:41:58,771 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:41:58,774 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.3x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.3x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:41:58,778 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:41:58,778 HelpFormatter - Date/Time: 2014/03/26 12:41:58 
+INFO  12:41:58,778 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:58,778 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:41:58,854 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:41:58,899 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:41:58,906 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:41:58,916 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:41:59,047 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:41:59,397 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:41:59,398 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:41:59,399 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:42:00,886 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.3x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.3x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+8.11user 0.33system 0:04.54elapsed 185%CPU (0avgtext+0avgdata 386968maxresident)k
+328inputs+1744outputs (0major+104467minor)pagefaults 0swaps
+INFO  12:42:03,305 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:03,307 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:42:03,307 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:42:03,307 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:42:03,310 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.3x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.3x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:42:03,314 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:42:03,314 HelpFormatter - Date/Time: 2014/03/26 12:42:03 
+INFO  12:42:03,314 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:03,314 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:03,394 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:42:03,453 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:42:03,459 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:42:03,469 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:42:03,602 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:42:03,872 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:42:03,873 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:42:03,873 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:42:04,968 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.3x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.3x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.20user 0.30system 0:04.07elapsed 184%CPU (0avgtext+0avgdata 388476maxresident)k
+328inputs+1752outputs (0major+100295minor)pagefaults 0swaps
+INFO  12:42:07,322 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:07,324 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:42:07,324 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:42:07,324 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:42:07,327 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.5x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.5x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:42:07,331 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:42:07,331 HelpFormatter - Date/Time: 2014/03/26 12:42:07 
+INFO  12:42:07,331 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:07,331 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:07,404 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:42:07,449 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:42:07,455 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:42:07,465 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:42:07,601 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:42:07,848 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:42:07,848 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:42:07,849 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:42:08,908 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.5x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.5x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.12user 0.30system 0:03.95elapsed 187%CPU (0avgtext+0avgdata 385256maxresident)k
+328inputs+1800outputs (0major+100722minor)pagefaults 0swaps
+INFO  12:42:11,685 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:11,686 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:42:11,687 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:42:11,687 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:42:11,690 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.5x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.5x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:42:11,694 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:42:11,694 HelpFormatter - Date/Time: 2014/03/26 12:42:11 
+INFO  12:42:11,694 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:11,694 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:11,770 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:42:11,824 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:42:11,830 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:42:11,841 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:42:11,977 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:42:12,275 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:42:12,275 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:42:12,276 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:42:13,122 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.5x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.5x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+8.54user 0.34system 0:04.18elapsed 212%CPU (0avgtext+0avgdata 392472maxresident)k
+328inputs+1800outputs (0major+107290minor)pagefaults 0swaps
+INFO  12:42:15,673 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:15,675 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:42:15,675 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:42:15,675 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:42:15,678 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.5x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.5x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:42:15,682 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:42:15,682 HelpFormatter - Date/Time: 2014/03/26 12:42:15 
+INFO  12:42:15,682 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:15,682 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:15,758 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:42:15,803 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:42:15,809 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:42:15,819 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:42:15,951 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:42:16,197 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:42:16,197 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:42:16,197 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:42:17,455 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.5x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.5x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.60user 0.32system 0:04.32elapsed 183%CPU (0avgtext+0avgdata 384992maxresident)k
+328inputs+1800outputs (0major+108916minor)pagefaults 0swaps
+INFO  12:42:20,109 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:20,111 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:42:20,111 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:42:20,111 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:42:20,113 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.7x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.7x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:42:20,118 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:42:20,118 HelpFormatter - Date/Time: 2014/03/26 12:42:20 
+INFO  12:42:20,118 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:20,118 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:20,192 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:42:20,237 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:42:20,243 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:42:20,253 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:42:20,385 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:42:20,626 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:42:20,626 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:42:20,626 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:42:21,889 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.7x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.7x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.69user 0.32system 0:04.43elapsed 181%CPU (0avgtext+0avgdata 384976maxresident)k
+336inputs+1800outputs (0major+99892minor)pagefaults 0swaps
+INFO  12:42:24,589 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:24,591 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:42:24,591 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:42:24,591 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:42:24,594 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.7x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.7x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:42:24,598 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:42:24,598 HelpFormatter - Date/Time: 2014/03/26 12:42:24 
+INFO  12:42:24,599 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:24,599 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:24,673 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:42:24,718 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:42:24,725 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:42:24,735 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:42:24,867 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:42:25,128 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:42:25,129 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:42:25,129 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:42:26,421 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.7x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.7x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.79user 0.36system 0:04.53elapsed 179%CPU (0avgtext+0avgdata 386344maxresident)k
+336inputs+1808outputs (0major+110841minor)pagefaults 0swaps
+INFO  12:42:28,811 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:28,812 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:42:28,813 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:42:28,813 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:42:28,815 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.7x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.7x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:42:28,819 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:42:28,819 HelpFormatter - Date/Time: 2014/03/26 12:42:28 
+INFO  12:42:28,820 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:28,820 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:28,894 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:42:28,939 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:42:28,945 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:42:28,956 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:42:29,090 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:42:29,315 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:42:29,316 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:42:29,316 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:42:30,680 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.7x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.7x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.29user 0.31system 0:04.25elapsed 179%CPU (0avgtext+0avgdata 386460maxresident)k
+0inputs+1808outputs (0major+101215minor)pagefaults 0swaps
+INFO  12:42:33,507 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:33,508 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:42:33,509 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:42:33,509 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:42:33,511 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.01.10x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.10x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:42:33,515 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:42:33,515 HelpFormatter - Date/Time: 2014/03/26 12:42:33 
+INFO  12:42:33,516 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:33,516 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:33,590 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:42:33,649 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:42:33,655 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:42:33,666 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:42:33,800 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:42:34,036 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:42:34,037 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:42:34,037 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:42:35,235 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.10x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.01.10x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.61user 0.40system 0:04.55elapsed 176%CPU (0avgtext+0avgdata 386112maxresident)k
+336inputs+1808outputs (0major+101666minor)pagefaults 0swaps
+INFO  12:42:37,826 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:37,827 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:42:37,828 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:42:37,828 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:42:37,830 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.02.10x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.10x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:42:37,835 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:42:37,835 HelpFormatter - Date/Time: 2014/03/26 12:42:37 
+INFO  12:42:37,835 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:37,835 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:37,911 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:42:37,956 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:42:37,962 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:42:37,972 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:42:38,104 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:42:38,376 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:42:38,377 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:42:38,377 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:42:39,647 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.10x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.02.10x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+8.30user 0.33system 0:04.40elapsed 195%CPU (0avgtext+0avgdata 393472maxresident)k
+336inputs+1816outputs (0major+102954minor)pagefaults 0swaps
+INFO  12:42:42,195 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:42,197 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.1-1-g07a4bf8, Compiled 2014/03/18 06:09:21 
+INFO  12:42:42,197 HelpFormatter - Copyright (c) 2010 The Broad Institute 
+INFO  12:42:42,197 HelpFormatter - For support and documentation go to http://www.broadinstitute.org/gatk 
+INFO  12:42:42,200 HelpFormatter - Program Args: -l INFO -R /home/SNP/GRCh37_human/genomes/GRCh37_chr20.fasta -T UnifiedGenotyper -I /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-BWA/reads-100.0.04.10x.bwasw_sorted_RG.bam --dbsnp /home/SNP/GRCh37_human/genomes/ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes-diffcontigname.vcf -o /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.10x.bwasw.vcf --output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar 
+INFO  12:42:42,204 HelpFormatter - Executing as nsvo@delphinus on Linux 3.2.0-4-amd64 amd64; OpenJDK 64-Bit Server VM 1.7.0_25-b30. 
+INFO  12:42:42,204 HelpFormatter - Date/Time: 2014/03/26 12:42:42 
+INFO  12:42:42,204 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:42,204 HelpFormatter - -------------------------------------------------------------------------------- 
+INFO  12:42:42,277 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  12:42:42,322 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 250 
+INFO  12:42:42,328 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  12:42:42,339 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.01 
+INFO  12:42:42,472 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  12:42:42,741 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  12:42:42,741 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  12:42:42,742 ProgressMeter -        Location processed.sites  runtime per.1M.sites completed total.runtime remaining 
+INFO  12:42:44,021 GATKRunReport - Uploaded run statistics report to AWS S3 
+##### ERROR ------------------------------------------------------------------------------------------
+##### ERROR A USER ERROR has occurred (version 3.1-1-g07a4bf8): 
+##### ERROR
+##### ERROR This means that one or more arguments or inputs in your command are incorrect.
+##### ERROR The error message below tells you what is the problem.
+##### ERROR
+##### ERROR If the problem is an invalid argument, please check the online documentation guide
+##### ERROR (or rerun your command with --help) to view allowable command-line arguments for this tool.
+##### ERROR
+##### ERROR Visit our website and forum for extensive documentation and answers to 
+##### ERROR commonly asked questions http://www.broadinstitute.org/gatk
+##### ERROR
+##### ERROR Please do NOT post this error to the GATK forum unless you have really tried to fix it yourself.
+##### ERROR
+##### ERROR MESSAGE: Couldn't write file /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.10x.bwasw.vcf because Unable to open target output stream with exception /home/SNP/GRCh37_human/chr20_mutate1/results/3-24-2014-GATK-test/reads-100.0.04.10x.bwasw.vcf (No such file or directory)
+##### ERROR ------------------------------------------------------------------------------------------
+7.64user 0.34system 0:04.36elapsed 183%CPU (0avgtext+0avgdata 389876maxresident)k
+336inputs+1808outputs (0major+104482minor)pagefaults 0swaps

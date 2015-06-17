@@ -1,0 +1,8 @@
+isc-0.3.6
+/home/nsvo/workspace/goprojects/src/github.com/namsyvo/ISC/main/isc.go
+/data/nsvo/Human/refs/GRCh37_chr1
+GRCh37_chr1.fasta
+ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.vcf
+/data/nsvo/test_data/GRCh37_chr20/reads/real-reads
+SRR062641
+/data/nsvo/test_data/GRCh37_chr1

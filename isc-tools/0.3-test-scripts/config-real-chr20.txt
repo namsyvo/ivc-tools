@@ -1,0 +1,9 @@
+isc-0.3.6-snpqual-inalignment_5168d045aaf4d7db5d872f798be73d1ceb026a00+fmisnp-gr_797620715c769a731d449179f62f92af2a185b1d
+/home/nsvo/workspace/goprojects/src/github.com/namsyvo/ISC/main/isc.go
+/data/nsvo/Human/refs/GRCh37_chr20
+GRCh37_chr20.fasta
+ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.vcf
+/data/nsvo/test_data/GRCh37_chr20/reads/real-reads
+SRR062641
+/data/nsvo/test_data/GRCh37_chr20
+index-fmisnp-gr-sep5

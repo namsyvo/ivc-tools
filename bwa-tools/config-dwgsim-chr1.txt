@@ -1,0 +1,4 @@
+/home/nsvo/genome-tools/bwa-0.7.7
+/data/nsvo/test-data/GRCh37_chr1
+GRCh37_chr1.fasta
+dwgsim_reads

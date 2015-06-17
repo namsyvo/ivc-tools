@@ -1,0 +1,7 @@
+isc-0.3.6
+/home/nsvo/workspace/goprojects/src/github.com/namsyvo/ISC/main/isc.go
+/data/nsvo/test_data/GRCh37_chr20
+GRCh37_chr20.fasta
+ALL.chr20.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.vcf
+sim-reads-100.0.01
+index-fmisnp-gr-sep5

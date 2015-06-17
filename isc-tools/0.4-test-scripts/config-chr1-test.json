@@ -1,0 +1,14 @@
+{
+    "ProgVer": "isc-0.4-callnewsnp",
+    "ProgPath": "/home/nsvo/workspace/goprojects/src/github.com/namsyvo/ISC/main/isc.go",
+    "DataPath": {
+        "DataDir": "/data/nsvo/test-data/GRCh37_chr1",
+        "RefDir": "refs",
+        "GenomeFile": "GRCh37_chr1.fasta",
+        "SNPProfFile": "ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.part.0.3300.vcf",
+        "IndexDir": "index-0.3300",
+        "ReadDir": "reads/sim-reads",
+        "ReadPrefixFile": "dwgsim-reads",
+        "ResultDir": "results/sim-reads"
+    }
+}
