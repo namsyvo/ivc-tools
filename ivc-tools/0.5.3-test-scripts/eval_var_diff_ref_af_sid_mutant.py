@@ -109,7 +109,7 @@ for para in ref_para[0:1]:
             for rn in read_nums:
                 for ms in max_snum[6:7]:
                     prefix_fn = read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + "." + str(ms)
-                    called_var_file = os.path.join(result_path, prefix_fn + ".snpcall." + str(cpu_num) + ".vcf")
+                    called_var_file = os.path.join(result_path, prefix_fn + ".varcall." + str(cpu_num) + ".vcf")
                     called_var = {}
                     with open(called_var_file) as f:
                         for line in f.readlines():
@@ -242,7 +242,7 @@ for para in ref_para[0:1]:
                     #"run", "read", "proc", "max_snum", "max_ps_num"
                     result_file.write(result_dn + "\t" + prefix_fn + "\t" + cpu_num + "\t" + str(ms) + "\t1\t")
                     #"na_num", "na_ratio"
-                    mem_time_file = os.path.join(result_path, prefix_fn + ".snpcall." + str(cpu_num) + ".log")
+                    mem_time_file = os.path.join(result_path, prefix_fn + ".varcall." + str(cpu_num) + ".log")
                     with open(mem_time_file) as f:
                         for line in f:
                             tokens = line.strip().split("\t")

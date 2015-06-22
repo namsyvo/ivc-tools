@@ -156,7 +156,7 @@ for para in ref_para:
                 fp_low_qual_gatk_file = open(file_prefix + ".fp_low_qual_gatk." + str(confi) + ".txt", "w")
 
                 called_var, low_qual_snp = {}, {}
-                called_var_file = result_path + "/" + fn_part + ".512.snpcall.32.vcf"
+                called_var_file = result_path + "/" + fn_part + ".512.varcall.32.vcf"
                 f = open(called_var_file)
                 for line in f.readlines():
                     value = line.strip().split()
