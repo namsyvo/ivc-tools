@@ -152,6 +152,9 @@ for para in ref_para:
                 fn_indel_known_callgatk_file = open(file_prefix + ".fn_indel_known_callgatk." + str(confi) + ".txt", "w")
                 fn_indel_unknown_callgatk_file = open(file_prefix + ".fn_indel_unknown_callgatk." + str(confi) + ".txt", "w")
 
+                fp_snp_none_callgatk_file = open(file_prefix + ".fp_snp_none_callgatk." + str(confi) + ".txt", "w")
+                fp_indel_none_callgatk_file = open(file_prefix + ".fp_indel_none_callgatk." + str(confi) + ".txt", "w")
+
                 fp_low_qual_file = open(file_prefix + ".fp_low_qual." + str(confi) + ".txt", "w")
                 fp_low_qual_gatk_file = open(file_prefix + ".fp_low_qual_gatk." + str(confi) + ".txt", "w")
 
@@ -191,8 +194,12 @@ for para in ref_para:
                         else:
                             if len(value[3]) == 1 and len(value[4]) == 1:
                                 fp_snp_none_file.write(str(pos) + "\t" + var_call_info)
+                                if pos in gatk_snp:
+                                    fp_snp_none_callgatk_file.write(str(pos) + "\t" + var_call_info)
                             else:
                                 fp_indel_none_file.write(str(pos) + "\t" + var_call_info)
+                                if pos in gatk_snp:
+                                    fp_indel_none_callgatk_file.write(str(pos) + "\t" + var_call_info)
                     else:
                         low_qual_snp[pos] = value
 

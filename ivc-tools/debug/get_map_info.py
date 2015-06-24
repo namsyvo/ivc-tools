@@ -44,7 +44,7 @@ if __name__ == "__main__":
     var_type = int(sys.argv[3])
     var_num = int(sys.argv[4])
 
-    result_dn = os.path.join("/data/nsvo/test-data/GRCh37_chr1/results/sim-reads/af_sid_mutant_dwgsim/isc_0.70", result_path, "fpfntp_info")
+    result_dn = os.path.join("/data/nsvo/test-data/GRCh37_chr1/results/sim-reads/af_sid_mutant_dwgsim/ivc_0.70", result_path, "fpfntp_info")
     fp_fn = ["dwgsim_reads_100.0.00015-0.0015.6231265.fp_snp_none.1.14.txt", \
              "dwgsim_reads_100.0.00015-0.0015.6231265.fp_snp_unknown.1.14.txt", \
              "dwgsim_reads_100.0.00015-0.0015.6231265.fp_snp_known.1.14.txt", \
@@ -65,9 +65,9 @@ if __name__ == "__main__":
         line = fp_inf.readline()
         tmp = line.strip().split()
         if var_type == 0 or var_type == 3:
-            snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[8]), tmp[11], tmp[12], tmp[13], tmp[14], tmp[15]
+            snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[10]), tmp[14], tmp[15], tmp[16], tmp[17], tmp[18]
         else:
-            snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[10]), tmp[13], tmp[14], tmp[15], tmp[16], tmp[17]
+            snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[12]), tmp[16], tmp[17], tmp[18], tmp[19], tmp[20]
         if snp_pos == prev_pos:
             continue
         prev_pos = snp_pos

@@ -64,11 +64,13 @@ for para in ref_para[0:1]:
 	                #read_file_2 = os.path.join(read_path, "alignment-analysis", prefix_fn + ".bwa.read2.fastq" + rid)
 
 	                mem_time_file = os.path.join(result_path, prefix_fn + "." + str(ms) + ".varcall." + str(cpu_num) + ".log")
+	                info_file = os.path.join(result_path, prefix_fn + "." + str(ms) + ".varcall." + str(cpu_num) + ".info")
+	                cpu_prof_file = os.path.join(result_path, prefix_fn + "." + str(ms) + ".varcall." + str(cpu_num) + ".pprof")
 	                called_var_file = os.path.join(result_path, prefix_fn + "." + str(ms) + ".varcall." + str(cpu_num) + ".vcf")
 	                cmd = "(go run " + prog_path + \
 	                    " -g " + genome_file + " -s " + var_file + " -i " + os.path.join(data_dir, index_dir, "index_" + para) + \
-	                    " -1 " + read_file_1 + " -2 " + read_file_2 + " -o " + called_var_file + \
-	                    " -w " + cpu_num + " -t " + cpu_num + " -n " + str(ms) + " -h 30 -k 128) 2>" + mem_time_file
+	                    " -1 " + read_file_1 + " -2 " + read_file_2 + " -o " + called_var_file  + " -c " + cpu_prof_file + \
+	                    " -w " + cpu_num + " -t " + cpu_num + " -n " + str(ms) + " -h 30 -k 128) 2>" + mem_time_file + " 1>" + info_file
 	                print cmd
 	                os.system(cmd)
 
