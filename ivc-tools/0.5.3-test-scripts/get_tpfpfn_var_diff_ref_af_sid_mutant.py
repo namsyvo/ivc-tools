@@ -270,8 +270,5 @@ for para in ref_para:
                 fn_indel_known_callgatk_file.close()
                 fn_indel_unknown_callgatk_file.close()
 
-                fp_snp_none_callgatk_file.close()
-                fp_indel_none_callgatk_file.close()
-
                 fp_low_qual_file.close()
                 fp_low_qual_gatk_file.close()

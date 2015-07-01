@@ -82,8 +82,8 @@ for para in ref_para:
     result_path = os.path.join(data_dir, result_dir, "ivc_" + para, result_dn)
     gatk_result_path = os.path.join(data_dir, result_dir, "gatk")
 
-    header = "pos\tref\talt\tqual\tprob\tbase_num\tbase_qual\tchr_dis\tchr_diff\t-log(aln_prob)\t-log(pair_prob)\ts_pos1\tbranch1\ts_pos2\tbranch2\tread_header\taln_base\taln_base_num\n"
-    fp_header = "pos\ttrue_ref\ttrue_alt\tref\talt\tqual\tprob\tbase_num\tbase_qual\tchr_dis\tchr_diff\t-log(aln_prob)\t-log(pair_prob)\ts_pos1\tbranch1\ts_pos2\tbranch2\tread_header\taln_base\taln_base_num\n"
+    header = "pos\tref\talt\tqual\tvar_prob\tmap_prob\tcom_qual\tbase_num\tbase_qual\tchr_dis\tchr_diff\tmap_prob\taln_prob\tpair_prob\ts_pos1\tbranch1\ts_pos2\tbranch2\tread_header\taln_base\taln_base_num\n"
+    fp_header = "pos\ttrue_ref\ttrue_alt\tref\talt\tqual\tvar_prob\tmap_prob\tcom_qual\tbase_num\tbase_qual\tchr_dis\tchr_diff\tmap_prob\taln_prob\tpair_prob\ts_pos1\tbranch1\ts_pos2\tbranch2\tread_header\taln_base\taln_base_num\n"
 
     for rl in read_lens:
         for err in seq_errs:
@@ -159,7 +159,7 @@ for para in ref_para:
                 fp_low_qual_gatk_file = open(file_prefix + ".fp_low_qual_gatk." + str(confi) + ".txt", "w")
 
                 called_var, low_qual_snp = {}, {}
-                called_var_file = result_path + "/" + fn_part + ".512.varcall.32.vcf"
+                called_var_file = result_path + "/" + fn_part + ".512.varcall.50.vcf"
                 f = open(called_var_file)
                 for line in f.readlines():
                     value = line.strip().split()

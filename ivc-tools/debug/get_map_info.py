@@ -2,7 +2,7 @@
 Get alignment info for fp (snp, indel)
 Input: result folder, length of read/ref/mut
 Ouput: alignment info (read-ref)
-Usage: python get_map_info.py called_var_dir length var_type
+Usage: python get_map_info.py called_var_dir cov_num extracted_length var_type var_num
 """
 import sys
 import os
@@ -24,9 +24,9 @@ def rev_comp(read):
 
 if __name__ == "__main__":
 
-    read_dn = "/data/nsvo/test-data/GRCh37_chr1/reads/sim-reads/af_sid_mutant_dwgsim"
-    read_fn = ["dwgsim_reads_100.0.00015-0.0015.6231265.bwa.read1.fastq", "dwgsim_reads_100.0.00015-0.0015.6231265.bwa.read2.fastq"]
-
+    if len(sys.argv) != 6:
+        print "Usage: python get_map_info.py called_var_dir cov_num extracted_length var_type var_num"
+        exit(0)
     fref = open("/data/nsvo/test-data/GRCh37_chr1/indexes/af_sid_mutant_index/index_0.70/GRCh37_chr1.fasta.mgf")
     ref_seq = ""
     for line in fref:
@@ -39,28 +39,36 @@ if __name__ == "__main__":
         if line[0] != '>':
             mut_seq += line.strip()
 
+    ref_len = 249250621
+    read_lens = 100
+
     result_path = sys.argv[1]
-    dis = int(sys.argv[2])
-    var_type = int(sys.argv[3])
-    var_num = int(sys.argv[4])
+    cov_num = int(sys.argv[2])
+    dis = int(sys.argv[3])
+    var_type = int(sys.argv[4])
+    var_num = int(sys.argv[5])
 
-    result_dn = os.path.join("/data/nsvo/test-data/GRCh37_chr1/results/sim-reads/af_sid_mutant_dwgsim/ivc_0.70", result_path, "fpfntp_info")
-    fp_fn = ["dwgsim_reads_100.0.00015-0.0015.6231265.fp_snp_none.1.14.txt", \
-             "dwgsim_reads_100.0.00015-0.0015.6231265.fp_snp_unknown.1.14.txt", \
-             "dwgsim_reads_100.0.00015-0.0015.6231265.fp_snp_known.1.14.txt", \
-             "dwgsim_reads_100.0.00015-0.0015.6231265.fp_indel_none.1.14.txt", \
-             "dwgsim_reads_100.0.00015-0.0015.6231265.fp_indel_unknown.1.14.txt", \
-             "dwgsim_reads_100.0.00015-0.0015.6231265.fp_indel_known.1.14.txt"]
-
+    read_dn = "/data/nsvo/test-data/GRCh37_chr1/reads/sim-reads/af_sid_mutant_dwgsim"
     if not os.path.exists(os.path.join(read_dn, "alignment-analysis")):
         os.makedirs(os.path.join(read_dn, "alignment-analysis"))
 
+    read_nums = str(cov_num*ref_len/(2*read_lens))
+    fp_fn = ["dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_snp_none.1.14.txt", \
+             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_snp_unknown.1.14.txt", \
+             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_snp_known.1.14.txt", \
+             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_indel_none.1.14.txt", \
+             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_indel_unknown.1.14.txt", \
+             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_indel_known.1.14.txt"]
+
+    result_dn = os.path.join("/data/nsvo/test-data/GRCh37_chr1/results/sim-reads/af_sid_mutant_dwgsim/ivc_0.70", result_path, "fpfntp_info")
     map_outf = open(os.path.join(result_dn, fp_fn[var_type] + "-alignment-analysis"), "w")
-    fp_inf = open(os.path.join(result_dn, fp_fn[var_type]))
-    line = fp_inf.readline()
+    read_fn = ["dwgsim_reads_100.0.00015-0.0015." + read_nums + ".bwa.read1.fastq", "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".bwa.read2.fastq"]
 
     snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = 0, 0, 0, True, 0, True, ""
     prev_pos = 0
+
+    fp_inf = open(os.path.join(result_dn, fp_fn[var_type]))
+    line = fp_inf.readline()
     for j in range(var_num):
         line = fp_inf.readline()
         tmp = line.strip().split()
