@@ -42,7 +42,7 @@ seq_errs = ['0.00015-0.0015']
 max_snum = [2**i for i in range(3, 14)]
 read_nums = []
 if cov_num == "all":
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 10, 20]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
@@ -58,10 +58,12 @@ for para in ref_para[0:1]:
             for rn in read_nums:
                 for ms in max_snum[6:7]:
 	                prefix_fn = read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn)
-	                #read_file_1 = os.path.join(read_path, prefix_fn + ".bwa.read1.fastq" + rid)
-	                #read_file_2 = os.path.join(read_path, prefix_fn + ".bwa.read2.fastq" + rid)
-	                read_file_1 = os.path.join(read_path, "alignment-analysis", prefix_fn + ".bwa.read1.fastq" + rid)
-	                read_file_2 = os.path.join(read_path, "alignment-analysis", prefix_fn + ".bwa.read2.fastq" + rid)
+	                if rid == "":
+	                	read_file_1 = os.path.join(read_path, prefix_fn + ".bwa.read1.fastq")
+	                	read_file_2 = os.path.join(read_path, prefix_fn + ".bwa.read2.fastq")
+	                else:
+	                	read_file_1 = os.path.join(read_path, "alignment-analysis", prefix_fn + ".bwa.read1.fastq" + rid)
+	                	read_file_2 = os.path.join(read_path, "alignment-analysis", prefix_fn + ".bwa.read2.fastq" + rid)
 
 	                mem_time_file = os.path.join(result_path, prefix_fn + "." + str(ms) + ".varcall." + str(cpu_num) + ".log")
 	                info_file = os.path.join(result_path, prefix_fn + "." + str(ms) + ".varcall." + str(cpu_num) + ".info")
@@ -69,12 +71,11 @@ for para in ref_para[0:1]:
 	                called_var_file = os.path.join(result_path, prefix_fn + "." + str(ms) + ".varcall." + str(cpu_num) + ".vcf")
 	                cmd = "(go run " + prog_path + \
 	                    " -g " + genome_file + " -s " + var_file + " -i " + os.path.join(data_dir, index_dir, "index_" + para) + \
-	                    " -1 " + read_file_1 + " -2 " + read_file_2 + " -o " + called_var_file  + " -c " + cpu_prof_file + \
-	                    " -w " + cpu_num + " -t " + cpu_num + " -n " + str(ms) + " -h 30 -k 128) 2>" + mem_time_file + " 1>" + info_file
+	                    " -1 " + read_file_1 + " -2 " + read_file_2 + " -o " + called_var_file  + \
+	                    " -w " + cpu_num + " -t " + cpu_num + " -n " + str(ms) + " -l 19 -h 25 -k 128 -d 36 -r 12) 2>" + mem_time_file + " 1>" + info_file
 	                print cmd
 	                os.system(cmd)
 
-#cmd = "python eval_var_diff_ref_af_sid_mutant.py " + config_file + " 1.14 " + cpu_num + " " + cov_num + " " + prog_version + "-" + time_stamp
-#print cmd
-#os.system(cmd)
-
+cmd = "python eval_var_diff_ref_af_sid_mutant.py " + config_file + " 1.14 " + cpu_num + " " + cov_num + " " + prog_version + "-" + time_stamp
+print cmd
+os.system(cmd)
