@@ -1,5 +1,5 @@
 {
-    "ProgVer": "IVC-0.7.2-known_del",
+    "ProgVer": "IVC-0.7.3-map_qual",
     "ProgPath": "/home/nsvo/workspace/goprojects/src/github.com/namsyvo/IVC/main/ivc.go",
     "DataPath": {
         "DataDir": "/data/nsvo/test-data/GRCh37_chr1",

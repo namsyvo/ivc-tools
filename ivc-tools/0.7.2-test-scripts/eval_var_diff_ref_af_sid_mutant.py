@@ -1,7 +1,7 @@
 '''
 Evaluate variant call results
-Usage: python eval_var_af_sid_mutant_diff_ref.py config_file confi cpu_num coverage_num result_dir_name
-    E.g.: python eval_var_af_sid_mutant_diff_ref.py config-chr1-test.json 1.14 32 5 IVC-0.5.3-aff_gap_aln-2015-05-20-15:09:36.226789
+Usage: python eval_var_af_sid_mutant_diff_ref.py config_file confi coverage_num result_dir_name
+    E.g.: python eval_var_af_sid_mutant_diff_ref.py config-chr1-test.json 1.14 5 IVC-0.5.3-aff_gap_aln-2015-05-20-15:09:36.226789
 
 '''
 import os
@@ -26,9 +26,8 @@ result_dir = data["DataPath"]["ResultDir"]
 read_fn = data["DataPath"]["ReadPrefixFile"]
 
 confi = float(sys.argv[2])
-cpu_num = sys.argv[3]
-cov_num = sys.argv[4]
-result_dn = sys.argv[5]
+cov_num = sys.argv[3]
+result_dn = sys.argv[4]
 
 ref_path = os.path.join(data_dir, ref_dir)
 read_path = os.path.join(data_dir, read_dir)
@@ -36,15 +35,13 @@ read_path = os.path.join(data_dir, read_dir)
 genome_file = os.path.join(ref_path, genome_fn)
 snp_file = os.path.join(ref_path, snp_fn)
 
-ref_len = 249250621
 ref_para = ['0.70', '0.75', '0.80', '0.85', '0.90', '0.95', '0.96', '0.97', '0.98', '0.99']
-read_lens = [100]
 seq_errs = ['0.00015-0.0015']
-max_snum = [2**i for i in range(3, 14)]
+ref_len = 249250621
+read_lens = [100]
 read_nums = []
 if cov_num == "all":
-    #read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25]]
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 10, 20]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 10, 15, 20, 25, 30]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
@@ -99,8 +96,7 @@ for para in ref_para[0:1]:
                 "TP-I", "FP-I", "FP-I-N", "TP-I-U", "FP-I-U", "TP-I-K", "FP-I-K", \
                 "P-S", "R-S", "P-S-U", "R-S-U", "P-S-K", "R-S-K", "P-I", "R-I", "P-I-U", "R-I-U", "P-I-K", "R-I-K", \
                 "S", "S-U", "S-K", "CS", "CS-S", "I", "I-U", "I-K", "CI", "CI-I", \
-                "run", "read", "proc", "max_snum", "max_ps_num", "na_num", "na_ratio", \
-                "timeI", "memI", "timeC", "memC", "input_paras", "paras", "input_files"]
+                "run", "read", "na_num", "na_ratio", "timeI", "memI", "timeC", "memC", "input_files", "input_paras", "prog_paras"]
 
     result_file.write("\t".join(header))
     result_file.write("\n")
@@ -108,26 +104,25 @@ for para in ref_para[0:1]:
     for rl in read_lens:
         for err in seq_errs:
             for rn in read_nums:
-                for ms in max_snum[6:7]:
-                    prefix_fn = read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + "." + str(ms)
-                    called_var_file = os.path.join(result_path, prefix_fn + ".varcall." + str(cpu_num) + ".vcf")
-                    called_var = {}
-                    with open(called_var_file) as f:
+                    prefix_fn = read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn)
+                    var_call_file = os.path.join(result_path, prefix_fn + ".varcall.vcf")
+                    var_call = {}
+                    with open(var_call_file) as f:
                         for line in f.readlines():
                             if line.strip() and line[0] != '#':
                                 value = line.strip().split()
                                 if float(value[5]) >= confi:
                                     if value[3] == value[4]:
                                         continue
-                                    called_var[int(value[1]) - 1] = value[3:5]
-                    print "#called variants", len(called_var)
+                                    var_call[int(value[1]) - 1] = value[3:5]
+                    print "#called variants", len(var_call)
 
                     TP_KAKS, TP_NS = 0, 0
                     FP_KAKS, FP_NS = 0, 0
                     TP_KAKID, TP_NID = 0, 0
                     FP_KAKID, FP_NID = 0, 0
                     FP_S, FP_ID = 0, 0
-                    for var_pos, var in called_var.iteritems():
+                    for var_pos, var in var_call.iteritems():
                         if var_pos in true_known_snp or var_pos in true_known_indel:
                             if var_pos in true_known_snp:
                                 if var == true_known_snp[var_pos]:
@@ -227,8 +222,8 @@ for para in ref_para[0:1]:
 
                     '''
                     para_header = ["S", "S-U", "S-K", "CS", "CS\S", "I", "I-U", "I-K", "CI", "CI\I", \
-                                "run", "read", "proc", "max_snum", "max_ps_num", "na_num", "na_ratio", \
-                                "timeI", "memI", "timeC", "memC", "input_files", "input_paras", "prog_paras"]
+                                "run", "read", "na_num", "na_ratio", "timeI", "memI", "timeC", "memC", \
+                                "input_files", "input_paras", "prog_paras"]
                     '''
                     #S, "S-U", "S-K", CS, CS-S
                     result_file.write(str(KAKS + NS) + "\t" + str(NS) + "\t" + str(KAKS) + "\t")
@@ -240,14 +235,15 @@ for para in ref_para[0:1]:
                     result_file.write("%.5d\t" % (FP_KAKID + FP_NID + FP_ID + TP_KAKID + TP_NID))
                     result_file.write("%.5d\t" % ((FP_KAKID + FP_NID + FP_ID + TP_KAKID + TP_NID) - (KAKID + NID)))
 
-                    #"run", "read", "proc", "max_snum", "max_ps_num"
-                    result_file.write(result_dn + "\t" + prefix_fn + "\t" + cpu_num + "\t" + str(ms) + "\t1\t")
+                    #"run", "read"
+                    result_file.write(result_dn + "\t" + prefix_fn + "\t")
                     #"na_num", "na_ratio"
-                    mem_time_file = os.path.join(result_path, prefix_fn + ".varcall." + str(cpu_num) + ".log")
+                    mem_time_file = os.path.join(result_path, prefix_fn + ".varcall.log")
                     with open(mem_time_file) as f:
                         for line in f:
                             tokens = line.strip().split("\t")
                             if "Number of no-aligned reads" in tokens[0]:
+                                print "na", tokens
                                 result_file.write(tokens[1] + "\t")
                                 result_file.write(str((1-float(tokens[1]))/rn) + "\t")
                     #"timeI", "memI", "timeC", "memC"
@@ -255,23 +251,29 @@ for para in ref_para[0:1]:
                         for line in f:
                             tokens = line.strip().split("\t")
                             if "Time for initializing the variant caller" in tokens[0]:
+                                print "mem-time", tokens
                                 result_file.write(tokens[1] + "\t")
                             if "Memstats after initializing the variant caller" in tokens[0]:
+                                print "mem-time", tokens
                                 result_file.write(str(float(tokens[3])/10**9) + "\t")
                             if "Time for calling variants" in tokens[0]:
+                                print "mem-time", tokens
                                 result_file.write(tokens[1] + "\t")
                             if "Memstats after calling variants" in tokens[0]:
+                                print "mem-time", tokens
                                 result_file.write(str(float(tokens[3])/10**9) + "\t")
                     #"input_para", "para"
                     with open(mem_time_file) as f:
                         for line in f:
                             tokens = line.strip().split("\t")
                             if "Input files" in tokens[0]:
+                                print "para", tokens
                                 result_file.write(tokens[1] + "\t")
-                            if "Input parameters" in tokens[0]:
+                            if "Input paras" in tokens[0]:
+                                print "para", tokens
                                 result_file.write(tokens[1] + "\t")
-                            if "Parameters" in tokens[0]:
+                            if "Prog paras" in tokens[0]:
+                                print "para", tokens
                                 result_file.write(tokens[1] + "\t")
                     result_file.write("\n")
-
     result_file.close()
