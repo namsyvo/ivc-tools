@@ -9,7 +9,7 @@ file_names = ["dwgsim_reads_100.0.00015-0.0015." + str(read_nums) + ".bwa.read1.
           "dwgsim_reads_100.0.00015-0.0015." + str(read_nums) + ".bwa.read2.fastq"]
 for fn in file_names:
     inf = open(dir_name + "/" + fn)
-    outf = open(dir_name + "/alignment-analysis/" + fn + "." + read_id, "w")
+    outf = open(dir_name + "/diff-var-analysis/" + fn + "." + read_id, "w")
     while True:
         line = inf.readline()
         info = line.strip().split('_')

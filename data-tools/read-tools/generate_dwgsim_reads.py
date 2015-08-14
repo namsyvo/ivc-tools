@@ -7,8 +7,8 @@ import os
 ref_len = 249250621
 read_lens = [100]
 seq_errs = ['0.00015-0.0015']
-read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [2, 3, 4, 6, 7, 8, 9, 10, 15, 20, 25, 30]]
-#read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5]]
+#read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 6, 7, 8, 9, 10, 15, 20, 25, 30]]
+read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [50, 100]]
 
 for rl in read_lens:
 	for err in seq_errs:

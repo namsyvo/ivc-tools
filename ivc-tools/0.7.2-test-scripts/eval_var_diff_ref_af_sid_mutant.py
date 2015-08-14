@@ -10,6 +10,10 @@ import json
 
 from datetime import datetime
 
+if len(sys.argv) != 5:
+    print "Usage: python eval_var_af_sid_mutant_diff_ref.py config_file confi coverage_num result_dir_name"
+    exit(0)
+
 config_file = open(sys.argv[1])
 data = json.load(config_file)
 config_file.close()
@@ -41,7 +45,7 @@ ref_len = 249250621
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 10, 15, 20, 25, 30]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 10, 15, 20, 25, 30, 50]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
@@ -92,11 +96,11 @@ for para in ref_para[0:1]:
     result_file_path = result_path + "/" + read_fn + "_" + str(read_lens[0]) + "." + str(seq_errs[0]) + ".prec-rec-time-mem." + str(confi) + ".diff-pos.txt"
     result_file = open(result_file_path, "w")
 
-    header = ["Alg", "cov", "qual", "TP-S", "FP-S", "FP-S-N", "TP-S-U", "FP-S-U", "TP-S-K", "FP-S-K", \
+    header = ["run", "cov", "qual", "TP-S", "FP-S", "FP-S-N", "TP-S-U", "FP-S-U", "TP-S-K", "FP-S-K", \
                 "TP-I", "FP-I", "FP-I-N", "TP-I-U", "FP-I-U", "TP-I-K", "FP-I-K", \
                 "P-S", "R-S", "P-S-U", "R-S-U", "P-S-K", "R-S-K", "P-I", "R-I", "P-I-U", "R-I-U", "P-I-K", "R-I-K", \
                 "S", "S-U", "S-K", "CS", "CS-S", "I", "I-U", "I-K", "CI", "CI-I", \
-                "run", "read", "na_num", "na_ratio", "timeI", "memI", "timeC", "memC", "input_files", "input_paras", "prog_paras"]
+                "na_num", "na_ratio", "timeI", "memI", "timeC", "memC", "timeO", "memO", "input_files", "input_paras", "prog_paras"]
 
     result_file.write("\t".join(header))
     result_file.write("\n")
@@ -114,7 +118,12 @@ for para in ref_para[0:1]:
                                 if float(value[5]) >= confi:
                                     if value[3] == value[4]:
                                         continue
-                                    var_call[int(value[1]) - 1] = value[3:5]
+                                    if int(value[1]) - 1 in true_known_snp or int(value[1]) -1 in true_known_indel:
+                                        if int(value[12]) > 1:
+                                            var_call[int(value[1]) - 1] = value[3:5]
+                                    else:
+                                        if int(value[12]) > 2:
+                                            var_call[int(value[1]) - 1] = value[3:5]
                     print "#called variants", len(var_call)
 
                     TP_KAKS, TP_NS = 0, 0
@@ -156,10 +165,10 @@ for para in ref_para[0:1]:
                     print "# none", FP_S + FP_ID
 
                     '''
-                    nums_header = ["Alg", "cov", "qual", "TP-S", "FP-S", "FP-S-N", "TP-S-U", "FP-S-U", "TP-S-K", "FP-S-K", \
+                    nums_header = ["run", "cov", "qual", "TP-S", "FP-S", "FP-S-N", "TP-S-U", "FP-S-U", "TP-S-K", "FP-S-K", \
                                 "TP-I", "FP-I", "FP-I-N", "TP-I-U", "FP-I-U", "TP-I-K", "FP-I-K"]
                     '''
-                    result_file.write("\t".join([prog_version, "%.0f" % (2.0*int(rn)*int(rl)/ref_len), str(confi)]) + "\t")
+                    result_file.write("\t".join([result_dn, "%.0f" % (2.0*int(rn)*int(rl)/ref_len), str(confi)]) + "\t")
 
                     #TP-S, FP-S, FP-S-N
                     result_file.write("%.5d\t" % (TP_KAKS + TP_NS))
@@ -222,7 +231,7 @@ for para in ref_para[0:1]:
 
                     '''
                     para_header = ["S", "S-U", "S-K", "CS", "CS\S", "I", "I-U", "I-K", "CI", "CI\I", \
-                                "run", "read", "na_num", "na_ratio", "timeI", "memI", "timeC", "memC", \
+                                "na_num", "na_ratio", "timeI", "memI", "timeC", "memC", "timeO", "memO", \
                                 "input_files", "input_paras", "prog_paras"]
                     '''
                     #S, "S-U", "S-K", CS, CS-S
@@ -235,45 +244,40 @@ for para in ref_para[0:1]:
                     result_file.write("%.5d\t" % (FP_KAKID + FP_NID + FP_ID + TP_KAKID + TP_NID))
                     result_file.write("%.5d\t" % ((FP_KAKID + FP_NID + FP_ID + TP_KAKID + TP_NID) - (KAKID + NID)))
 
-                    #"run", "read"
-                    result_file.write(result_dn + "\t" + prefix_fn + "\t")
                     #"na_num", "na_ratio"
                     mem_time_file = os.path.join(result_path, prefix_fn + ".varcall.log")
                     with open(mem_time_file) as f:
                         for line in f:
                             tokens = line.strip().split("\t")
                             if "Number of no-aligned reads" in tokens[0]:
-                                print "na", tokens
                                 result_file.write(tokens[1] + "\t")
                                 result_file.write(str((1-float(tokens[1]))/rn) + "\t")
-                    #"timeI", "memI", "timeC", "memC"
+                    #"timeI", "memI", "timeC", "memC", "timeO", "memO"
                     with open(mem_time_file) as f:
                         for line in f:
                             tokens = line.strip().split("\t")
                             if "Time for initializing the variant caller" in tokens[0]:
-                                print "mem-time", tokens
                                 result_file.write(tokens[1] + "\t")
                             if "Memstats after initializing the variant caller" in tokens[0]:
-                                print "mem-time", tokens
-                                result_file.write(str(float(tokens[3])/10**9) + "\t")
+                                result_file.write(tokens[8] + "\t")
                             if "Time for calling variants" in tokens[0]:
-                                print "mem-time", tokens
                                 result_file.write(tokens[1] + "\t")
                             if "Memstats after calling variants" in tokens[0]:
-                                print "mem-time", tokens
-                                result_file.write(str(float(tokens[3])/10**9) + "\t")
+                                result_file.write(tokens[8] + "\t")
+                            if "Time for outputing variant calls" in tokens[0]:
+                                result_file.write(tokens[1] + "\t")
+                            if "Memstats after outputing variant calls" in tokens[0]:
+                                result_file.write(tokens[8] + "\t")
                     #"input_para", "para"
                     with open(mem_time_file) as f:
                         for line in f:
                             tokens = line.strip().split("\t")
                             if "Input files" in tokens[0]:
-                                print "para", tokens
                                 result_file.write(tokens[1] + "\t")
                             if "Input paras" in tokens[0]:
-                                print "para", tokens
                                 result_file.write(tokens[1] + "\t")
                             if "Prog paras" in tokens[0]:
-                                print "para", tokens
                                 result_file.write(tokens[1] + "\t")
                     result_file.write("\n")
     result_file.close()
+    print "Check results at:", result_file_path

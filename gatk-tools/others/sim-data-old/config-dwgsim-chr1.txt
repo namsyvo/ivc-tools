@@ -1,4 +1,4 @@
-/home/nsvo/workspace/exp-scripts/gatk-tools/dwgsim-data-2
+/home/nsvo/workspace/exp-scripts/gatk-tools/dwgsim-data
 /data/nsvo/test-data/GRCh37_chr1
 GRCh37_chr1.fasta
 ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf

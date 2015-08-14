@@ -24,8 +24,8 @@ def rev_comp(read):
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 6:
-        print "Usage: python get_map_info.py called_var_dir cov_num extracted_length var_type var_num"
+    if len(sys.argv) != 7:
+        print "Usage: python get_map_info.py cov_num extracted_length var_type var_num called_var_dir1 called_var_dir2"
         exit(0)
     fref = open("/data/nsvo/test-data/GRCh37_chr1/indexes/af_sid_mutant_index/index_0.70/GRCh37_chr1.fasta.mgf")
     ref_seq = ""
@@ -39,19 +39,19 @@ if __name__ == "__main__":
         if line[0] != '>':
             mut_seq += line.strip()
 
-    ref_len = 249250621
-    read_lens = 100
-
-    result_path = sys.argv[1]
-    cov_num = int(sys.argv[2])
-    dis = int(sys.argv[3])
-    var_type = int(sys.argv[4])
-    var_num = int(sys.argv[5])
+    cov_num = int(sys.argv[1])
+    dis = int(sys.argv[2])
+    var_type = int(sys.argv[3])
+    var_num = int(sys.argv[4])
+    result_path1 = sys.argv[5]
+    result_path2 = sys.argv[6]
 
     read_dn = "/data/nsvo/test-data/GRCh37_chr1/reads/sim-reads/af_sid_mutant_dwgsim"
-    if not os.path.exists(os.path.join(read_dn, "alignment-analysis")):
-        os.makedirs(os.path.join(read_dn, "alignment-analysis"))
+    if not os.path.exists(os.path.join(read_dn, "diff-var-analysis")):
+        os.makedirs(os.path.join(read_dn, "diff-var-analysis"))
 
+    ref_len = 249250621
+    read_lens = 100
     read_nums = str(cov_num*ref_len/(2*read_lens))
     fp_fn = ["dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_snp_none.1.14.txt", \
              "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_snp_unknown.1.14.txt", \
@@ -60,25 +60,32 @@ if __name__ == "__main__":
              "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_indel_unknown.1.14.txt", \
              "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_indel_known.1.14.txt"]
 
-    result_dn = os.path.join("/data/nsvo/test-data/GRCh37_chr1/results/sim-reads/af_sid_mutant_dwgsim/ivc_0.70", result_path, "fpfntp_info")
-    map_outf = open(os.path.join(result_dn, fp_fn[var_type] + "-alignment-analysis"), "w")
+    result_dn2 = os.path.join("/data/nsvo/test-data/GRCh37_chr1/results/sim-reads/af_sid_mutant_dwgsim/ivc_0.70", result_path2, "fpfntp_info")
+    var_pos2 = {}
+    fp_inf2 = open(os.path.join(result_dn2, fp_fn[var_type]))
+    for line in fp_inf2:
+        tmp = line.strip().split()
+        var_pos2[tmp[0]] = True
+
+    result_dn1 = os.path.join("/data/nsvo/test-data/GRCh37_chr1/results/sim-reads/af_sid_mutant_dwgsim/ivc_0.70", result_path1, "fpfntp_info")
+    map_outf = open(os.path.join(result_dn1, fp_fn[var_type] + "-diff-var-analysis"), "w")
     read_fn = ["dwgsim_reads_100.0.00015-0.0015." + read_nums + ".bwa.read1.fastq", "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".bwa.read2.fastq"]
 
     snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = 0, 0, 0, True, 0, True, ""
     prev_pos = 0
-
-    fp_inf = open(os.path.join(result_dn, fp_fn[var_type]))
-    line = fp_inf.readline()
-    for j in range(var_num):
-        line = fp_inf.readline()
+    fp_inf1 = open(os.path.join(result_dn1, fp_fn[var_type]))
+    line = fp_inf1.readline()
+    for line in fp_inf1:
         tmp = line.strip().split()
+        if tmp[0] in var_pos2:
+            continue
         if var_type == 0 or var_type == 3:
             snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[10]), tmp[14], tmp[15], tmp[16], tmp[17], tmp[18]
         else:
             snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[12]), tmp[16], tmp[17], tmp[18], tmp[19], tmp[20]
-        if snp_pos == prev_pos:
-            continue
-        prev_pos = snp_pos
+        #if snp_pos == prev_pos:
+        #    continue
+        #prev_pos = snp_pos
 
         #print map info
         map_outf.write(line)
@@ -90,9 +97,11 @@ if __name__ == "__main__":
             read_inf = open(os.path.join(read_dn, read_fn[k]))
             while True:
                 line = read_inf.readline()
+                if line == "":
+                    continue
                 info = line.strip().split('_')
                 if info[len(info)-1].split('/')[0] == read_id:
-                    read_outf = open(os.path.join(read_dn, "alignment-analysis", read_fn[k] + "." + read_id), "w")
+                    read_outf = open(os.path.join(read_dn, "diff-var-analysis", read_fn[k] + "." + read_id), "w")
                     read_outf.write(line)
                     map_outf.write(line)
                     line = read_inf.readline()
