@@ -2,7 +2,7 @@
 Get alignment info for fp (snp, indel)
 Input: result folder, length of read/ref/mut
 Ouput: alignment info (read-ref)
-Usage: python get_map_info.py called_var_dir cov_num extracted_length var_type var_num
+Usage: python get_aln_info_diff_var.py called_var_dir cov_num extracted_length var_type var_num
 """
 import sys
 import os

@@ -1,5 +1,5 @@
 '''
-Generate variant profile for ISC from set of variants of the simulated mutant
+Generate variant profile for IVC as part of set of whole variants
 Usage:
     python gen_var_prof_af_sid_mutant.py [var_prof_file_name (e.g., dbSNP)] [ref_path (store mutant variants)]
 Output:
@@ -27,7 +27,7 @@ for line in open(os.path.join(var_prof_fn)):
 
 known_var_prob_para = ['0.70', '0.75', '0.80', '0.85', '0.90', '0.95', '0.96', '0.97', '0.98', '0.99']
 
-for known_var_prob in known_var_prob_para[0:1]:
+for known_var_prob in known_var_prob_para[1:]:
     known_var_file = open(os.path.join(ref_path, "known_var_" + known_var_prob + ".txt"), "w")
     unknown_var_file = open(os.path.join(ref_path, "unknown_var_" + known_var_prob + ".txt"), "w")
     isc_var_prof_file = open(os.path.join(ref_path, "isc_var_prof_" + known_var_prob + ".vcf"), "w")

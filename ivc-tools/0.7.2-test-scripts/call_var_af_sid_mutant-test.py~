@@ -35,17 +35,17 @@ time_stamp = time_stamp.replace(":", "-")
 ref_path = os.path.join(data_dir, ref_dir)
 genome_file = os.path.join(ref_path, genome_fn)
 
-ref_para = ['0.70', '0.75', '0.80', '0.85', '0.90', '0.95']
+ref_para = ['0.75', '0.80', '0.85', '0.90', '0.95']
 seq_errs = ['0.00015-0.0015']
 ref_len = 249250621
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [2, 3, 4, 6, 7, 8, 9, 10, 20, 30]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 10, 15, 20, 25, 30, 50]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
-for para in ref_para[0:1]:
+for para in ref_para:
     read_path = os.path.join(data_dir, read_dir)
     result_path = os.path.join(data_dir, result_dir, "ivc_" + para, prog_version + "-" + time_stamp)
     if not os.path.exists(result_path):
@@ -61,8 +61,8 @@ for para in ref_para[0:1]:
                             read_file_1 = os.path.join(read_path, prefix_fn + ".bwa.read1.fastq")
                             read_file_2 = os.path.join(read_path, prefix_fn + ".bwa.read2.fastq")
                     else:
-                            read_file_1 = os.path.join(read_path, "test-reads", prefix_fn + ".bwa.read1.fastq" + rid)
-                            read_file_2 = os.path.join(read_path, "test-reads", prefix_fn + ".bwa.read2.fastq" + rid)
+                            read_file_1 = os.path.join(read_path, "diff-var-analysis", prefix_fn + ".bwa.read1.fastq" + rid)
+                            read_file_2 = os.path.join(read_path, "diff-var-analysis", prefix_fn + ".bwa.read2.fastq" + rid)
 
                     call_var_file = os.path.join(result_path, prefix_fn + ".varcall.vcf")
                     time_mem_file = os.path.join(result_path, prefix_fn + ".varcall.log")
@@ -71,8 +71,8 @@ for para in ref_para[0:1]:
                     mem_prof_file = os.path.join(result_path, prefix_fn + ".varcall.mprof")
 
                     cmd = "(go run " + prog_path + " -g " + genome_file + " -v " + var_file + " -i " + idx_dir + \
-                        " -1 " + read_file_1 + " -2 " + read_file_2 + " -o " + call_var_file + " -b " + mem_prof_file + " -c " + cpu_prof_file + \
-                        " -n 512 -k 128 -l 19 -h 25 -d 36 -x 36.0 -r 12) 2>" + time_mem_file
+                        " -1 " + read_file_1 + " -2 " + read_file_2 + " -o " + call_var_file + \
+                        " -n 512 -k 128 -l 19 -h 25 -d 36 -x 36.0 -r 12)" + " 1>" + ivc_info_file + " 2>" + time_mem_file
                     print cmd
                     os.system(cmd)
 

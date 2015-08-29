@@ -39,13 +39,13 @@ read_path = os.path.join(data_dir, read_dir)
 genome_file = os.path.join(ref_path, genome_fn)
 snp_file = os.path.join(ref_path, snp_fn)
 
-ref_para = ['0.70', '0.75', '0.80', '0.85', '0.90', '0.95', '0.96', '0.97', '0.98', '0.99']
+ref_para = ['0.70', '0.75', '0.80', '0.85', '0.90', '0.95']
 seq_errs = ['0.00015-0.0015']
 ref_len = 249250621
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 10, 15, 20, 25, 30, 50]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 50, 100]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
@@ -118,12 +118,17 @@ for para in ref_para[0:1]:
                                 if float(value[5]) >= confi:
                                     if value[3] == value[4]:
                                         continue
-                                    if int(value[1]) - 1 in true_known_snp or int(value[1]) -1 in true_known_indel:
-                                        if int(value[12]) > 1:
-                                            var_call[int(value[1]) - 1] = value[3:5]
+                                    pos = int(value[1]) - 1
+                                    if pos in true_known_snp or pos in true_known_indel:
+                                        if int(value[12]) >= 1:
+                                            var_call[pos] = value[3:5]
                                     else:
-                                        if int(value[12]) > 2:
-                                            var_call[int(value[1]) - 1] = value[3:5]
+                                        if rn < 12000000:
+                                            if int(value[12]) >= 2:
+                                                var_call[pos] = value[3:5]
+                                        else:
+                                            if int(value[12]) >= 3:
+                                                var_call[pos] = value[3:5]
                     print "#called variants", len(var_call)
 
                     TP_KAKS, TP_NS = 0, 0

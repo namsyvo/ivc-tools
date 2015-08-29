@@ -20,4 +20,3 @@ print na
 from collections import Counter
 for key, value in Counter(a).items():
         print key, value
-

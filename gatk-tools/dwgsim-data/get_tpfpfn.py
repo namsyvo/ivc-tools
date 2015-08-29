@@ -1,26 +1,24 @@
 '''
 Extract TP, FP, and FN from SNP call results
-Usage: python get_tpfpfn_var_diff_ref_af_sid_mutant.py config_file confi_num cov_num result_dir
+Usage: python get_tpfpfn_var_diff_ref_af_sid_mutant.py config_file confi coverage_num result_dir_name
     E.g.: python get_tpfpfn_var_diff_ref_af_sid_mutant.py config-chr1-test.json 1.14 5 called_var_dir
 '''
 import os
 import sys
 import json
 
-if len(sys.argv) != 5:
-    print "Usage: python get_tpfpfn_var_diff_ref_af_sid_mutant.py config_file confi_num cov_num result_dir"
+if len(sys.argv) != 4:
+    print "Usage: python get_tpfpfn.py config_file confi_num coverage_num"
     exit(0)
 
-config_file = open(sys.argv[1])
-data = json.load(config_file)
-config_file.close()
-
-prog_version = data["ProgVer"]
-data_dir = data["DataPath"]["DataDir"]
-ref_dir = data["DataPath"]["RefDir"]
-genome_fn = data["DataPath"]["GenomeFile"]
-result_dir = data["DataPath"]["ResultDir"]
-read_fn = data["DataPath"]["ReadPrefixFile"]
+config_file = sys.argv[1]
+f=open(config_file)
+prog_path = f.readline().strip()
+data_path = f.readline().strip()
+genome_fn = f.readline().strip()
+dbsnp_fn = f.readline().strip()
+read_fn = f.readline().strip()
+f.close()
 
 confi = float(sys.argv[2])
 cov_num = sys.argv[3]
@@ -36,24 +34,18 @@ if cov_num == "all":
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
-ref_path = os.path.join(data_dir, ref_dir)
-genome_file = os.path.join(ref_path, genome_fn)
-
-result_dn = sys.argv[4]
-
 var_prof = {}
-var_prof_file = os.path.join(data_dir, "refs", "TRIMMED.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
+var_prof_file = os.path.join(data_path, "refs/TRIMMED.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
 with open(var_prof_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != "#":
             value = line.strip().split()
             var_prof[int(value[1]) - 1] = value[3:5]
 
-gatk_confi = 20.0
 for para in ref_para:
     true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel,  = {}, {}, {}, {}
-    known_var_file = os.path.join(ref_path, "known_var_" + para + ".txt")
-    unknown_var_file = os.path.join(ref_path, "unknown_var_" + para + ".txt")
+    known_var_file = os.path.join(data_path, "refs/af_sid_mutant/known_var_" + para + ".txt")
+    unknown_var_file = os.path.join(data_path, "refs/af_sid_mutant/unknown_var_" + para + ".txt")
 
     with open(known_var_file) as f:
         for line in f.readlines():
@@ -75,35 +67,18 @@ for para in ref_para:
                 else:
                     true_unknown_indel[pos] = unknown_var
 
-    fpfntp_info_path = os.path.join(data_dir, result_dir, "ivc_" + para, result_dn, "fpfntp_info")
+    result_dn = os.path.join(data_path, "results/sim-reads/af_sid_mutant_dwgsim/gatk")
+
+    fpfntp_info_path = os.path.join(result_dn, "fpfntp_info")
     if not os.path.exists(fpfntp_info_path):
         os.makedirs(fpfntp_info_path)
 
-    result_path = os.path.join(data_dir, result_dir, "ivc_" + para, result_dn)
-    gatk_result_path = os.path.join(data_dir, result_dir, "gatk")
-
-    header = "pos\tref\talt\tqual\tvar_prob\tmap_prob\tcom_qual\tbase_num\tbase_qual\tchr_dis\tchr_diff\tmap_prob\taln_prob\tpair_prob\ts_pos1\tbranch1\ts_pos2\tbranch2\tread_header\taln_base\taln_base_num\n"
-    fp_header = "pos\ttrue_ref\ttrue_alt\tref\talt\tqual\tvar_prob\tmap_prob\tcom_qual\tbase_num\tbase_qual\tchr_dis\tchr_diff\tmap_prob\taln_prob\tpair_prob\ts_pos1\tbranch1\ts_pos2\tbranch2\tread_header\taln_base\taln_base_num\n"
-
+    header = "pos\tref\talt\tqual\tfilter\tinfo\tformat\tDepristo\n"
+    fp_header = "pos\ttrue_ref\ttrue_alt\tref\talt\tqual\tfilter\tinfo\tformat\tDepristo\n"
     for rl in read_lens:
         for err in seq_errs:
             for rn in read_nums:
                 fn_part = read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn)
-                gatk_snp = {}
-                gatk_called_var_file = gatk_result_path + "/" + fn_part + ".bwa.vcf"
-                f = open(gatk_called_var_file)
-                for line in f.readlines():
-                    if line.strip() and line[0] != '#':
-                        value = line.strip().split()
-                        if float(value[5]) >= gatk_confi:
-                            for elem in value[7].split(';'):
-                                info = elem.split('=')
-                                if info[0] == "DP":
-                                    dp = info[1]
-                            gatk_snp[int(value[1]) - 1] = [value[3], value[4], value[5], dp]
-                f.close()
-                print "GATK", len(gatk_snp)
-
                 file_prefix = fpfntp_info_path + "/" + fn_part
 
                 tp_snp_known_file = open(file_prefix + ".tp_snp_known." + str(confi) + ".txt", "w")
@@ -146,20 +121,10 @@ for para in ref_para:
                 fn_indel_known_lowqual_file = open(file_prefix + ".fn_indel_known_lowqual." + str(confi) + ".txt", "w")
                 fn_indel_unknown_lowqual_file = open(file_prefix + ".fn_indel_unknown_lowqual." + str(confi) + ".txt", "w")
 
-                fn_snp_known_callgatk_file = open(file_prefix + ".fn_snp_known_callgatk." + str(confi) + ".txt", "w")
-                fn_snp_unknown_callgatk_file = open(file_prefix + ".fn_snp_unknown_callgatk." + str(confi) + ".txt", "w")
-
-                fn_indel_known_callgatk_file = open(file_prefix + ".fn_indel_known_callgatk." + str(confi) + ".txt", "w")
-                fn_indel_unknown_callgatk_file = open(file_prefix + ".fn_indel_unknown_callgatk." + str(confi) + ".txt", "w")
-
-                fp_snp_none_callgatk_file = open(file_prefix + ".fp_snp_none_callgatk." + str(confi) + ".txt", "w")
-                fp_indel_none_callgatk_file = open(file_prefix + ".fp_indel_none_callgatk." + str(confi) + ".txt", "w")
-
                 fp_low_qual_file = open(file_prefix + ".fp_low_qual." + str(confi) + ".txt", "w")
-                fp_low_qual_gatk_file = open(file_prefix + ".fp_low_qual_gatk." + str(confi) + ".txt", "w")
 
                 called_var, low_qual_snp = {}, {}
-                called_var_file = result_path + "/" + fn_part + ".varcall.vcf"
+                called_var_file = os.path.join(result_dn, fn_part + ".bwa.vcf")
                 f = open(called_var_file)
                 for line in f.readlines():
                     value = line.strip().split()
@@ -167,7 +132,7 @@ for para in ref_para:
                         pos = int(value[1]) - 1
                         var = value[3:5]
                         called_var[pos] = var
-                        var_call_info = "\t".join(value[3:6]) + "\t" +  "\t".join(value[9:]) + "\n"
+                        var_call_info = "\t".join(value[3:]) + "\n"
                         if pos in true_known_snp or pos in true_known_indel:
                             if value[3] != value[4]:
                                 if pos in true_known_snp:
@@ -194,17 +159,13 @@ for para in ref_para:
                         else:
                             if len(value[3]) == 1 and len(value[4]) == 1:
                                 fp_snp_none_file.write(str(pos) + "\t" + var_call_info)
-                                if pos in gatk_snp:
-                                    fp_snp_none_callgatk_file.write(str(pos) + "\t" + var_call_info)
                             else:
                                 fp_indel_none_file.write(str(pos) + "\t" + var_call_info)
-                                if pos in gatk_snp:
-                                    fp_indel_none_callgatk_file.write(str(pos) + "\t" + var_call_info)
                     else:
                         low_qual_snp[pos] = value
 
                 f.close()
-                print "ISC", len(called_var)
+                print "GATK", len(called_var)
 
                 #Print FN info
                 for pos, value in true_known_snp.iteritems():
@@ -212,39 +173,29 @@ for para in ref_para:
                         fn_snp_known_file.write(str(pos) + "\t" + "\t".join(value) + "\n")
                         if pos in low_qual_snp:
                             fn_snp_known_lowqual_file.write(str(pos) + "\t" + "\t".join(low_qual_snp[pos]) + "\n")
-                        if pos in gatk_snp:
-                            fn_snp_known_callgatk_file.write(str(pos) + "\t" + "\t".join(gatk_snp[pos]) + "\n")
 
                 for pos, value in true_unknown_snp.iteritems():
                     if pos not in called_var:
                         fn_snp_unknown_file.write(str(pos) + "\t" + "\t".join(value) + "\n")
                         if pos in low_qual_snp:
                             fn_snp_unknown_lowqual_file.write(str(pos) + "\t" + "\t".join(low_qual_snp[pos]) + "\n")
-                        if pos in gatk_snp:
-                            fn_snp_unknown_callgatk_file.write(str(pos) + "\t" + "\t".join(gatk_snp[pos]) + "\n")
 
                 for pos, value in true_known_indel.iteritems():
                     if pos not in called_var and value != var_prof[pos]:
                         fn_indel_known_file.write(str(pos) + "\t" + "\t".join(value) + "\n")
                         if pos in low_qual_snp:
                             fn_indel_known_lowqual_file.write(str(pos) + "\t" + "\t".join(low_qual_snp[pos]) + "\n")
-                        if pos in gatk_snp:
-                            fn_indel_known_callgatk_file.write(str(pos) + "\t" + "\t".join(gatk_snp[pos]) + "\n")
 
                 for pos, value in true_unknown_indel.iteritems():
                     if pos not in called_var:
                         fn_indel_unknown_file.write(str(pos) + "\t" + "\t".join(value) + "\n")
                         if pos in low_qual_snp:
                             fn_indel_unknown_lowqual_file.write(str(pos) + "\t" + "\t".join(low_qual_snp[pos]) + "\n")
-                        if pos in gatk_snp:
-                            fn_indel_unknown_callgatk_file.write(str(pos) + "\t" + "\t".join(gatk_snp[pos]) + "\n")
 
                 for pos, value in low_qual_snp.iteritems():
                     if pos not in true_known_snp and pos not in true_unknown_snp \
-                        and pos not in true_known_indel and pos not in true_unknown_indel and value != var_prof[pos]:
+                        and pos not in true_known_indel and pos not in true_unknown_indel and pos in var_prof and value != var_prof[pos]:
                         fp_low_qual_file.write(str(pos) + "\t" + "\t".join(value) + "\n")
-                        if pos in gatk_snp:
-                            fp_low_qual_gatk_file.write(str(pos) + "\t".join(gatk_snp[pos]) + "\n")
 
                 tp_snp_known_file.close()
                 fp_snp_known_file.close()
@@ -271,14 +222,4 @@ for para in ref_para:
                 fn_indel_known_lowqual_file.close()
                 fn_indel_unknown_lowqual_file.close()
 
-                fn_snp_known_callgatk_file.close()
-                fn_snp_unknown_callgatk_file.close()
-                
-                fn_indel_known_callgatk_file.close()
-                fn_indel_unknown_callgatk_file.close()
-
-                fp_snp_none_callgatk_file.close()
-                fp_indel_none_callgatk_file.close()
-
                 fp_low_qual_file.close()
-                fp_low_qual_gatk_file.close()
