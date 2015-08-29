@@ -1,1 +1,1 @@
-IVC-tools - Utility scripts for running, testing, and debugging IVC and compared IVC to other tools
+IVC-tools - Utility scripts for running, testing, debugging IVC, and comparing IVC to other tools.
