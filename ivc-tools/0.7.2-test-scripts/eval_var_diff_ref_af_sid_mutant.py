@@ -45,12 +45,12 @@ ref_len = 249250621
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 50, 100]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 8, 10]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
 var_prof = {}
-var_prof_file = os.path.join(data_dir, "refs", "TRIMMED.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
+var_prof_file = os.path.join(data_dir, "refs", "TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
 with open(var_prof_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != "#":
@@ -123,7 +123,7 @@ for para in ref_para[0:1]:
                                         if int(value[12]) >= 1:
                                             var_call[pos] = value[3:5]
                                     else:
-                                        if rn < 12000000:
+                                        if rn < 13000000:
                                             if int(value[12]) >= 2:
                                                 var_call[pos] = value[3:5]
                                         else:

@@ -48,7 +48,7 @@ else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
 var_prof = {}
-var_prof_file = os.path.join(data_dir, "refs", "TRIMMED.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
+var_prof_file = os.path.join(data_dir, "refs", "TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
 with open(var_prof_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != "#":

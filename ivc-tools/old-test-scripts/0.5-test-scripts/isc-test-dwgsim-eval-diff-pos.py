@@ -47,7 +47,7 @@ for para in ref_para[0:1]:
     variant_comp_file = os.path.join(ref_path, "variant_comp_" + para + ".txt")
     variant_none_file = os.path.join(ref_path, "variant_none_" + para + ".txt")
     known_variant_prof_file = os.path.join(ref_path, "isc_snp_prof_" + para + ".vcf")
-    all_variant_prof_file = os.path.join(data_dir, "refs", "TRIMMED.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
+    all_variant_prof_file = os.path.join(data_dir, "refs", "TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
 
     with open(known_variant_prof_file) as f:
         for line in f.readlines():

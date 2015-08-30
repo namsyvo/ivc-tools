@@ -3,7 +3,7 @@
  By Nam S. Vo, March 2015
  Generate mutations (subs, indels) based on allele frequency
  Usage: go run generate_af_sid_mutant.go ref_file snp_prof_file result_dir
- 		E.g.: go run gen_af_sid_mutant.go /data/nsvo/test-data/GRCh37_chr1/refs/GRCh37_chr1.fasta /data/nsvo/test-data/GRCh37_chr1/refs/TRIMMED.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf /data/nsvo/test-data/GRCh37_chr1/refs/af_sid_mutant
+ 		E.g.: go run gen_af_sid_mutant.go /data/nsvo/test-data/GRCh37_chr1/refs/GRCh37_chr1.fasta /data/nsvo/test-data/GRCh37_chr1/refs/TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf /data/nsvo/test-data/GRCh37_chr1/refs/af_sid_mutant
  Output: - A simulated mutant genome:
 		+ mutant_genome.fasta: mutant genome generated based on SNPs and INDELs from VCF file. Ignore other types of SVs when generating mutant genome
 		+ (sub/ins/del)_same_ref.txt: set of variants of the mutant which are same as ref

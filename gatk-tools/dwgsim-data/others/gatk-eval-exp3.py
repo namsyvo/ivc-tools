@@ -31,7 +31,7 @@ known_true_snp, known_true_indel, unknown_true_snp, unknown_true_indel, var_prof
 ref_path = os.path.join(data_path,  "refs", "af_mutant")
 variant_comp_file = os.path.join(ref_path, "known_var_0.7.txt")
 variant_none_file = os.path.join(ref_path, "unknown_var_0.7.txt")
-variant_prof_file = os.path.join(data_path, "refs", "TRIMMED.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
+variant_prof_file = os.path.join(data_path, "refs", "TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
 
 with open(variant_prof_file) as f:
     for line in f.readlines():

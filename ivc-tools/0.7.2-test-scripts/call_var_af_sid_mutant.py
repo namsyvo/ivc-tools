@@ -41,7 +41,7 @@ ref_len = 249250621
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [2, 3, 4, 6, 7, 8, 9, 10, 20, 30]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [7, 8, 9, 10]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
@@ -72,7 +72,7 @@ for para in ref_para[0:1]:
 
                     cmd = "(go run " + prog_path + " -g " + genome_file + " -v " + var_file + " -i " + idx_dir + \
                         " -1 " + read_file_1 + " -2 " + read_file_2 + " -o " + call_var_file + " -b " + mem_prof_file + " -c " + cpu_prof_file + \
-                        " -n 512 -k 128 -l 19 -h 25 -d 36 -x 36.0 -r 12) 2>" + time_mem_file
+                        " -n 512 -k 128 -l 19 -h 25 -d 36 -x 36.0 -r 12 -debug true) 2>" + time_mem_file
                     print cmd
                     os.system(cmd)
 

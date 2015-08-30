@@ -13,7 +13,7 @@ import os
 import random
 
 if len(sys.argv) == 1:
-    var_prof_fn = "/data/nsvo/test-data/GRCh37_chr1/refs/TRIMMED.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf"
+    var_prof_fn = "/data/nsvo/test-data/GRCh37_chr1/refs/TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf"
     ref_path = "/data/nsvo/test-data/GRCh37_chr1/refs/af_sid_mutant"
 else:
     var_prof_fn = sys.argv[1]
