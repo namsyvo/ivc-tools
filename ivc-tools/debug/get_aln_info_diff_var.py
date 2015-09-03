@@ -1,8 +1,7 @@
 """
-Get alignment info for fp (snp, indel)
-Input: result folder, length of read/ref/mut
-Ouput: alignment info (read-ref)
-Usage: python get_aln_info_diff_var.py called_var_dir cov_num extracted_length var_type var_num
+Get differences of var_calls between two results
+Usage: python get_aln_info_diff_var.py called_var_dir cov_num extracted_length var_type result_path1 result_path2 extracted_read_dir
+Results: var_calls of result_path1 which are not in result_path2
 """
 import sys
 import os
@@ -42,9 +41,9 @@ if __name__ == "__main__":
     cov_num = int(sys.argv[1])
     dis = int(sys.argv[2])
     var_type = int(sys.argv[3])
-    var_num = int(sys.argv[4])
-    result_path1 = sys.argv[5]
-    result_path2 = sys.argv[6]
+    result_path1 = sys.argv[4]
+    result_path2 = sys.argv[5]
+    extracted_read_dir = sys.argv[6]
 
     read_dn = "/data/nsvo/test-data/GRCh37_chr1/reads/sim-reads/af_sid_mutant_dwgsim"
     if not os.path.exists(os.path.join(read_dn, "diff-var-analysis")):
@@ -68,7 +67,7 @@ if __name__ == "__main__":
         var_pos2[tmp[0]] = True
 
     result_dn1 = os.path.join("/data/nsvo/test-data/GRCh37_chr1/results/sim-reads/af_sid_mutant_dwgsim/ivc_0.70", result_path1, "fpfntp_info")
-    map_outf = open(os.path.join(result_dn1, fp_fn[var_type] + "-diff-var-analysis"), "w")
+    map_outf = open(os.path.join(result_dn1, fp_fn[var_type] + "-diff-var-" + result_path2), "w")
     read_fn = ["dwgsim_reads_100.0.00015-0.0015." + read_nums + ".bwa.read1.fastq", "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".bwa.read2.fastq"]
 
     snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = 0, 0, 0, True, 0, True, ""
@@ -101,7 +100,7 @@ if __name__ == "__main__":
                     continue
                 info = line.strip().split('_')
                 if info[len(info)-1].split('/')[0] == read_id:
-                    read_outf = open(os.path.join(read_dn, "diff-var-analysis", read_fn[k] + "." + read_id), "w")
+                    read_outf = open(os.path.join(read_dn, extracted_read_dir, read_fn[k] + "." + read_id), "w")
                     read_outf.write(line)
                     map_outf.write(line)
                     line = read_inf.readline()

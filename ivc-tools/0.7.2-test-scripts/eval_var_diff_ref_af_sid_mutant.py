@@ -1,7 +1,7 @@
 '''
 Evaluate variant call results
-Usage: python eval_var_af_sid_mutant_diff_ref.py config_file confi coverage_num result_dir_name
-    E.g.: python eval_var_af_sid_mutant_diff_ref.py config-chr1-test.json 1.14 5 IVC-0.5.3-aff_gap_aln-2015-05-20-15:09:36.226789
+Usage: python eval_var_af_sid_mutant_diff_ref.py config_file confi_K confi_U cov_num result_dir_name
+    E.g.: python eval_var_af_sid_mutant_diff_ref.py config-chr1-test.json 3.0 20.0 5 IVC-0.5.3-aff_gap_aln-2015-05-20-15:09:36.226789
 
 '''
 import os
@@ -10,8 +10,8 @@ import json
 
 from datetime import datetime
 
-if len(sys.argv) != 5:
-    print "Usage: python eval_var_af_sid_mutant_diff_ref.py config_file confi coverage_num result_dir_name"
+if len(sys.argv) != 6:
+    print "Usage: python eval_var_af_sid_mutant_diff_ref.py config_file confi_K confi_U cov_num result_dir_name"
     exit(0)
 
 config_file = open(sys.argv[1])
@@ -29,9 +29,10 @@ index_dir = data["DataPath"]["IndexDir"]
 result_dir = data["DataPath"]["ResultDir"]
 read_fn = data["DataPath"]["ReadPrefixFile"]
 
-confi = float(sys.argv[2])
-cov_num = sys.argv[3]
-result_dn = sys.argv[4]
+confi_K = float(sys.argv[2])
+confi_U = float(sys.argv[3])
+cov_num = sys.argv[4]
+result_dn = sys.argv[5]
 
 ref_path = os.path.join(data_dir, ref_dir)
 read_path = os.path.join(data_dir, read_dir)
@@ -45,7 +46,8 @@ ref_len = 249250621
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 8, 10]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
+    #read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 15, 25, 50, 100]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
@@ -57,7 +59,7 @@ with open(var_prof_file) as f:
             value = line.strip().split()
             var_prof[int(value[1]) - 1] = value[3:5]
 
-for para in ref_para[0:1]:
+for para in ref_para[2:3]:
     true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel = {}, {}, {}, {}
     known_var_file = os.path.join(ref_path, "known_var_" + para + ".txt")
     unknown_var_file = os.path.join(ref_path, "unknown_var_" + para + ".txt")
@@ -93,7 +95,7 @@ for para in ref_para[0:1]:
                         NID += 1
 
     result_path = os.path.join(data_dir, result_dir, "ivc_" + para, result_dn)
-    result_file_path = result_path + "/" + read_fn + "_" + str(read_lens[0]) + "." + str(seq_errs[0]) + ".prec-rec-time-mem." + str(confi) + ".diff-pos.txt"
+    result_file_path = result_path + "/" + read_fn + "_" + str(read_lens[0]) + "." + str(seq_errs[0]) + ".prec-rec-time-mem." + str(confi_K) + "." + str(confi_U) + ".diff-pos.txt"
     result_file = open(result_file_path, "w")
 
     header = ["run", "cov", "qual", "TP-S", "FP-S", "FP-S-N", "TP-S-U", "FP-S-U", "TP-S-K", "FP-S-K", \
@@ -115,19 +117,25 @@ for para in ref_para[0:1]:
                         for line in f.readlines():
                             if line.strip() and line[0] != '#':
                                 value = line.strip().split()
-                                if float(value[5]) >= confi:
-                                    if value[3] == value[4]:
-                                        continue
-                                    pos = int(value[1]) - 1
-                                    if pos in true_known_snp or pos in true_known_indel:
-                                        if int(value[12]) >= 1:
-                                            var_call[pos] = value[3:5]
-                                    else:
-                                        if rn < 13000000:
+                                if value[3] == value[4]:
+                                    continue
+                                pos = int(value[1]) - 1
+                                if pos in true_known_snp or pos in true_known_indel:
+                                    if float(value[5]) >= confi_K:
+                                        var_call[pos] = value[3:5]
+                                else:
+                                    if float(value[5]) >= confi_U:
+                                        if rn < 13000000: # <= 10x
                                             if int(value[12]) >= 2:
                                                 var_call[pos] = value[3:5]
-                                        else:
+                                        elif rn < 63000000: # <= 50x
                                             if int(value[12]) >= 3:
+                                                var_call[pos] = value[3:5]
+                                        elif rn < 130000000: # <= 100x
+                                            if int(value[12]) >= 4:
+                                                var_call[pos] = value[3:5]
+                                        else: # > 100x
+                                            if int(value[12]) >= 5:
                                                 var_call[pos] = value[3:5]
                     print "#called variants", len(var_call)
 
@@ -173,7 +181,7 @@ for para in ref_para[0:1]:
                     nums_header = ["run", "cov", "qual", "TP-S", "FP-S", "FP-S-N", "TP-S-U", "FP-S-U", "TP-S-K", "FP-S-K", \
                                 "TP-I", "FP-I", "FP-I-N", "TP-I-U", "FP-I-U", "TP-I-K", "FP-I-K"]
                     '''
-                    result_file.write("\t".join([result_dn, "%.0f" % (2.0*int(rn)*int(rl)/ref_len), str(confi)]) + "\t")
+                    result_file.write("\t".join([result_dn, "%.0f" % (2.0*int(rn)*int(rl)/ref_len), str(confi_K) + ", " + str(confi_U)]) + "\t")
 
                     #TP-S, FP-S, FP-S-N
                     result_file.write("%.5d\t" % (TP_KAKS + TP_NS))

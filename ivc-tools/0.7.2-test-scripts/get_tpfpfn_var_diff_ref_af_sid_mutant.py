@@ -164,6 +164,9 @@ for para in ref_para:
                 for line in f.readlines():
                     value = line.strip().split()
                     if value[0][0] != '#' and float(value[5]) >= confi:
+                        if pos in true_known_snp or pos in true_known_indel:
+                            if int(value[12]) < 2:
+                                continue
                         pos = int(value[1]) - 1
                         var = value[3:5]
                         called_var[pos] = var
