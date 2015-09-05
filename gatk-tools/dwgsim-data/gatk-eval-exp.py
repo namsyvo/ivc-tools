@@ -20,14 +20,15 @@ f.close()
 
 confi = float(sys.argv[2])
 
-ref_len = 249250621
+#ref_len = 249250621 #chr1
+ref_len = 243199373 #chr2
 read_lens = [100]
 seq_errs = ['0.00015-0.0015']
-#read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [50, 100]]
-read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 50, 100]]
+#read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 50, 100]]
+read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [10]]
 
 var_prof = {}
-var_prof_file = os.path.join(data_path, "refs", "TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
+var_prof_file = os.path.join(data_path, "refs", "TRIMMED.ALL.chr2.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
 with open(var_prof_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != "#":

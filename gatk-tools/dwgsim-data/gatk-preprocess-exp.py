@@ -14,19 +14,20 @@ dbsnp_fn = f.readline().strip()
 read_fn = f.readline().strip()
 f.close()
 
-ref_len = 249250621
+#ref_len = 249250621 #chr1
+ref_len = 243199373 #chr2
 read_lens = [100]
 seq_errs = ['0.00015-0.0015']
-read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [50, 100]]
-#read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [2, 3, 4, 6, 7, 8, 9, 10, 15, 20, 25, 30]]
+#read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
+read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [10]]
 
 ref_path = data_path + "/refs"
-tool_path = "/home/nsvo/genome-tools"
+tool_path = "/home/SNP/genome-tools"
 
 for rl in read_lens:
     for err in seq_errs:
         for rn in read_nums:
             sam_path = data_path + "/results/sim-reads/af_sid_mutant_dwgsim/bwa"
-            cmd = prog_path + "/gatk-preprocess.sh " + ref_path + "/GRCh37_chr1 " \
+            cmd = prog_path + "/gatk-preprocess.sh " + ref_path + "/GRCh37_chr2 " \
                 + sam_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa " + tool_path + " &"
             os.system(cmd)

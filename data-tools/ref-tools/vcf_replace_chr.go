@@ -11,17 +11,10 @@ import (
 	"fmt"
 	"os"
 	"strings"
-//	"strconv"
-//	"bytes"
-//	"sort"
 )
 
-//import "time"
-//import "math/rand"
-
 func usage() {
-	fmt.Println("Usage: go run buildindex.go <input.vcf> <chr_name>")
-	fmt.Println("Example: go run buildindex.go test.vcf soy_bean")
+	fmt.Println("Usage: go run vcf_replace_chr.go <input.vcf> <chr_name>")
 }
 
 func main(){
@@ -29,7 +22,6 @@ func main(){
 		usage()
 		os.Exit(0)
 	}
-
 	vcfRead(os.Args[1])	
 }
 

@@ -25,12 +25,12 @@ for line in open(os.path.join(var_prof_fn)):
         info = line.strip().split()
         var_prof[int(info[1]) - 1] = line
 
-known_var_prob_para = ['0.70', '0.75', '0.80', '0.85', '0.90', '0.95', '0.96', '0.97', '0.98', '0.99']
+known_var_prob_para = ['0.50', '0.60', '0.70', '0.80', '0.90']
 
-for known_var_prob in known_var_prob_para[1:]:
+for known_var_prob in known_var_prob_para:
     known_var_file = open(os.path.join(ref_path, "known_var_" + known_var_prob + ".txt"), "w")
     unknown_var_file = open(os.path.join(ref_path, "unknown_var_" + known_var_prob + ".txt"), "w")
-    isc_var_prof_file = open(os.path.join(ref_path, "isc_var_prof_" + known_var_prob + ".vcf"), "w")
+    ivc_var_prof_file = open(os.path.join(ref_path, "ivc_var_prof_" + known_var_prob + ".vcf"), "w")
 
     mut_var_file = os.path.join(ref_path, "mut_var.txt")
     for line in open(mut_var_file):
@@ -39,9 +39,9 @@ for known_var_prob in known_var_prob_para[1:]:
         info = line.strip().split()
         if random.random() < float(known_var_prob):
             known_var_file.write(line)
-            isc_var_prof_file.write(var_prof[int(info[0])])
+            ivc_var_prof_file.write(var_prof[int(info[0])])
         else:
             unknown_var_file.write(line)
     known_var_file.close()
     unknown_var_file.close()
-    isc_var_prof_file.close()
+    ivc_var_prof_file.close()

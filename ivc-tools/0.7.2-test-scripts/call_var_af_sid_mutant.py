@@ -37,16 +37,16 @@ genome_file = os.path.join(ref_path, genome_fn)
 
 ref_para = ['0.70', '0.75', '0.80', '0.85', '0.90', '0.95']
 seq_errs = ['0.00015-0.0015']
-ref_len = 249250621
+#ref_len = 249250621 #chr1
+ref_len = 243199373 #chr2
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
-    #read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 50, 100]]
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [20, 30]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
-for para in ref_para[0:1]:
+for para in ref_para[:1]:
     read_path = os.path.join(data_dir, read_dir)
     result_path = os.path.join(data_dir, result_dir, "ivc_" + para, prog_version + "-" + time_stamp)
     if not os.path.exists(result_path):
@@ -77,6 +77,6 @@ for para in ref_para[0:1]:
                     print cmd
                     os.system(cmd)
 
-cmd = "python eval_var_diff_ref_af_sid_mutant.py " + config_file + " 1.14 " + cov_num + " " + prog_version + "-" + time_stamp
+cmd = "python eval_var_diff_ref_af_sid_mutant.py " + config_file + " 20 7 " + cov_num + " " + prog_version + "-" + time_stamp
 print cmd
 os.system(cmd)

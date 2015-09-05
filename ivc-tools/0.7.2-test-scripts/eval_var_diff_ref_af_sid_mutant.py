@@ -42,7 +42,8 @@ snp_file = os.path.join(ref_path, snp_fn)
 
 ref_para = ['0.70', '0.75', '0.80', '0.85', '0.90', '0.95']
 seq_errs = ['0.00015-0.0015']
-ref_len = 249250621
+#ref_len = 249250621 #chr1
+ref_len = 243199373 #chr2
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
@@ -52,14 +53,15 @@ else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
 var_prof = {}
-var_prof_file = os.path.join(data_dir, "refs", "TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
+#var_prof_file = os.path.join(data_dir, "refs", "TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
+var_prof_file = os.path.join(data_dir, "refs", "TRIMMED.ALL.chr2.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
 with open(var_prof_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != "#":
             value = line.strip().split()
             var_prof[int(value[1]) - 1] = value[3:5]
 
-for para in ref_para[2:3]:
+for para in ref_para[:1]:
     true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel = {}, {}, {}, {}
     known_var_file = os.path.join(ref_path, "known_var_" + para + ".txt")
     unknown_var_file = os.path.join(ref_path, "unknown_var_" + para + ".txt")

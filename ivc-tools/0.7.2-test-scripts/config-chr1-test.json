@@ -2,9 +2,9 @@
     "ProgVer": "IVC-0.7.3-map-qual",
     "ProgPath": "/home/nsvo/workspace/goprojects/src/github.com/namsyvo/IVC/main/ivc.go",
     "DataPath": {
-        "DataDir": "/data/nsvo/test-data/GRCh37_chr1",
+        "DataDir": "/data/nsvo/test-data/GRCh37_chr2",
         "RefDir": "refs/af_sid_mutant",
-        "GenomeFile": "GRCh37_chr1.fasta",
+        "GenomeFile": "GRCh37_chr2.fasta",
         "VarProfFile": "ivc_var_prof",
         "IndexDir": "indexes/af_sid_mutant_index",
         "ReadDir": "reads/sim-reads/af_sid_mutant_dwgsim",
