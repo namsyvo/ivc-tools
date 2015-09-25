@@ -6,9 +6,9 @@ echo 'Input VCF files: ' $3
 echo 'Output VCF files: ' $4
 echo 'genome-tools path: ' $5
 
-echo 'Start calling SNPs...'
-java -jar $5/GenomeAnalysisTK-3.1-1/GenomeAnalysisTK.jar -l INFO -nt 32 \
-	-R $1 -T UnifiedGenotyper -I $2 --dbsnp $3 -o $4 \
-	--output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar \
+echo 'Start calling variants...'
+java -jar $5/GenomeAnalysisTK-3.1-1/GenomeAnalysisTK.jar -l INFO -nct 32 \
+	-T HaplotypeCaller -R $1 -I $2 --dbsnp $3 -o $4 \
+	--genotyping_mode DISCOVERY -rf BadCigar \
 	-stand_call_conf 10.0 -stand_emit_conf 10.0 -dcov 200
 echo 'Finish calling SNPs.'

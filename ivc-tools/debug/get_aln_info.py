@@ -45,19 +45,20 @@ if __name__ == "__main__":
     var_type = int(sys.argv[4])
     var_num = int(sys.argv[5])
 
-    read_dn = "/data/nsvo/test-data/GRCh37_chr1/reads/sim-reads/af_sid_mutant_dwgsim"
-    if not os.path.exists(os.path.join(read_dn, "alignment-analysis")):
-        os.makedirs(os.path.join(read_dn, "alignment-analysis"))
+    read_dir = "/data/nsvo/test-data/GRCh37_chr1/reads/sim-reads/af_sid_mutant_dwgsim"
+    extracted_read_dir = os.path.join(read_dir, "alignment-analysis-hc-ivc")
+    if not os.path.exists(extracted_read_dir):
+        os.makedirs(extracted_read_dir)
 
     ref_len = 249250621
     read_lens = 100
     read_nums = str(cov_num*ref_len/(2*read_lens))
-    fp_fn = ["dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_snp_none.1.14.txt", \
-             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_snp_unknown.1.14.txt", \
-             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_snp_known.1.14.txt", \
-             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_indel_none.1.14.txt", \
-             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_indel_unknown.1.14.txt", \
-             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_indel_known.1.14.txt"]
+    fp_fn = ["dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_snp_none.20.0.7.0.txt", \
+             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_snp_unknown.20.0.7.0.txt", \
+             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_snp_known.20.0.7.0.txt", \
+             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_indel_none.20.0.7.0.txt", \
+             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_indel_unknown.20.0.7.0.txt", \
+             "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".fp_indel_known.20.0.7.0.txt"]
 
     result_dn = os.path.join("/data/nsvo/test-data/GRCh37_chr1/results/sim-reads/af_sid_mutant_dwgsim/ivc_0.70", result_path, "fpfntp_info")
     map_outf = open(os.path.join(result_dn, fp_fn[var_type] + "-alignment-analysis"), "w")
@@ -72,9 +73,11 @@ if __name__ == "__main__":
         line = fp_inf.readline()
         tmp = line.strip().split()
         if var_type == 0 or var_type == 3:
-            snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[10]), tmp[14], tmp[15], tmp[16], tmp[17], tmp[18]
+            #snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[10]), tmp[14], tmp[15], tmp[16], tmp[17], tmp[18]
+            snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[11]), tmp[15], tmp[16], tmp[17], tmp[18], tmp[19]
         else:
-            snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[12]), tmp[16], tmp[17], tmp[18], tmp[19], tmp[20]
+            #snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[12]), tmp[16], tmp[17], tmp[18], tmp[19], tmp[20]
+            snp_pos, chr_diff, s_pos1, branch1, s_pos2, branch2, header = int(tmp[0]), int(tmp[13]), tmp[17], tmp[18], tmp[19], tmp[20], tmp[21]
         if snp_pos == prev_pos:
             continue
         prev_pos = snp_pos
@@ -86,14 +89,14 @@ if __name__ == "__main__":
         #print reads
         reads = []
         for k in [0, 1]:
-            read_inf = open(os.path.join(read_dn, read_fn[k]))
+            read_inf = open(os.path.join(read_dir, read_fn[k]))
             while True:
                 line = read_inf.readline()
                 if line == "":
                     continue
                 info = line.strip().split('_')
                 if info[len(info)-1].split('/')[0] == read_id:
-                    read_outf = open(os.path.join(read_dn, "alignment-analysis", read_fn[k] + "." + read_id), "w")
+                    read_outf = open(os.path.join(extracted_read_dir, read_fn[k] + "." + read_id), "w")
                     read_outf.write(line)
                     map_outf.write(line)
                     line = read_inf.readline()

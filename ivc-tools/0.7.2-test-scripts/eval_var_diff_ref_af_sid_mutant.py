@@ -1,16 +1,15 @@
 '''
 Evaluate variant call results
 Usage: python eval_var_af_sid_mutant_diff_ref.py config_file confi_K confi_U cov_num result_dir_name
-    E.g.: python eval_var_af_sid_mutant_diff_ref.py config-chr1-test.json 3.0 20.0 5 IVC-0.5.3-aff_gap_aln-2015-05-20-15:09:36.226789
+    E.g.: python eval_var_af_sid_mutant_diff_ref.py config_chr1_test.json 3.0 20.0 5 IVC_0.5.3_aff_gap_aln_2015_05_20_15:09:36.226789
 
 '''
 import os
 import sys
 import json
-
 from datetime import datetime
 
-if len(sys.argv) != 6:
+if len(sys.argv) != 7:
     print "Usage: python eval_var_af_sid_mutant_diff_ref.py config_file confi_K confi_U cov_num result_dir_name"
     exit(0)
 
@@ -18,49 +17,37 @@ config_file = open(sys.argv[1])
 data = json.load(config_file)
 config_file.close()
 
-prog_version = data["ProgVer"]
-prog_path = data["ProgPath"]
 data_dir = data["DataPath"]["DataDir"]
 ref_dir = data["DataPath"]["RefDir"]
-genome_fn = data["DataPath"]["GenomeFile"]
-snp_fn = data["DataPath"]["VarProfFile"]
-read_dir = data["DataPath"]["ReadDir"]
-index_dir = data["DataPath"]["IndexDir"]
 result_dir = data["DataPath"]["ResultDir"]
 read_fn = data["DataPath"]["ReadPrefixFile"]
+dbsnp_fn = data["DataPath"]["dbsnpFile"]
+ref_len = data["RefLen"]
 
 confi_K = float(sys.argv[2])
 confi_U = float(sys.argv[3])
-cov_num = sys.argv[4]
-result_dn = sys.argv[5]
-
-ref_path = os.path.join(data_dir, ref_dir)
-read_path = os.path.join(data_dir, read_dir)
-
-genome_file = os.path.join(ref_path, genome_fn)
-snp_file = os.path.join(ref_path, snp_fn)
+confi_1 = float(sys.argv[4])
+cov_num = sys.argv[5]
+result_dn = sys.argv[6]
 
 ref_para = ['0.70', '0.75', '0.80', '0.85', '0.90', '0.95']
 seq_errs = ['0.00015-0.0015']
-#ref_len = 249250621 #chr1
-ref_len = 243199373 #chr2
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
-    #read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 15, 25, 50, 100]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
 var_prof = {}
-#var_prof_file = os.path.join(data_dir, "refs", "TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
-var_prof_file = os.path.join(data_dir, "refs", "TRIMMED.ALL.chr2.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
+var_prof_file = os.path.join(data_dir, "refs", dbsnp_fn)
 with open(var_prof_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != "#":
             value = line.strip().split()
             var_prof[int(value[1]) - 1] = value[3:5]
 
+ref_path = os.path.join(data_dir, ref_dir)
 for para in ref_para[:1]:
     true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel = {}, {}, {}, {}
     known_var_file = os.path.join(ref_path, "known_var_" + para + ".txt")
@@ -97,13 +84,15 @@ for para in ref_para[:1]:
                         NID += 1
 
     result_path = os.path.join(data_dir, result_dir, "ivc_" + para, result_dn)
-    result_file_path = result_path + "/" + read_fn + "_" + str(read_lens[0]) + "." + str(seq_errs[0]) + ".prec-rec-time-mem." + str(confi_K) + "." + str(confi_U) + ".diff-pos.txt"
+    result_file_path = result_path + "/" + read_fn + "_" + str(read_lens[0]) + "." + str(seq_errs[0]) + \
+        ".prec_rec_time_mem." + str(confi_K) + "." + str(confi_U) + "." + cov_num + ".diff_pos.txt"
+    
     result_file = open(result_file_path, "w")
 
-    header = ["run", "cov", "qual", "TP-S", "FP-S", "FP-S-N", "TP-S-U", "FP-S-U", "TP-S-K", "FP-S-K", \
-                "TP-I", "FP-I", "FP-I-N", "TP-I-U", "FP-I-U", "TP-I-K", "FP-I-K", \
-                "P-S", "R-S", "P-S-U", "R-S-U", "P-S-K", "R-S-K", "P-I", "R-I", "P-I-U", "R-I-U", "P-I-K", "R-I-K", \
-                "S", "S-U", "S-K", "CS", "CS-S", "I", "I-U", "I-K", "CI", "CI-I", \
+    header = ["Run", "Cov", "Qual", "TP_S", "FP_S", "FP_S_N", "TP_S_U", "FP_S_U", "TP_S_K", "FP_S_K", \
+                "TP_I", "FP_I", "FP_I_N", "TP_I_U", "FP_I_U", "TP_I_K", "FP_I_K", \
+                "P_S", "R_S", "P_S_U", "R_S_U", "P_S_K", "R_S_K", "P_I", "R_I", "P_I_U", "R_I_U", "P_I_K", "R_I_K", \
+                "S", "S_U", "S_K", "CS", "CS_S", "I", "I_U", "I_K", "CI", "CI_I", \
                 "na_num", "na_ratio", "timeI", "memI", "timeC", "memC", "timeO", "memO", "input_files", "input_paras", "prog_paras"]
 
     result_file.write("\t".join(header))
@@ -115,6 +104,7 @@ for para in ref_para[:1]:
                     prefix_fn = read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn)
                     var_call_file = os.path.join(result_path, prefix_fn + ".varcall.vcf")
                     var_call = {}
+                    cn = rn/(ref_len/(2*read_lens[0]))
                     with open(var_call_file) as f:
                         for line in f.readlines():
                             if line.strip() and line[0] != '#':
@@ -122,22 +112,31 @@ for para in ref_para[:1]:
                                 if value[3] == value[4]:
                                     continue
                                 pos = int(value[1]) - 1
-                                if pos in true_known_snp or pos in true_known_indel:
+                                if value[5] == "NaN":
+                                    var_call[pos] = value[3:5]
+                                if pos in true_known_snp:
                                     if float(value[5]) >= confi_K:
                                         var_call[pos] = value[3:5]
+                                elif pos in true_known_indel:
+                                    if float(value[5]) >= confi_K:
+                                        var_call[pos] = value[3:5]
+                                elif len(value[3]) == 1 and len(value[4]) == 1:
+                                    if float(value[5]) >= confi_U:
+                                        if cn <= 4:
+                                            if float(value[12]) > 1.0:
+                                                var_call[pos] = value[3:5]
+                                        else:
+                                            if float(value[12]) > cn/4.0:
+                                                var_call[pos] = value[3:5]
                                 else:
                                     if float(value[5]) >= confi_U:
-                                        if rn < 13000000: # <= 10x
-                                            if int(value[12]) >= 2:
+                                        if cn <= 5:
+                                            if float(value[12]) > 1.0:
                                                 var_call[pos] = value[3:5]
-                                        elif rn < 63000000: # <= 50x
-                                            if int(value[12]) >= 3:
+                                            elif float(value[5]) >= confi_1:
                                                 var_call[pos] = value[3:5]
-                                        elif rn < 130000000: # <= 100x
-                                            if int(value[12]) >= 4:
-                                                var_call[pos] = value[3:5]
-                                        else: # > 100x
-                                            if int(value[12]) >= 5:
+                                        else:
+                                            if float(value[12]) > cn/5.0:
                                                 var_call[pos] = value[3:5]
                     print "#called variants", len(var_call)
 
@@ -180,64 +179,64 @@ for para in ref_para[:1]:
                     print "# none", FP_S + FP_ID
 
                     '''
-                    nums_header = ["run", "cov", "qual", "TP-S", "FP-S", "FP-S-N", "TP-S-U", "FP-S-U", "TP-S-K", "FP-S-K", \
-                                "TP-I", "FP-I", "FP-I-N", "TP-I-U", "FP-I-U", "TP-I-K", "FP-I-K"]
+                    nums_header = ["run", "cov", "qual", "TP_S", "FP_S", "FP_S_N", "TP_S_U", "FP_S_U", "TP_S_K", "FP_S_K", \
+                                "TP_I", "FP_I", "FP_I_N", "TP_I_U", "FP_I_U", "TP_I_K", "FP_I_K"]
                     '''
-                    result_file.write("\t".join([result_dn, "%.0f" % (2.0*int(rn)*int(rl)/ref_len), str(confi_K) + ", " + str(confi_U)]) + "\t")
+                    result_file.write("\t".join([result_dn, "%.0f" % (2.0*int(rn)*int(rl)/ref_len), str(confi_K) + ", " + str(confi_U) + ", " + str(confi_1)]) + "\t")
 
-                    #TP-S, FP-S, FP-S-N
+                    #TP_S, FP_S, FP_S_N
                     result_file.write("%.5d\t" % (TP_KAKS + TP_NS))
                     result_file.write("%.5d\t" % (FP_KAKS + FP_NS + FP_S))
                     result_file.write(str(FP_S) + "\t")
 
-                    #"TP-S-U", "FP-S-U", "TP-S-K", "FP-S-K"
+                    #"TP_S_U", "FP_S_U", "TP_S_K", "FP_S_K"
                     result_file.write(str(TP_NS) + "\t" + str(FP_NS) + "\t")
                     result_file.write(str(TP_KAKS) + "\t" + str(FP_KAKS) + "\t")
 
-                    #"TP-I", "FP-I", "FP-I-N"
+                    #"TP_I", "FP_I", "FP_I_N"
                     result_file.write("%.5d\t" % (TP_KAKID + TP_NID))
                     result_file.write("%.5d\t" % (FP_KAKID + FP_NID + FP_ID))
                     result_file.write(str(FP_ID) + "\t")
 
-                    #"TP-I-U", "FP-I-U", "TP-I-K", "FP-I-K"
+                    #"TP_I_U", "FP_I_U", "TP_I_K", "FP_I_K"
                     result_file.write(str(TP_NID) + "\t" + str(FP_NID) + "\t")
                     result_file.write(str(TP_KAKID) + "\t" + str(FP_KAKID) + "\t")
 
                     '''
-                    rate_header = ["P-S", "R-S", "P-S-U", "R-S-U", "P-S-K", "R-S-K", \
-                                "P-I", "R-I", "P-I-U", "R-I-U", "P-I-K", "R-I-K"]
+                    rate_header = ["P_S", "R_S", "P_S_U", "R_S_U", "P_S_K", "R_S_K", \
+                                "P_I", "R_I", "P_I_U", "R_I_U", "P_I_K", "R_I_K"]
                     '''
-                    #P-S, R-S
+                    #P_S, R_S
                     if TP_KAKS + FP_KAKS + TP_NS + FP_NS + FP_S != 0 and KAKS + NS != 0:
                         result_file.write("%.5f\t" % (float(TP_KAKS + TP_NS)/float(TP_KAKS + TP_NS + FP_KAKS + FP_NS + FP_S)))
                         result_file.write("%.5f\t" % (float(TP_KAKS + TP_NS)/float(KAKS + NS)))
                     else:
                         result_file.write("\t\t")
-                    #"P-S-U", "R-S-U"
+                    #"P_S_U", "R_S_U"
                     if TP_NS + FP_NS != 0 and NS != 0:
-                        result_file.write("%.5f\t" % (float(TP_NS)/float(TP_NS + FP_NS)))
+                        result_file.write("%.5f\t" % (float(TP_NS)/float(TP_NS + FP_NS + FP_S)))
                         result_file.write("%.5f\t" % (float(TP_NS)/float(NS)))
                     else:
                         result_file.write("\t\t")
-                    #"P-S-K", "R-S-K"
+                    #"P_S_K", "R_S_K"
                     if TP_KAKS + FP_KAKS != 0 and KAKS != 0:
                         result_file.write("%.5f\t" % (float(TP_KAKS)/float(TP_KAKS + FP_KAKS)))
                         result_file.write("%.5f\t" % (float(TP_KAKS)/float(KAKS)))
                     else:
                         result_file.write("\t\t")
-                    #"P-I", "R-I"
+                    #"P_I", "R_I"
                     if TP_KAKID + FP_KAKID + TP_NID + FP_NID + FP_ID != 0 and KAKID + NID != 0:
                         result_file.write("%.5f\t" % (float(TP_KAKID + TP_NID)/float(TP_KAKID + TP_NID + FP_KAKID + FP_NID + FP_ID)))
                         result_file.write("%.5f\t" % (float(TP_KAKID + TP_NID)/float(KAKID + NID)))
                     else:
                         result_file.write("\t\t")
-                    #"P-I-U", "R-I-U"
+                    #"P_I_U", "R_I_U"
                     if TP_NID + FP_NID != 0 and NID != 0:
-                        result_file.write("%.5f\t" % (float(TP_NID)/float(TP_NID + FP_NID)))
+                        result_file.write("%.5f\t" % (float(TP_NID)/float(TP_NID + FP_NID + FP_ID)))
                         result_file.write("%.5f\t" % (float(TP_NID)/float(NID)))
                     else:
                         result_file.write("\t\t")
-                    #"P-I-K", "R-I-K"
+                    #"P_I_K", "R_I_K"
                     if TP_KAKID + FP_KAKID != 0 and KAKID != 0:
                         result_file.write("%.5f\t" % (float(TP_KAKID)/float(TP_KAKID + FP_KAKID)))
                         result_file.write("%.5f\t" % (float(TP_KAKID)/float(KAKID)))
@@ -245,16 +244,16 @@ for para in ref_para[:1]:
                         result_file.write("\t\t")
 
                     '''
-                    para_header = ["S", "S-U", "S-K", "CS", "CS\S", "I", "I-U", "I-K", "CI", "CI\I", \
+                    para_header = ["S", "S_U", "S_K", "CS", "CS\S", "I", "I_U", "I_K", "CI", "CI\I", \
                                 "na_num", "na_ratio", "timeI", "memI", "timeC", "memC", "timeO", "memO", \
                                 "input_files", "input_paras", "prog_paras"]
                     '''
-                    #S, "S-U", "S-K", CS, CS-S
+                    #S, "S_U", "S_K", CS, CS_S
                     result_file.write(str(KAKS + NS) + "\t" + str(NS) + "\t" + str(KAKS) + "\t")
                     result_file.write("%.5d\t" % (FP_KAKS + FP_NS + FP_S + TP_KAKS + TP_NS))
                     result_file.write("%.5d\t" % ((FP_KAKS + FP_NS + FP_S + TP_KAKS + TP_NS) - (KAKS + NS)))
 
-                    #"I", "I-U", "I-K", "CI", "CI-I"
+                    #"I", "I_U", "I_K", "CI", "CI_I"
                     result_file.write(str(KAKID + NID) + "\t" + str(NID) + "\t" + str(KAKID) + "\t")
                     result_file.write("%.5d\t" % (FP_KAKID + FP_NID + FP_ID + TP_KAKID + TP_NID))
                     result_file.write("%.5d\t" % ((FP_KAKID + FP_NID + FP_ID + TP_KAKID + TP_NID) - (KAKID + NID)))

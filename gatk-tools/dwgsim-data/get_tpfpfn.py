@@ -11,23 +11,27 @@ if len(sys.argv) != 4:
     print "Usage: python get_tpfpfn.py config_file confi_num coverage_num"
     exit(0)
 
-config_file = sys.argv[1]
-f=open(config_file)
-prog_path = f.readline().strip()
-data_path = f.readline().strip()
-genome_fn = f.readline().strip()
-dbsnp_fn = f.readline().strip()
-read_fn = f.readline().strip()
-f.close()
+import json
+from datetime import datetime
+
+config_file = open(sys.argv[1])
+data = json.load(config_file)
+config_file.close()
+
+prog_version = data["ProgVer"]
+data_path = data["DataPath"]["DataDir"]
+ref_dir = data["DataPath"]["RefDir"]
+result_dir = data["DataPath"]["ResultDir"]
+read_fn = data["DataPath"]["ReadPrefixFile"]
+dbsnp_fn = data["DataPath"]["dbsnpFile"]
+ref_len = data["RefLen"]
 
 confi = float(sys.argv[2])
 cov_num = sys.argv[3]
 
-ref_len = 249250621
-ref_para = ['0.70']
+ref_para = ['0.70', '0.75', '0.80', '0.85', '0.90', '0.95']
 read_lens = [100]
 seq_errs = ['0.00015-0.0015']
-max_snum = [2**i for i in range(3, 14)]
 read_nums = []
 if cov_num == "all":
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25]]
@@ -35,17 +39,18 @@ else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
 var_prof = {}
-var_prof_file = os.path.join(data_path, "refs/TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf")
+var_prof_file = os.path.join(data_path, "refs", "TRIMMED." + dbsnp_fn)
 with open(var_prof_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != "#":
             value = line.strip().split()
             var_prof[int(value[1]) - 1] = value[3:5]
 
-for para in ref_para:
+ref_path = os.path.join(data_path, ref_dir)
+for para in ref_para[:1]:
     true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel,  = {}, {}, {}, {}
-    known_var_file = os.path.join(data_path, "refs/af_sid_mutant/known_var_" + para + ".txt")
-    unknown_var_file = os.path.join(data_path, "refs/af_sid_mutant/unknown_var_" + para + ".txt")
+    known_var_file = os.path.join(ref_path, "known_var_" + para + ".txt")
+    unknown_var_file = os.path.join(ref_path, "unknown_var_" + para + ".txt")
 
     with open(known_var_file) as f:
         for line in f.readlines():
@@ -67,8 +72,7 @@ for para in ref_para:
                 else:
                     true_unknown_indel[pos] = unknown_var
 
-    result_dn = os.path.join(data_path, "results/sim-reads/af_sid_mutant_dwgsim/gatk")
-
+    result_dn = os.path.join(data_path, result_dir, "gatk_hc")
     fpfntp_info_path = os.path.join(result_dn, "fpfntp_info")
     if not os.path.exists(fpfntp_info_path):
         os.makedirs(fpfntp_info_path)
