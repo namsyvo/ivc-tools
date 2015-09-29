@@ -15,7 +15,7 @@ prog_version = data["ProgVer"]
 prog_path = data["ProgPath"]
 data_dir = data["DataPath"]["DataDir"]
 ref_dir = data["DataPath"]["RefDir"]
-ref_fn = data["DataPath"]["GenomeFile"]
+ref_fn = data["DataPath"]["RefFile"]
 var_fn = data["DataPath"]["VarProfFile"]
 read_dir = data["DataPath"]["ReadDir"]
 index_dir = data["DataPath"]["IndexDir"]
@@ -40,7 +40,7 @@ read_lens = [100]
 read_nums = []
 if cov_num == "all":
     #read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [15, 20, 25, 50, 100]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
@@ -72,6 +72,6 @@ for para in ref_para[:1]:
                     print cmd
                     os.system(cmd)
 
-cmd = "python eval_var_diff_ref_af_sid_mutant.py " + sys.argv[1] + " 20 7 1001 " + cov_num + " " + prog_version + "_" + time_stamp
+cmd = "python eval_var_diff_ref_af_sid_mutant.py " + sys.argv[1] + " 20 7 200 " + cov_num + " " + prog_version + "_" + time_stamp
 print cmd
 os.system(cmd)

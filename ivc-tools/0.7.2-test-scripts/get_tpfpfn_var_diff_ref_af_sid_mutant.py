@@ -18,7 +18,7 @@ config_file.close()
 prog_version = data["ProgVer"]
 data_dir = data["DataPath"]["DataDir"]
 ref_dir = data["DataPath"]["RefDir"]
-genome_fn = data["DataPath"]["GenomeFile"]
+ref_fn = data["DataPath"]["RefFile"]
 result_dir = data["DataPath"]["ResultDir"]
 read_fn = data["DataPath"]["ReadPrefixFile"]
 dbsnp_fn = data["DataPath"]["dbsnpFile"]
@@ -41,7 +41,7 @@ else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
 ref_path = os.path.join(data_dir, ref_dir)
-genome_file = os.path.join(ref_path, genome_fn)
+genome_file = os.path.join(ref_path, ref_fn)
 
 var_prof = {}
 var_prof_file = os.path.join(data_dir, "refs", dbsnp_fn)

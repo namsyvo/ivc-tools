@@ -126,17 +126,18 @@ for para in ref_para[:1]:
                                             if float(value[12]) > 1.0:
                                                 var_call[pos] = value[3:5]
                                         else:
-                                            if float(value[12]) > cn/4.0:
+                                            if float(value[12])/cn > 0.25:
                                                 var_call[pos] = value[3:5]
                                 else:
-                                    if float(value[5]) >= confi_U:
-                                        if cn <= 5:
+                                    if float(value[5]) >= confi_U and float(value[1]) >= 0.25:
+                                        if cn <= 4:
                                             if float(value[12]) > 1.0:
                                                 var_call[pos] = value[3:5]
-                                            elif float(value[5]) >= confi_1:
+                                            elif float(value[5]) >= confi_1 and float(value[13]) < 2:
                                                 var_call[pos] = value[3:5]
                                         else:
-                                            if float(value[12]) > cn/5.0:
+                                            if float(value[12])/cn > 0.2:
+                                            #if float(value[12])/cn > 0.2 and float(value[12])/float(value[13]) > 0.2:
                                                 var_call[pos] = value[3:5]
                     print "#called variants", len(var_call)
 
@@ -273,15 +274,15 @@ for para in ref_para[:1]:
                             if "Time for initializing the variant caller" in tokens[0]:
                                 result_file.write(tokens[1] + "\t")
                             if "Memstats after initializing the variant caller" in tokens[0]:
-                                result_file.write(tokens[8] + "\t")
+                                result_file.write(tokens[3] + "\t")
                             if "Time for calling variants" in tokens[0]:
                                 result_file.write(tokens[1] + "\t")
                             if "Memstats after calling variants" in tokens[0]:
-                                result_file.write(tokens[8] + "\t")
+                                result_file.write(tokens[3] + "\t")
                             if "Time for outputing variant calls" in tokens[0]:
                                 result_file.write(tokens[1] + "\t")
                             if "Memstats after outputing variant calls" in tokens[0]:
-                                result_file.write(tokens[8] + "\t")
+                                result_file.write(tokens[3] + "\t")
                     #"input_para", "para"
                     with open(mem_time_file) as f:
                         for line in f:
