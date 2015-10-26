@@ -5,26 +5,27 @@ echo 'Input SAM files (remove file extension .sam): ' $2
 echo 'genome-tools path: ' $3
 
 echo 'Converting SAM file to BAM file...'
-$3/samtools-0.1.19/samtools view -bS -t $1.fasta $2.sam > $2.bam
+$3/samtools-0.1.19/samtools view -bS -t $1.fasta -@ 32 $2.sam > $2.bam
+#java -jar $3/picard-tools-1.109/picard-tools-1.109/SamFormatConverter INPUT=$2.sam OUTPUT=$2.bam
 echo 'Finish converting SAM file to BAM file'
 
 echo 'Creating reference dictionary...'
-java -jar $3/picard-tools-1.109/picard-tools-1.109/CreateSequenceDictionary.jar \
-	R=$1.fasta O=$1.dict
+java -jar $3/picard-tools-1.109/picard-tools-1.109/CreateSequenceDictionary.jar R=$1.fasta O=$1.dict
 echo 'Finish creating reference dictionary'
 
 echo 'Creating fasta index file...'
 $3/samtools-0.1.19/samtools faidx $1.fasta
 echo 'Finish creating fasta index file'
 
-echo 'Checking format requirement...'
-$3/samtools-0.1.19/samtools view -H $2.bam
-echo 'Finish checking format requirement'
+#echo 'Checking format requirement...'
+#$3/samtools-0.1.19/samtools view -H $2.bam
+#echo 'Finish checking format requirement'
 
 echo 'Sorting the BAM file...'
 echo 'java -jar $3/picard-tools-1.109/picard-tools-1.109/SortSam.jar \
 	INPUT=$2.bam OUTPUT=$2_sorted.bam SORT_ORDER=coordinate TMP_DIR=$3/tmp'
-java -jar $3/picard-tools-1.109/picard-tools-1.109/SortSam.jar \
+#$3/samtools-0.1.19/samtools sort -o $2_sorted.bam -T $3/tmp/prefix -@ 32 $2.bam
+java -jar $3/picard-tools-1.109/picard-tools-1.109/SortSam.jar\
 	INPUT=$2.bam OUTPUT=$2_sorted.bam SORT_ORDER=coordinate TMP_DIR=$3/tmp
 echo 'Finish sorting the BAM file'
 
@@ -35,14 +36,15 @@ echo 'Finish sorting the BAM file'
 
 echo 'Creating BAM index file...'
 $3/samtools-0.1.19/samtools index $2_sorted.bam $2_sorted.bam.bai
+#java -jar $3/picard-tools-1.109/picard-tools-1.109/BuildBamIndex INPUT=$2_sorted.bam OUTPUT=$2_sorted.bam.bai
 echo 'Finish creating BAM index file'
 
-echo 'Checking format requirement...'
-$3/samtools-0.1.19/samtools view -H $2_sorted.bam | grep='@RG'
-echo 'Finish checking format requirement'
+#echo 'Checking format requirement...'
+#$3/samtools-0.1.19/samtools view -H $2_sorted.bam | grep='@RG'
+#echo 'Finish checking format requirement'
 
 echo 'Adding read groups...'
-java -jar $3/picard-tools-1.109/picard-tools-1.109/AddOrReplaceReadGroups.jar \
+java -jar $3/picard-tools-1.109/picard-tools-1.109/AddOrReplaceReadGroups.jar\
 	I=$2_sorted.bam O=$2_sorted_RG.bam SORT_ORDER=coordinate RGID=foo \
 	RGLB=bar RGPL=illumina RGPU=run RGSM=DePristo CREATE_INDEX=True
 echo 'Finish Adding read groups'

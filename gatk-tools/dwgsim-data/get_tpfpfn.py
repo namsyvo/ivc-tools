@@ -72,7 +72,7 @@ for para in ref_para[:1]:
                 else:
                     true_unknown_indel[pos] = unknown_var
 
-    result_dn = os.path.join(data_path, result_dir, "gatk_hc")
+    result_dn = os.path.join(data_path, result_dir, "gatk_ug_realign")
     fpfntp_info_path = os.path.join(result_dn, "fpfntp_info")
     if not os.path.exists(fpfntp_info_path):
         os.makedirs(fpfntp_info_path)

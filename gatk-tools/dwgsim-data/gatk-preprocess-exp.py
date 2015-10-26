@@ -13,7 +13,6 @@ config_file.close()
 prog_path = data["ProgPath"]
 script_path = data["ScriptPath"]
 data_path = data["DataPath"]["DataDir"]
-genome_fn = data["DataPath"]["GenomeFile"]
 result_dir = data["DataPath"]["ResultDir"]
 read_fn = data["DataPath"]["ReadPrefixFile"]
 ref_len = data["RefLen"]
@@ -28,11 +27,12 @@ if cov_num == "all":
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
-ref_file = os.path.join(data_path, "refs", genome_fn)
+ref_file = os.path.join(data_path, "refs", "GRCh37_chr1")
 for rl in read_lens:
     for err in seq_errs:
         for rn in read_nums:
-            sam_path = os.path.join(data_path, result_dir, "bwa")
-            cmd = script_path + "/gatk-preprocess.sh " + ref_file + " " \
-                + sam_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa " + prog_path + " &"
+            sam_path = os.path.join(data_path, result_dir, "bwa_time_mem")
+            cmd = "/usr/bin/time -v " + script_path + "/gatk-preprocess.sh " + ref_file + " " \
+                + sam_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa " + prog_path + \
+                " 2>" + sam_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa.preprocess.log"
             os.system(cmd)

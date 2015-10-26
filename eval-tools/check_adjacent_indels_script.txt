@@ -1,0 +1,2 @@
+python check_adjacent_indels.py ../ivc-tools/0.7.2-test-scripts/config_chr1.json 0.70 /data/nsvo/test-data/GRCh37_chr1/results/sim-reads/af_sid_mutant_dwgsim/ivc_0.70/IVC-0.7.4-slow/fpfntp_info/dwgsim_reads_100.0.00015-0.0015.62312655.tp_indel_unknown.20.0.0.0.txt-diff-var-unique_ivc-not-gatk-hc
+

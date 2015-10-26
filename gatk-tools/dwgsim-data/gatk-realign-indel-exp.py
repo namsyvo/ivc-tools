@@ -32,14 +32,14 @@ else:
 
 ref_file = os.path.join(data_path, "refs", genome_fn)
 dbsnp_file = os.path.join(dbsnp_dir, dbsnp_fn)
-sam_path = os.path.join(data_path, result_dir, "bwa")
+sam_path = os.path.join(data_path, result_dir, "bwa_time_mem")
 for rl in read_lens:
     for err in seq_errs:
         for rn in read_nums:
             read_prefix = read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn)
             bam_file = os.path.join(sam_path, read_prefix + ".bwa_sorted_RG.bam")
-            result_file = os.path.join(sam_path, read_prefix + ".bwa_sorted_RG_realign_Noknown.bam")
-            cmd = script_path + "/gatk-realign-indel.sh " + ref_file + " " \
-                + bam_file + " " + dbsnp_file + " " + result_file + " " + prog_path + " 2>" + result_file + ".log &"
+            result_file = os.path.join(sam_path, read_prefix + ".bwa_sorted_RG_realign.bam")
+            cmd = "/usr/bin/time -v " + script_path + "/gatk-realign-indel.sh " + ref_file + " " \
+                + bam_file + " " + dbsnp_file + " " + result_file + " " + prog_path + " 2>" + result_file + ".log"
             print cmd
             os.system(cmd)

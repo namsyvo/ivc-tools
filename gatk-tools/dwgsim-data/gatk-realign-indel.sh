@@ -1,4 +1,4 @@
-echo "Calling SNPs using GATK"
+echo "Indel Realign using GATK"
 
 echo 'Input FASTA file: ' $1
 echo 'Input BAM files: ' $2

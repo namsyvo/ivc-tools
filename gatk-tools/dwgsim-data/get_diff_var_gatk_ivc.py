@@ -30,10 +30,10 @@ read_nums = str(cov_num*ref_len/(2*read_lens))
 '''
 Find variants called by GATK but not by IVC
 '''
-ivc_fp_fn = ["dwgsim_reads_100.0.00015-0.0015." + read_nums + ".tp_snp_unknown.20.0.7.0.txt", \
-                 "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".tp_snp_known.20.0.7.0.txt", \
-                 "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".tp_indel_unknown.20.0.7.0.txt", \
-                 "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".tp_indel_known.20.0.7.0.txt"]
+ivc_fp_fn = ["dwgsim_reads_100.0.00015-0.0015." + read_nums + ".tp_snp_unknown.20.0.0.0.txt", \
+                 "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".tp_snp_known.20.0.0.0.txt", \
+                 "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".tp_indel_unknown.20.0.0.0.txt", \
+                 "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".tp_indel_known.20.0.0.0.txt"]
 
 ivc_result_dn = os.path.join(data_path, result_dir, "ivc_0.70", ivc_result_path, "fpfntp_info")
 var_pos = {}
@@ -48,7 +48,7 @@ gatk_fp_fn = ["dwgsim_reads_100.0.00015-0.0015." + read_nums + ".tp_snp_unknown.
                   "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".tp_indel_unknown.20.0.txt", \
                   "dwgsim_reads_100.0.00015-0.0015." + read_nums + ".tp_indel_known.20.0.txt"]
 
-gatk_result_dn = os.path.join(data_path, result_dir, "gatk_hc", "fpfntp_info")
+gatk_result_dn = os.path.join(data_path, result_dir, "gatk_hc_realign", "fpfntp_info")
 diff_var_outf = open(os.path.join(gatk_result_dn, gatk_fp_fn[var_type] + "-diff-var-gatk-hc-not-" + ivc_result_path), "w")
 fp_inf = open(os.path.join(gatk_result_dn, gatk_fp_fn[var_type]))
 line = fp_inf.readline()

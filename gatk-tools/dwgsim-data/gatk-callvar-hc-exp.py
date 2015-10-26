@@ -36,13 +36,13 @@ dbsnp_file = os.path.join(dbsnp_dir, dbsnp_fn)
 for rl in read_lens:
     for err in seq_errs:
         for rn in read_nums:
-            sam_path = os.path.join(data_path, result_dir, "bwa")
-            result_path = os.path.join(data_path, result_dir, "gatk_hc_realign")
+            sam_path = os.path.join(data_path, result_dir, "bwa_time_mem")
+            result_path = os.path.join(data_path, result_dir, "gatk_hc_realign_time_mem")
             if not os.path.exists(result_path):
                 os.makedirs(result_path)
             bam_file = sam_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa_sorted_RG_realign.bam "
             result_file = result_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa.vcf"
-            cmd = script_path + "/gatk-callvar-hc.sh " + ref_file + " " \
-                + bam_file + " " + dbsnp_file + " " + result_file + " " + prog_path + " 2>" + result_file + ".log &"
+            cmd = "/usr/bin/time -v " + script_path + "/gatk-callvar-hc.sh " + ref_file + " " \
+                + bam_file + " " + dbsnp_file + " " + result_file + " " + prog_path + " 2>" + result_file + ".log"
             print cmd
             os.system(cmd)

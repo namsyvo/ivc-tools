@@ -25,9 +25,9 @@ for line in open(os.path.join(var_prof_fn)):
         info = line.strip().split()
         var_prof[int(info[1]) - 1] = line
 
-known_var_prob_para = ['0.50', '0.60', '0.70', '0.80', '0.90']
+known_var_prob_para = ['0.00', '0.50', '0.60', '0.70', '0.80', '0.90', '1.00']
 
-for known_var_prob in known_var_prob_para:
+for known_var_prob in known_var_prob_para[6:]:
     known_var_file = open(os.path.join(ref_path, "known_var_" + known_var_prob + ".txt"), "w")
     unknown_var_file = open(os.path.join(ref_path, "unknown_var_" + known_var_prob + ".txt"), "w")
     ivc_var_prof_file = open(os.path.join(ref_path, "ivc_var_prof_" + known_var_prob + ".vcf"), "w")

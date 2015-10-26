@@ -10,5 +10,5 @@ echo 'Start calling SNPs...'
 java -jar $5/GenomeAnalysisTK-3.1-1/GenomeAnalysisTK.jar -l INFO -nct 32 \
 	-R $1 -T UnifiedGenotyper -I $2 --dbsnp $3 -o $4 \
 	--output_mode EMIT_VARIANTS_ONLY -glm BOTH -rf BadCigar \
-	-stand_call_conf 10.0 -stand_emit_conf 10.0 -dcov 200
+	-stand_call_conf 20.0 -stand_emit_conf 20.0 -dcov 200
 echo 'Finish calling SNPs.'

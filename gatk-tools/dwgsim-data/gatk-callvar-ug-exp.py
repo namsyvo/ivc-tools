@@ -1,6 +1,6 @@
 '''
-Call SNPs with GATK
-Usage: python gatk-callsnp-exp.py config-dwgsim-chr1.txt
+Call variants with GATK
+Usage: python gatk-callvar-ug-exp.py config_file coverage_num
 '''
 import os
 import sys
@@ -36,13 +36,13 @@ dbsnp_file = os.path.join(dbsnp_dir, dbsnp_fn)
 for rl in read_lens:
     for err in seq_errs:
         for rn in read_nums:
-            sam_path = os.path.join(data_path, result_dir, "bwa")
-            result_path = os.path.join(data_path, result_dir, "gatk_ug_realign_noknown")
+            sam_path = os.path.join(data_path, result_dir, "bwa_time_mem")
+            result_path = os.path.join(data_path, result_dir, "gatk_ug_realign_time_mem")
             if not os.path.exists(result_path):
                 os.makedirs(result_path)
-            bam_file = sam_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa_sorted_RG_realign_Noknown.bam "
+            bam_file = sam_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa_sorted_RG_realign.bam "
             result_file = result_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa.vcf"
-            cmd = script_path + "/gatk-callvar-ug.sh " + ref_file + " " \
-                + bam_file + " " + dbsnp_file + " " + result_file + " " + prog_path + " 2>" + result_file + ".log &"
+            cmd = "/usr/bin/time -v " + script_path + "/gatk-callvar-ug.sh " + ref_file + " " \
+                + bam_file + " " + dbsnp_file + " " + result_file + " " + prog_path + " 2>" + result_file + ".log"
             print cmd
             os.system(cmd)

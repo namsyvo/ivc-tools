@@ -1,5 +1,5 @@
 {
-    "ProgVer": "GATK-3.1-1-UG",
+    "ProgVer": "GATK-3.1-1-HC",
     "ProgPath": "/home/SNP/genome-tools",
     "ScriptPath": "/home/nsvo/workspace/exp-scripts/gatk-tools/dwgsim-data",
     "DataPath": {

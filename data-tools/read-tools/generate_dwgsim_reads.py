@@ -8,8 +8,7 @@ import os
 ref_len = 243199373 #chr2
 read_lens = [100]
 seq_errs = ['0.00015-0.0015']
-read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
-#read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [10]]
+read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [30, 35, 40, 45]]
 for rl in read_lens:
 	for err in seq_errs:
 		for rn in read_nums:
