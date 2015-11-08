@@ -90,16 +90,17 @@ for var_pos, var in var_call.iteritems():
 
 S = CS_KS + NC_KS + NS
 I = CS_KI + NC_KI + NI
+print NS_CMP, NI_CMP
 
 result_file_path = os.path.join(result_path, "SRR352199.bwa_sorted_RG_realign_Noknown.vcf.prec_rec_time_mem.diff_pos.txt")
 result_file = open(result_file_path, "w")
 
-header = ["Alg", "Cov", "Qual", "CS_KS", "NC_KS", "CS_KI", "NC_KI", "NS", "NI", "NS_CMP", "NI_CMP", "S", "I", "V", \
+header = ["Alg", "Cov", "Qual", "CS_KS", "NC_KS", "CS_KI", "NC_KI", "NS", "NI", "S", "I", "V", \
               "CS_KS_ratio", "NC_KS_ratio", "CS_KI_ratio", "NC_KI_ratio", "NS_ratio", "NI_ratio", "time"]
 
 result_file.write("\t".join(header) + "\n")
 result_file.write(prog_ver + "\t" + str(75639683*2*100/3095677412.0) + "\t" + str(confi_S) + "," + str(confi_I) + "\t")
-result_file.write("%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t" % (CS_KS, NC_KS, CS_KI, NC_KI, NS, NI, NS_CMP, NI_CMP, S, I, S+I))
+result_file.write("%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t" % (CS_KS, NC_KS, CS_KI, NC_KI, NS, NI, S, I, S+I))
 result_file.write("%.5f\t%.5f\t%.5f\t%.5f\t%.5f\t%.5f\t" % (CS_KS/float(KS), NC_KS/float(KS), CS_KI/float(KI), NC_KI/float(KI), NS/float(S), NI/float(I)))
 
 mem_time_file = os.path.join(result_path, "SRR352199.bwa_sorted_RG_realign_Noknown.vcf.log")

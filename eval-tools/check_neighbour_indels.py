@@ -64,7 +64,7 @@ with open(input_file) as f:
             continue
         try:
             var_pos = int(value[0])
-            for p in range(1, 31):
+            for p in range(30, 31):
 	            k, u = 0, 0
 	            for pos in range(var_pos - p, var_pos + p + 1):
 	                if pos == var_pos:

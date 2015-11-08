@@ -19,15 +19,29 @@ else:
     var_prof_fn = sys.argv[1]
     ref_path = sys.argv[2]
 
+chr_pos, chr_name = [], []
+for line in open(os.path.join(ref_path, "mutant_genome.fasta")):
+    if line[0] == '>':
+        info = line.strip().split()
+        chr_pos.append(int(info[len(info)-1]))
+        chr_name.append(info[0][1:])
+
 var_prof = {}
 for line in open(os.path.join(var_prof_fn)):
     if line[0] != '#':
         info = line.strip().split()
-        var_prof[int(info[1]) - 1] = line
+        pos = -1
+        for i in range(len(chr_pos)):
+            if info[0] == chr_name[i]:
+                pos = chr_pos[i]
+        if pos == -1:
+            print "Missing chromosome", info[0]
+        var_pos = int(info[1])
+        var_prof[pos+var_pos-1] = line
 
 known_var_prob_para = ['0.00', '0.50', '0.60', '0.70', '0.80', '0.90', '1.00']
 
-for known_var_prob in known_var_prob_para[6:]:
+for known_var_prob in known_var_prob_para[3:4]:
     known_var_file = open(os.path.join(ref_path, "known_var_" + known_var_prob + ".txt"), "w")
     unknown_var_file = open(os.path.join(ref_path, "unknown_var_" + known_var_prob + ".txt"), "w")
     ivc_var_prof_file = open(os.path.join(ref_path, "ivc_var_prof_" + known_var_prob + ".vcf"), "w")
