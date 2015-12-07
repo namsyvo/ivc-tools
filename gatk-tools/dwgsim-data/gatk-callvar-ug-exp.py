@@ -16,7 +16,6 @@ data_path = data["DataPath"]["DataDir"]
 genome_fn = data["DataPath"]["GenomeFile"]
 result_dir = data["DataPath"]["ResultDir"]
 read_fn = data["DataPath"]["ReadPrefixFile"]
-dbsnp_dir = data["DataPath"]["dbsnpDir"]
 dbsnp_fn = data["DataPath"]["dbsnpFile"]
 ref_len = data["RefLen"]
 
@@ -31,18 +30,16 @@ else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
 ref_file = os.path.join(data_path, "refs", genome_fn)
-dbsnp_file = os.path.join(dbsnp_dir, dbsnp_fn)
-
 for rl in read_lens:
     for err in seq_errs:
         for rn in read_nums:
-            sam_path = os.path.join(data_path, result_dir, "bwa_time_mem")
-            result_path = os.path.join(data_path, result_dir, "gatk_ug_realign_time_mem")
+            sam_path = os.path.join(data_path, result_dir, "bwa")
+            result_path = os.path.join(data_path, result_dir, "gatk_ug_realign")
             if not os.path.exists(result_path):
                 os.makedirs(result_path)
             bam_file = sam_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa_sorted_RG_realign.bam "
             result_file = result_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa.vcf"
             cmd = "/usr/bin/time -v " + script_path + "/gatk-callvar-ug.sh " + ref_file + " " \
-                + bam_file + " " + dbsnp_file + " " + result_file + " " + prog_path + " 2>" + result_file + ".log"
+                + bam_file + " " + dbsnp_fn + " " + result_file + " " + prog_path + " 2>" + result_file + ".log"
             print cmd
             os.system(cmd)

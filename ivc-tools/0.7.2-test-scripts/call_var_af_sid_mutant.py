@@ -66,10 +66,10 @@ for rl in read_lens:
                 var_call_file = os.path.join(result_path, prefix_fn + ".varcall.vcf")
                 time_mem_file = os.path.join(result_path, prefix_fn + ".varcall.log")
 
-                #cmd = "(go run " + prog_path + " -R " + ref_file + " -V " + var_prof_file + " -I " + idx_dir + " -O " + var_call_file + \
-                #    " -1 " + read_file_1 + " -2 " + read_file_2 + ") 2>" + time_mem_file
-                cmd = "/usr/bin/time -v go run " + prog_path + " -R " + ref_file + " -V " + var_prof_file + " -I " + idx_dir + " -O " + var_call_file + \
-                    " -1 " + read_file_1 + " -2 " + read_file_2 + " 2>" + time_mem_file
+                cmd = "(go run " + prog_path + " -R " + ref_file + " -V " + var_prof_file + " -I " + idx_dir + " -O " + var_call_file + \
+                    " -1 " + read_file_1 + " -2 " + read_file_2 + ") 2>" + time_mem_file
+                #cmd = "/usr/bin/time -v go run " + prog_path + " -R " + ref_file + " -V " + var_prof_file + " -I " + idx_dir + " -O " + var_call_file + \
+                #    " -1 " + read_file_1 + " -2 " + read_file_2 + " 2>" + time_mem_file
                 print cmd
                 os.system(cmd)
 

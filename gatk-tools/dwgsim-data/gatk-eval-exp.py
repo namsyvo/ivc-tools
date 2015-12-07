@@ -19,8 +19,9 @@ data = json.load(config_file)
 config_file.close()
 
 prog_version = data["ProgVer"]
-data_path = data["DataPath"]["DataDir"]
+data_dir = data["DataPath"]["DataDir"]
 ref_dir = data["DataPath"]["RefDir"]
+index_dir = data["DataPath"]["IndexDir"]
 read_dir = data["DataPath"]["ReadDir"]
 result_dir = data["DataPath"]["ResultDir"]
 read_fn = data["DataPath"]["ReadPrefixFile"]
@@ -35,25 +36,42 @@ seq_errs = ['0.00015-0.0015']
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
+    #read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 10, 15, 20, 25]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
-var_prof = {}
-var_prof_file = os.path.join(data_path, "refs", "TRIMMED." + dbsnp_fn)
-with open(var_prof_file) as f:
-    for line in f.readlines():
-        if line.strip() and line[0] != "#":
-            value = line.strip().split()
-            var_prof[int(value[1]) - 1] = value[3:5]
+print "Getting ref info..."
+chr_pos, chr_name = [], []
+data = open(os.path.join(data_dir, index_dir, "index_0.70", "GRCh37.fasta.mgf.idx")).readlines()
+for line in data:
+    if line[0] == '>':
+        info = line.strip().split()
+        chr_name.append(info[0][1:])
+        chr_pos.append(int(info[1]))
+    else:
+        break
 
-ref_path = os.path.join(data_path, ref_dir)
-true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel = {}, {}, {}, {}
+var_prof = {}
+for line in open(dbsnp_fn):
+    if line[0] != '#':
+        info = line.strip().split()
+        offset_pos = -1
+        for i in range(len(chr_pos)):
+            if info[0] == chr_name[i]:
+                offset_pos = chr_pos[i]
+                break
+        if offset_pos == -1:
+            print "Missing chromosome", info[0]
+        var_prof[offset_pos + int(info[1]) - 1] = info[3:5]
+
+print "Getting true variants info..."
+ref_path = os.path.join(data_dir, ref_dir)
 known_var_file = os.path.join(ref_path, "known_var_" + para + ".txt")
 unknown_var_file = os.path.join(ref_path, "unknown_var_" + para + ".txt")
 
-KAKS, NS = 0, 0
-KAKID, NID = 0, 0
+true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel = {}, {}, {}, {}
+KAKS, NS, KAKID, NID = 0, 0, 0, 0
 with open(known_var_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != '#':
@@ -81,8 +99,10 @@ with open(unknown_var_file) as f:
                 true_unknown_indel[pos] = unknown_var
                 if unknown_var[0] != unknown_var[1]:
                     NID += 1
+print KAKS, NS, KAKID, NID
 
-result_path = os.path.join(data_path, result_dir, "gatk_hc_realign")
+print "Getting and evaluating variant calls..."
+result_path = os.path.join(data_dir, result_dir, "gatk_hc_realign")
 result_file_path = result_path + "/" + read_fn + "_" + str(read_lens[0]) + "." + str(seq_errs[0]) + ".prec-rec-time-mem." + str(confi) + "." + para + ".txt"
 result_file = open(result_file_path, "w")
 
@@ -107,9 +127,17 @@ for rl in read_lens:
             for line in f.readlines():
                 if line.strip() and line[0] != '#':
                     value = line.strip().split()
+                    offset_pos = -1
+                    for i in range(len(chr_pos)):
+                        if value[0] == chr_name[i]:
+                            offset_pos = chr_pos[i]
+                            break
+                    if offset_pos == -1:
+                        print "Missing chromosome", value[0]
+                    pos = offset_pos + int(value[1]) - 1
                     try:
                         if float(value[5]) >= confi:
-                            called_var[int(value[1]) - 1] = value[3:5]
+                            called_var[pos] = value[3:5]
                     except ValueError:
                         print "Could not convert data to a float."
                         print value
@@ -232,3 +260,4 @@ for rl in read_lens:
             result_file.write("\n")
 
 result_file.close()
+print "Done! Check results at:", result_file_path

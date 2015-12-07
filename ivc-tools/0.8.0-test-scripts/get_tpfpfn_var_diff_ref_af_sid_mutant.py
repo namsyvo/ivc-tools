@@ -18,6 +18,7 @@ config_file.close()
 prog_version = data["ProgVer"]
 data_dir = data["DataPath"]["DataDir"]
 ref_dir = data["DataPath"]["RefDir"]
+index_dir = data["DataPath"]["IndexDir"]
 ref_fn = data["DataPath"]["RefFile"]
 result_dir = data["DataPath"]["ResultDir"]
 read_fn = data["DataPath"]["ReadPrefixFile"]
@@ -39,23 +40,38 @@ if cov_num == "all":
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
-ref_path = os.path.join(data_dir, ref_dir)
-genome_file = os.path.join(ref_path, ref_fn)
+print "Getting ref genome and var prof info..."
+chr_pos, chr_name = [], []
+data = open(os.path.join(data_dir, index_dir, "index_0.70", "GRCh37.fasta.mgf.idx")).readlines()
+for line in data:
+    if line[0] == '>':
+        info = line.strip().split()
+        chr_name.append(info[0][1:])
+        chr_pos.append(int(info[1]))
+    else:
+        break
 
 var_prof = {}
-var_prof_file = os.path.join(data_dir, "refs", dbsnp_fn)
-with open(var_prof_file) as f:
-    for line in f.readlines():
-        if line.strip() and line[0] != "#":
-            value = line.strip().split()
-            var_prof[int(value[1]) - 1] = value[3:5]
+for line in open(dbsnp_fn):
+    if line[0] != '#':
+        info = line.strip().split()
+        offset_pos = -1
+        for i in range(len(chr_pos)):
+            if info[0] == chr_name[i]:
+                offset_pos = chr_pos[i]
+                break
+        if offset_pos == -1:
+            print "Missing chromosome", info[0]
+        var_prof[offset_pos + int(info[1]) - 1] = info[3:5]
 
 gatk_confi = 20.0
 
-true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel,  = {}, {}, {}, {}
+print "Getting true variants info..."
+ref_path = os.path.join(data_dir, ref_dir)
 known_var_file = os.path.join(ref_path, "known_var_" + para + ".txt")
 unknown_var_file = os.path.join(ref_path, "unknown_var_" + para + ".txt")
 
+true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel,  = {}, {}, {}, {}
 with open(known_var_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != '#':
@@ -76,6 +92,7 @@ with open(unknown_var_file) as f:
             else:
                 true_unknown_indel[pos] = unknown_var
 
+print "Getting and evaluating called variants info..."
 fpfntp_info_path = os.path.join(data_dir, result_dir, "ivc_" + para, result_dn, "fpfntp_info")
 if not os.path.exists(fpfntp_info_path):
     os.makedirs(fpfntp_info_path)

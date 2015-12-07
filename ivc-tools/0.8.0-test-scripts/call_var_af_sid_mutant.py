@@ -40,7 +40,8 @@ seq_errs = ['0.00015-0.0015']
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
+    #read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [10, 20, 30]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
@@ -60,8 +61,8 @@ for rl in read_lens:
                         read_file_1 = os.path.join(read_path, prefix_fn + ".bwa.read1.fastq")
                         read_file_2 = os.path.join(read_path, prefix_fn + ".bwa.read2.fastq")
                 else:
-                        read_file_1 = os.path.join(read_path, "diff_var_analysis", prefix_fn + ".bwa.read1.fastq" + rid)
-                        read_file_2 = os.path.join(read_path, "diff_var_analysis", prefix_fn + ".bwa.read2.fastq" + rid)
+                        read_file_1 = os.path.join(read_path, prefix_fn + ".bwa.read1.fastq" + rid)
+                        read_file_2 = os.path.join(read_path, prefix_fn + ".bwa.read2.fastq" + rid)
 
                 var_call_file = os.path.join(result_path, prefix_fn + ".varcall.vcf")
                 time_mem_file = os.path.join(result_path, prefix_fn + ".varcall.log")

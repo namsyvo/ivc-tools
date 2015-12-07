@@ -19,6 +19,7 @@ config_file.close()
 
 data_dir = data["DataPath"]["DataDir"]
 ref_dir = data["DataPath"]["RefDir"]
+index_dir = data["DataPath"]["IndexDir"]
 result_dir = data["DataPath"]["ResultDir"]
 read_fn = data["DataPath"]["ReadPrefixFile"]
 dbsnp_fn = data["DataPath"]["dbsnpFile"]
@@ -38,25 +39,42 @@ seq_errs = ['0.00015-0.0015']
 read_lens = [100]
 read_nums = []
 if cov_num == "all":
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
+    #read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 10, 15, 20, 25]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
-var_prof = {}
-var_prof_file = os.path.join(data_dir, "refs", dbsnp_fn)
-with open(var_prof_file) as f:
-    for line in f.readlines():
-        if line.strip() and line[0] != "#":
-            value = line.strip().split()
-            var_prof[int(value[1]) - 1] = value[3:5]
+print "Getting ref genome and var prof info..."
+chr_pos, chr_name = [], []
+data = open(os.path.join(data_dir, index_dir, "index_0.70", "GRCh37.fasta.mgf.idx")).readlines()
+for line in data:
+    if line[0] == '>':
+        info = line.strip().split()
+        chr_name.append(info[0][1:])
+        chr_pos.append(int(info[1]))
+    else:
+        break
 
+var_prof = {}
+for line in open(dbsnp_fn):
+    if line[0] != '#':
+        info = line.strip().split()
+        offset_pos = -1
+        for i in range(len(chr_pos)):
+            if info[0] == chr_name[i]:
+                offset_pos = chr_pos[i]
+                break
+        if offset_pos == -1:
+            print "Missing chromosome", info[0]
+        var_prof[offset_pos + int(info[1]) - 1] = info[3:5]
+
+print "Getting true variants info..."
 ref_path = os.path.join(data_dir, ref_dir)
-true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel = {}, {}, {}, {}
 known_var_file = os.path.join(ref_path, "known_var_" + para + ".txt")
 unknown_var_file = os.path.join(ref_path, "unknown_var_" + para + ".txt")
 
-KAKS, NS = 0, 0
-KAKID, NID = 0, 0
+true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel = {}, {}, {}, {}
+KAKS, NS, KAKID, NID = 0, 0, 0, 0
 with open(known_var_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != '#':
@@ -84,11 +102,12 @@ with open(unknown_var_file) as f:
                 true_unknown_indel[pos] = unknown_var
                 if unknown_var[0] != unknown_var[1]:
                     NID += 1
+print KAKS, NS, KAKID, NID
 
+print "Getting and evaluating called variants info..."
 result_path = os.path.join(data_dir, result_dir, "ivc_" + para, result_dn)
 result_file_path = result_path + "/" + read_fn + "_" + str(read_lens[0]) + "." + str(seq_errs[0]) + \
     ".prec_rec_time_mem." + str(confi_K_S) + "." + str(confi_K_I) + "." + str(confi_U_S) + "." + str(confi_U_I) + "." + cov_num + ".diff_pos.txt"
-
 result_file = open(result_file_path, "w")
 
 header = ["Alg", "Cov", "Qual", "TP_S", "FP_S", "FP_S_N", "TP_S_U", "FP_S_U", "TP_S_K", "FP_S_K", \
@@ -96,7 +115,6 @@ header = ["Alg", "Cov", "Qual", "TP_S", "FP_S", "FP_S_N", "TP_S_U", "FP_S_U", "T
             "P_S", "R_S", "P_S_U", "R_S_U", "P_S_K", "R_S_K", "P_I", "R_I", "P_I_U", "R_I_U", "P_I_K", "R_I_K", \
             "S", "S_U", "S_K", "CS", "CS_S", "I", "I_U", "I_K", "CI", "CI_I", \
             "na_num", "na_ratio", "memI", "timeI", "memC", "timeC", "memO", "timeO", "input_files", "input_paras", "prog_paras"]
-
 result_file.write("\t".join(header))
 result_file.write("\n")
 
@@ -113,7 +131,15 @@ for rl in read_lens:
                         value = line.strip().split()
                         if value[3] == value[4]:
                             continue
-                        pos = int(value[1]) - 1
+                        offset_pos = -1
+                        for i in range(len(chr_pos)):
+                            if value[0] == chr_name[i]:
+                                offset_pos = chr_pos[i]
+                                break
+                        if offset_pos == -1:
+                            print "Missing chromosome", value[0]
+                        pos = offset_pos + int(value[1]) - 1
+
                         if value[5] == "NaN":
                             var_call[pos] = value[3:5]
                         if pos in true_known_snp:
@@ -178,8 +204,8 @@ for rl in read_lens:
                     else:
                         FP_ID += 1
 
-            print "# known", TP_KAKS + FP_KAKS + TP_KAKID + FP_KAKID
-            print "# unknown", TP_NS + TP_NID, FP_NS + FP_NID
+            print "# known TP, FP", TP_KAKS + TP_KAKID, FP_KAKS + FP_KAKID
+            print "# unknown TP, FP", TP_NS + TP_NID, FP_NS + FP_NID
             print "# none", FP_S + FP_ID
 
             '''
@@ -298,5 +324,6 @@ for rl in read_lens:
                     if "Prog paras" in tokens[0]:
                         result_file.write(tokens[1] + "\t")
             result_file.write("\n")
+
 result_file.close()
-print "Check results at:", result_file_path
+print "Done! Check results at:", result_file_path
