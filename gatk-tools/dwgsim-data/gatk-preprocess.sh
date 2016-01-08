@@ -23,10 +23,10 @@ echo 'Finish creating fasta index file'
 
 echo 'Sorting the BAM file...'
 echo 'java -jar $3/picard-tools-1.109/picard-tools-1.109/SortSam.jar \
-	INPUT=$2.bam OUTPUT=$2_sorted.bam SORT_ORDER=coordinate TMP_DIR=$3/tmp'
+	INPUT=$2.bam OUTPUT=$2_sorted.bam SORT_ORDER=coordinate TMP_DIR=/backup2/tmp'
 #$3/samtools-0.1.19/samtools sort -o $2_sorted.bam -T $3/tmp/prefix -@ 32 $2.bam
 java -jar $3/picard-tools-1.109/picard-tools-1.109/SortSam.jar\
-	INPUT=$2.bam OUTPUT=$2_sorted.bam SORT_ORDER=coordinate TMP_DIR=$3/tmp
+	INPUT=$2.bam OUTPUT=$2_sorted.bam SORT_ORDER=coordinate TMP_DIR=/backup2/tmp
 echo 'Finish sorting the BAM file'
 
 #echo 'Resorting the BAM file...'

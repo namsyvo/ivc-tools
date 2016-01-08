@@ -17,13 +17,13 @@ data = json.load(config_file)
 config_file.close()
 data_dir = data["DataPath"]["DataDir"]
 ref_dir = data["DataPath"]["RefDir"]
+index_dir = data["DataPath"]["IndexDir"]
 dbsnp_fn = data["DataPath"]["dbsnpFile"]
 
 para = sys.argv[2]
 perf_meas = sys.argv[3]
 input_file = sys.argv[4]
 
-print "Getting ref genome and var prof info..."
 var_prof = {}
 chr_pos, chr_name = [], []
 data = open(os.path.join(data_dir, index_dir, "index_0.70", "GRCh37.fasta.mgf.idx")).readlines()
@@ -48,7 +48,6 @@ for line in open(dbsnp_fn):
             print "Missing chromosome", info[0]
         var_prof[offset_pos + int(info[1]) - 1] = info[3:5]
 
-print "Getting true variants info..."
 ref_path = os.path.join(data_dir, ref_dir)
 known_var_file = os.path.join(ref_path, "known_var_" + para + ".txt")
 unknown_var_file = os.path.join(ref_path, "unknown_var_" + para + ".txt")
@@ -74,7 +73,6 @@ with open(unknown_var_file) as f:
             else:
                 true_unknown_indel[pos] = unknown_var
 
-print "Getting and evaluating called variants info..."
 with open(input_file) as f:
     for line in f.readlines():
         value = line.strip().split()

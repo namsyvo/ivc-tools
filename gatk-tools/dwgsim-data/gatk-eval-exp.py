@@ -2,7 +2,7 @@
 Evaluate GATK performance
 Consider two categories of SNP/Indels based on reference SNP profile
 Do not evaluate SNPs/Indels which are same as Ref
-Usage: python gatk-eval-exp4.py config-dwgsim-chr1.txt 20
+Usage: python gatk-eval-exp.py config-dwgsim-chr1.txt 20
 '''
 
 import os
@@ -11,7 +11,7 @@ import json
 from datetime import datetime
 
 if len(sys.argv) != 5:
-    print "Usage: python gatk-eval-exp4.py config_file prof_para confi_num cov_num"
+    print "Usage: python gatk-eval-exp.py config_file prof_para confi_num cov_num"
     sys.exit()
 
 config_file = open(sys.argv[1])
@@ -37,7 +37,7 @@ read_lens = [100]
 read_nums = []
 if cov_num == "all":
     #read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 10, 15, 20, 25]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 10, 15, 20, 25, 30]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 

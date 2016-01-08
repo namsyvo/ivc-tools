@@ -19,7 +19,6 @@ prog_version = data["ProgVer"]
 data_dir = data["DataPath"]["DataDir"]
 ref_dir = data["DataPath"]["RefDir"]
 index_dir = data["DataPath"]["IndexDir"]
-ref_fn = data["DataPath"]["RefFile"]
 result_dir = data["DataPath"]["ResultDir"]
 read_fn = data["DataPath"]["ReadPrefixFile"]
 dbsnp_fn = data["DataPath"]["dbsnpFile"]
@@ -72,6 +71,7 @@ known_var_file = os.path.join(ref_path, "known_var_" + para + ".txt")
 unknown_var_file = os.path.join(ref_path, "unknown_var_" + para + ".txt")
 
 true_known_snp, true_known_indel, true_unknown_snp, true_unknown_indel,  = {}, {}, {}, {}
+KAKS, NS, KAKID, NID = 0, 0, 0, 0
 with open(known_var_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != '#':
@@ -79,8 +79,12 @@ with open(known_var_file) as f:
             pos, known_var = int(value[0]), value[1:]
             if len(var_prof[pos][0]) == 1 and len(var_prof[pos][1]) == 1:
                 true_known_snp[pos] = known_var
+                if known_var[0] != known_var[1]:
+                    KAKS += 1
             else:
                 true_known_indel[pos] = known_var
+                if known_var[0] != known_var[1]:
+                    KAKID += 1
 
 with open(unknown_var_file) as f:
     for line in f.readlines():
@@ -89,8 +93,13 @@ with open(unknown_var_file) as f:
             pos, unknown_var = int(value[0]), value[1:]
             if len(var_prof[pos][0]) == 1 and len(var_prof[pos][1]) == 1:
                 true_unknown_snp[pos] = unknown_var
+                if unknown_var[0] != unknown_var[1]:
+                    NS += 1
             else:
                 true_unknown_indel[pos] = unknown_var
+                if unknown_var[0] != unknown_var[1]:
+                    NID += 1
+print KAKS, NS, KAKID, NID
 
 print "Getting and evaluating called variants info..."
 fpfntp_info_path = os.path.join(data_dir, result_dir, "ivc_" + para, result_dn, "fpfntp_info")
@@ -118,7 +127,15 @@ for rl in read_lens:
                             info = elem.split('=')
                             if info[0] == "DP":
                                 dp = info[1]
-                        gatk_snp[int(value[1]) - 1] = [value[3], value[4], value[5], dp]
+                        offset_pos = -1
+                        for i in range(len(chr_pos)):
+                            if value[0] == chr_name[i]:
+                                offset_pos = chr_pos[i]
+                                break
+                        if offset_pos == -1:
+                            print "Missing chromosome", value[0]
+                        pos = offset_pos + int(value[1]) - 1
+                        gatk_snp[pos] = [value[3], value[4], value[5], dp]
             f.close()
             print "GATK # called variants", len(gatk_snp)
 
@@ -184,7 +201,14 @@ for rl in read_lens:
                 value = line.strip().split()
                 if value[0][0] == '#' or value[3] == value[4]:
                     continue
-                pos = int(value[1]) - 1
+                offset_pos = -1
+                for i in range(len(chr_pos)):
+                    if value[0] == chr_name[i]:
+                        offset_pos = chr_pos[i]
+                        break
+                if offset_pos == -1:
+                    print "Missing chromosome", value[0]
+                pos = offset_pos + int(value[1]) - 1
                 if value[5] == "NaN":
                     var_call[pos] = value[3:5]
                 if pos in true_known_snp:
