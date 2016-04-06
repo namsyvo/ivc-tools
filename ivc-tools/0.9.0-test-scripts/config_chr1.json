@@ -1,0 +1,16 @@
+{
+    "ProgVer": "IVC-0.7.4-unknown-indel",
+    "ProgPath": "/home/nsvo/workspace/goprojects/src/github.com/namsyvo/IVC/main/ivc.go",
+    "DataPath": {
+        "DataDir": "/data/nsvo/test_data/GRCh37_chr1",
+        "RefDir": "refs/dip_af_sid_mutant",
+        "RefFile": "GRCh37_chr1.fasta",
+        "VarProfFile": "dwgsim_reads_100.0.00015-0.0015.100000.mutations",
+        "IndexDir": "indexes/dip_af_sid_mutant_index",
+        "ReadDir": "reads/sim_reads/dip_af_sid_mutant_dwgsim",
+        "ResultDir": "results/sim_reads/dip_af_sid_mutant_dwgsim",
+        "ReadPrefixFile": "dwgsim_reads",
+        "dbsnpFile": "/backup2/nsvo/variant_calling/Human_data/refs/GRCh37_chr1/TRIMMED.ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.vcf"
+    },
+    "RefLen": 249250621
+}
