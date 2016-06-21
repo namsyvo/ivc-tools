@@ -41,13 +41,13 @@ read_lens = [100]
 read_nums = []
 if cov_num == "all":
     #read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100]]
-    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [10, 20, 30]]
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 10, 20, 50]]
 else:
     read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
 
 read_path = os.path.join(data_dir, read_dir)
-result_path = os.path.join(data_dir, result_dir, "ivc_" + para, prog_version + "_" + time_stamp)
-#result_path = os.path.join(data_dir, result_dir, "ivc_time_mem", prog_version + "_" + time_stamp)
+#result_path = os.path.join(data_dir, result_dir, "ivc_" + para, prog_version + "_" + time_stamp)
+result_path = os.path.join(data_dir, result_dir, "ivc_exome", prog_version + "_" + time_stamp)
 if not os.path.exists(result_path):
     os.makedirs(result_path)
 

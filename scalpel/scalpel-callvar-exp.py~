@@ -1,0 +1,50 @@
+'''
+Call variants with samtools
+Usage: python samtools-callvar-hc-exp.py config_file coverage_num
+'''
+import os
+import sys
+import json
+
+config_file = open(sys.argv[1])
+data = json.load(config_file)
+config_file.close()
+
+prog_path = data["ProgPath"]
+script_path = data["ScriptPath"]
+data_path = data["DataPath"]["DataDir"]
+genome_fn = data["DataPath"]["GenomeFile"]
+result_dir = data["DataPath"]["ResultDir"]
+read_fn = data["DataPath"]["ReadPrefixFile"]
+dbsnp_dir = data["DataPath"]["dbsnpDir"]
+dbsnp_fn = data["DataPath"]["dbsnpFile"]
+ref_len = data["RefLen"]
+
+cov_num = sys.argv[2]
+
+read_lens = [100]
+seq_errs = ['0.00015-0.0015']
+read_nums = []
+if cov_num == "all":
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [1, 5, 10, 15, 20, 25, 50]]
+else:
+    read_nums = [cov*ref_len/(2*read_lens[0]) for cov in [int(cov_num)]]
+
+ref_file = os.path.join(data_path, "refs", genome_fn)
+dbsnp_file = os.path.join(dbsnp_dir, dbsnp_fn)
+
+for rl in read_lens:
+    for err in seq_errs:
+        for rn in read_nums:
+            sam_path = os.path.join(data_path, result_dir, "bwa")
+            result_path = os.path.join(data_path, result_dir, "scalpel")
+            if not os.path.exists(result_path):
+                os.makedirs(result_path)
+            bed_file = os.path.join(data_path, "refs", "GRCh37_chr1_scalpel.bed")
+            bam_file = sam_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn) + ".bwa_sorted_RG_realign.bam "
+            result_dir = result_path + "/" + read_fn + "_" + str(rl) + "." + str(err) + "." + str(rn)
+            if not os.path.exists(result_dir):
+                os.makedirs(result_dir)
+            cmd = "/usr/bin/time -v " + prog_path + "/scalpel-discovery  --single --ref " + ref_file + " --bed " + bed_file + " --bam " + bam_file + " --dir " + result_dir + " --window 600 --numprocs 32 1>" + result_dir + "/scalpel_run.log 2>" + result_dir + "/scalpel_run.time"
+            print cmd
+            os.system(cmd)

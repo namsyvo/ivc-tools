@@ -3,12 +3,13 @@ import sys
 sam_file = open(sys.argv[1])
 chr_name = sys.argv[2]
 
-'''
 fastq_file1 = open(sys.argv[1] + "_chr" + chr_name + "_1.fastq", "w")
 fastq_file2 = open(sys.argv[1] + "_chr" + chr_name + "_2.fastq", "w")
+
 '''
 fastq_file1 = open("/data/nsvo/test_data/GRCh37_chr22/reads/real_reads/NA12878/ERR194147_sorted_chr22_1.bwa.fastq", "w")
 fastq_file2 = open("/data/nsvo/test_data/GRCh37_chr22/reads/real_reads/NA12878/ERR194147_sorted_chr22_2.bwa.fastq", "w")
+'''
 
 prev_pos = sam_file.tell()
 while True:

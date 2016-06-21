@@ -1,0 +1,16 @@
+{
+    "ProgVer": "scalpel",
+    "ProgPath": "/home/SNP/genome-tools/scalpel-0.5.3",
+    "ScriptPath": "/home/nsvo/workspace/exp-scripts/scalpel",
+    "DataPath": {
+        "DataDir": "/data/nsvo/test_data/GRCh37_chr1",
+        "RefDir": "refs/af_sid_mutant",
+        "GenomeFile": "GRCh37_chr1.fasta",
+        "ReadDir": "reads/sim_reads/af_sid_mutant_dwgsim",
+        "ResultDir": "results/sim_reads/af_sid_mutant_dwgsim",
+        "ReadPrefixFile": "dwgsim_reads",
+        "dbsnpDir": "/backup2/nsvo/variant_calling/Human_data/refs/GRCh37_chr1",
+        "dbsnpFile": "ALL.chr1.phase1_release_v3.20101123.snps_indels_svs.genotypes.diffcontigname.vcf"
+    },
+    "RefLen": 249250621
+}

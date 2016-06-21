@@ -4,15 +4,25 @@ Evaluate variant call results for real data
 
 import os
 import sys
+import bisect
 
-if len(sys.argv) != 5:
-    print "Usage: python eval_var_af_sid_mutant_diff_ref.py chr_name cov confi_S confi_I"
+if len(sys.argv) != 6:
+    print "Usage: python eval_var_af_sid_mutant_diff_ref.py chr_name cov confi_S confi_I bed_file"
     exit(0)
 
 chr_name = sys.argv[1]
 cov = sys.argv[2]
 confi_S = float(sys.argv[3])
 confi_I = float(sys.argv[4])
+bed_file = sys.argv[5]
+
+itv1, itv2 = [], []
+with open(bed_file) as f:
+    for line in f:
+        tokens = line.split("\t")
+        itv1.append(int(tokens[1]))
+        itv2.append(int(tokens[2]))
+print "#intervals", len(itv1)
 
 var_prof_file = os.path.join("/backup2/nsvo/variant_calling/Human_data/refs/NA12878/NISTIntegratedCalls.vcf")
 var_prof = {}
@@ -67,6 +77,12 @@ with open(var_call_file) as f:
                 continue
             
             pos = int(value[1]) - 1
+            '''
+            i = bisect.bisect_right(itv1, pos)
+            if i: # i.e., itv1[i-1] <= pos
+                if pos > itv2[i-1]:
+                    continue
+            '''
             if len(value[3]) == 1 and len(value[4]) == 1:
                 if float(value[5]) >= confi_S:
                     var_call[pos] = value[3:6] + value[9].split(":")[0:1]
@@ -272,8 +288,11 @@ out_file92.close()
 CS = KA_KS + KA_KS_DS + NA_KS + NA_KS_DS + NS_DS + NS
 CI = KA_KI + KA_KI_DI + NA_KI + NA_KI_DI + NI_DI + NI
 
-#result_file_path = os.path.join(result_path, "gatk_hc/ERR194147_shuf_" + cov + "_chr" + chr_name + ".bwa_sorted_RG_realign.vcf.exome.homvar.prec_rec.GIAB." + str(confi_S) + "." + str(confi_I) + ".txt")
+#result_file_path = os.path.join(result_path, "gatk_hc/ERR194147_shuf_" + cov + "_chr" + chr_name + ".bwa_sorted_RG_realign.vcf.homvar.prec_rec.GIAB." + str(confi_S) + "." + str(confi_I) + ".txt")
 result_file_path = os.path.join(result_path, "samtools/ERR194147_shuf_" + cov + "_chr" + chr_name + ".bwa_sorted_RG_realign.norm.vcf.homvar.prec_rec.GIAB." + str(confi_S) + "." + str(confi_I) + ".txt")
+
+#result_file_path = os.path.join(result_path, "gatk_hc/ERR194147_shuf_" + cov + "_chr" + chr_name + ".bwa_sorted_RG_realign.vcf.exome.homvar.prec_rec.GIAB." + str(confi_S) + "." + str(confi_I) + ".txt")
+#result_file_path = os.path.join(result_path, "samtools/ERR194147_shuf_" + cov + "_chr" + chr_name + ".bwa_sorted_RG_realign.norm.vcf.exome.homvar.prec_rec.GIAB." + str(confi_S) + "." + str(confi_I) + ".txt")
 result_file = open(result_file_path, "w")
 
 header = ["Alg", "Cov", "Qual", "TP_U_S", "TP_K_S", "TL_FP_U_S", "TL_FP_K_S", "TP_U_I", "TP_K_I", "TL_FP_U_I", "TL_FP_K_I", "FL_FP_U_S", "FL_FP_K_S", "FL_FP_U_I", "FL_FP_K_I", "TS", "TI", "TS+TI", "CS", "CI", "CS+CI", "PS", "RS", "PI", "RI"]

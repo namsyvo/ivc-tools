@@ -1,13 +1,13 @@
 import sys
 import random
 
-in_file1 = open("/data/nsvo/test_data/GRCh37_chr22/reads/real_reads/NA12878/ERR194147_sorted_chr22_1.bwa.fastq")
-in_file2 = open("/data/nsvo/test_data/GRCh37_chr22/reads/real_reads/NA12878/ERR194147_sorted_chr22_2.bwa.fastq")
-
 for cov in [1, 2, 5, 10, 20]:
 
-    out_file1 = open("/data/nsvo/test_data/GRCh37_chr22/reads/real_reads/NA12878/ERR194147_sorted_" + str(cov) + "x_chr22_1.bwa.fastq", "w")
-    out_file2 = open("/data/nsvo/test_data/GRCh37_chr22/reads/real_reads/NA12878/ERR194147_sorted_" + str(cov) + "x_chr22_2.bwa.fastq", "w")
+    in_file1 = open("/data/nsvo/test_data/GRCh37_chr1/reads/real_reads/NA12878/ERR194147_sorted_chr1_1.bwa.fastq")
+    in_file2 = open("/data/nsvo/test_data/GRCh37_chr1/reads/real_reads/NA12878/ERR194147_sorted_chr1_2.bwa.fastq")
+
+    out_file1 = open("/data/nsvo/test_data/GRCh37_chr1/reads/real_reads/NA12878/ERR194147_sorted_" + str(cov) + "x_chr1_1.bwa.fastq", "w")
+    out_file2 = open("/data/nsvo/test_data/GRCh37_chr1/reads/real_reads/NA12878/ERR194147_sorted_" + str(cov) + "x_chr1_2.bwa.fastq", "w")
 
     while True:
         line1 = in_file1.readline()
@@ -34,5 +34,5 @@ for cov in [1, 2, 5, 10, 20]:
     out_file1.close()
     out_file2.close()
 
-in_file1.close()
-in_file2.close()
+    in_file1.close()
+    in_file2.close()

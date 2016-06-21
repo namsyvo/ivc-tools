@@ -1,0 +1,10 @@
+import sys
+fin = open(sys.argv[1])
+fout = open(sys.argv[1] + "_chr1.bed", "w")
+chr = sys.argv[2]
+for line in fin:
+    if line[0] == chr:
+        fout.write(line)
+fin.close()
+fout.close()
+

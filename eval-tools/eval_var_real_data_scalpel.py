@@ -1,18 +1,28 @@
 '''
-Evaluate variant call results for real data
+Evaluate variant call results of Scalpel for real data
 '''
 
 import os
 import sys
+import bisect
 
-if len(sys.argv) != 5:
-    print "Usage: python eval_var_af_sid_mutant_diff_ref.py chr_name cov confi_S confi_I"
+if len(sys.argv) != 6:
+    print "Usage: python eval_var_real_data_scalpel.py chr_name cov confi_S confi_I bed_file"
     exit(0)
 
 chr_name = sys.argv[1]
 cov = sys.argv[2]
 confi_S = float(sys.argv[3])
 confi_I = float(sys.argv[4])
+bed_file = sys.argv[5]
+
+itv1, itv2 = [], []
+with open(bed_file) as f:
+    for line in f:
+        tokens = line.split("\t")
+        itv1.append(int(tokens[1]))
+        itv2.append(int(tokens[2]))
+print "#intervals", len(itv1)
 
 var_prof_file = os.path.join("/backup2/nsvo/variant_calling/Human_data/refs/NA12878/NISTIntegratedCalls.vcf")
 var_prof = {}
@@ -54,8 +64,7 @@ print "#var dbsnp variants", DS_KS, DS_KI, DS_KS + DS_KI
 
 result_path = os.path.join("/data/nsvo/test_data/GRCh37_chr" + chr_name + "/results/real_reads/NA12878")
 
-#var_call_file = os.path.join(result_path, "gatk_hc/ERR194147_shuf_" + cov + "_chr" + chr_name + ".bwa_sorted_RG_realign.vcf")
-var_call_file = os.path.join(result_path, "samtools/ERR194147_shuf_" + cov + "_chr" + chr_name + ".bwa_sorted_RG_realign.norm.vcf")
+var_call_file = os.path.join(result_path, "scalpel/" + cov + "/variants.indel.vcf")
 var_call = {}
 with open(var_call_file) as f:
     for line in f.readlines():
@@ -68,17 +77,17 @@ with open(var_call_file) as f:
             
             pos = int(value[1]) - 1
             if len(value[3]) == 1 and len(value[4]) == 1:
-                if float(value[5]) >= confi_S:
+                #if float(value[5]) >= confi_S:
                     var_call[pos] = value[3:6] + value[9].split(":")[0:1]
             else:
-                if float(value[5]) >= confi_I:
+                #if float(value[5]) >= confi_I:
                     var_call[pos] = value[3:6] + value[9].split(":")[0:1]
 print "#called variants", len(var_call)
 
 '''
 cmp_tool_var, cmp_tool_var_all = {}, {}
 confi_S_K, confi_I_K, confi_S_U, confi_I_U = 20, 20, 20, 20
-cmp_tool_file = os.path.join(result_path, "ivc_0.8.1-3_exome", "ERR194147_shuf_" + cov + "_chr" + chr_name + ".ivc.vcf")
+cmp_tool_file = os.path.join(result_path, "ivc_0.8.1-3_exome", "ERR194147_shuf_50x_chr" + chr_name + ".ivc.vcf")
 with open(cmp_tool_file) as f:
     for line in f.readlines():
         if line.strip() and line[0] != "#":
@@ -127,8 +136,7 @@ with open(cmp_tool_file) as f:
 print "#cmp variants", len(cmp_tool_var)
 '''
 '''
-#analysis_dir = os.path.join(result_path, "gatk_hc/cmp_to_ivc0.9.0_" + str(confi_S_K) + "." + str(confi_I_K) + "." + str(confi_S_U) + "." + str(confi_I_U) + ".exome.debug_" + cov + "_giab")
-analysis_dir = os.path.join(result_path, "samtools/cmp_to_ivc0.9.0_" + str(confi_S_K) + "." + str(confi_I_K) + "." + str(confi_S_U) + "." + str(confi_I_U) + ".exome.debug_" + cov + "_giab")
+analysis_dir = os.path.join(result_path, "scalpel/" + cov + "/cmp_to_ivc0.8.1_exome_" + str(confi_S_K) + "." + str(confi_I_K) + "." + str(confi_S_U) + "." + str(confi_I_U) + ".debug_" + cov + "_giab")
 if not os.path.exists(analysis_dir):
     os.mkdir(analysis_dir)
 
@@ -272,23 +280,21 @@ out_file92.close()
 CS = KA_KS + KA_KS_DS + NA_KS + NA_KS_DS + NS_DS + NS
 CI = KA_KI + KA_KI_DI + NA_KI + NA_KI_DI + NI_DI + NI
 
-#result_file_path = os.path.join(result_path, "gatk_hc/ERR194147_shuf_" + cov + "_chr" + chr_name + ".bwa_sorted_RG_realign.vcf.exome.homvar.prec_rec.GIAB." + str(confi_S) + "." + str(confi_I) + ".txt")
-result_file_path = os.path.join(result_path, "samtools/ERR194147_shuf_" + cov + "_chr" + chr_name + ".bwa_sorted_RG_realign.norm.vcf.homvar.prec_rec.GIAB." + str(confi_S) + "." + str(confi_I) + ".txt")
+result_file_path = os.path.join(result_path, "scalpel/" + cov + "/variants.indel.vcf.homvar.prec_rec.GIAB." + str(confi_S) + "." + str(confi_I) + ".txt")
 result_file = open(result_file_path, "w")
 
 header = ["Alg", "Cov", "Qual", "TP_U_S", "TP_K_S", "TL_FP_U_S", "TL_FP_K_S", "TP_U_I", "TP_K_I", "TL_FP_U_I", "TL_FP_K_I", "FL_FP_U_S", "FL_FP_K_S", "FL_FP_U_I", "FL_FP_K_I", "TS", "TI", "TS+TI", "CS", "CI", "CS+CI", "PS", "RS", "PI", "RI"]
 
 result_file.write("\t".join(header) + "\n")
-#result_file.write("GATK-HC\t" + cov + "\t" + str(confi_S) + "," + str(confi_I) + "\t")
-result_file.write("SAMtools\t" + cov + "\t" + str(confi_S) + "," + str(confi_I) + "\t")
+result_file.write("Scalpel\t" + cov + "\t" + str(confi_S) + "," + str(confi_I) + "\t")
 result_file.write("%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t" % (KA_KS, KA_KS_DS, NA_KS, NA_KS_DS, KA_KI, KA_KI_DI, NA_KI, NA_KI_DI, NS, NS_DS, NI, NI_DI))
-result_file.write("%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5f\t%.5f\t%.5f\t%.5f" % (TS, TI, TS + TI, CS, CI, CS+CI, KA_KS/float(CS), KA_KS/float(TS), KA_KI/float(CI), KA_KI/float(TI)))
+result_file.write("%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5f\t%.5f\t%.5f\t%.5f" % (TS, TI, TS + TI, CS, CI, CS+CI, KA_KS/float(CS+1), KA_KS/float(TS), KA_KI/float(CI+1), KA_KI/float(TI)))
 result_file.close()
 
 '''
 header = ["Alg", "Cov", "Qual", "TP_U_S", "TP_K_S", "TL_FP_U_S", "TL_FP_K_S", "TP_U_I", "TP_K_I", "TL_FP_U_I", "TL_FP_K_I", "FL_FP_U_S", "FL_FP_K_S", "FL_FP_U_I", "FL_FP_K_I", "TS", "TI", "TS+TI", "CS", "CI", "CS+CI", "PS", "RS", "PI", "RI"]
 result_file.write("\t".join(header) + "\n")
-result_file.write("GATK-HC\t" + cov + "\t" + str(confi_S) + "," + str(confi_I) + "\t")
+result_file.write("Scalpel\t" + cov + "\t" + str(confi_S) + "," + str(confi_I) + "\t")
 result_file.write("%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t" % (KA_KS, KA_KS_DS, KA_KS_ST, NA_KS, NA_KS_DS, KA_KI, KA_KI_DI, KA_KI_ST, NA_KI, NA_KI_DI, NS_DS, NS_DS_ST, NI_DI, NI_DI_ST, NS, NS_ST, NI, NI_ST))
 result_file.write("%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5d\t%.5f\t%.5f\t%.5f\t%.5f" % (TS, TI, TS + TI, CS, CI, CS+CI, KA_KS/float(S), KA_KS/float(TS), KA_KI/float(CI), KA_KI/float(TI)))
 result_file.close()
